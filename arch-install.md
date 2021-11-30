@@ -364,7 +364,9 @@ sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu\>
 
 \# `sudo pacman -S xf86-video-amdgpu`
 
-\# `sudo pacman -S  pulseaudio alsa-utils alsa-plugins pulseaudio-alsa`
+\# ( `sudo pacman -S  pulseaudio ) 
+
+@extra `alsa-utils alsa-plugins pulseaudio-alsa`
 
 # 19 KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
@@ -413,7 +415,25 @@ extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdecon
 
 \# `pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde`
 
-@extra pipewire-alsa
+@extra pipewire-alsa pipewire-jack
+ 
+PulseAudio cannot be uninstalled because it is too tied in to KDE
+but the systemd socket and service for PulseAudio can be disabled to shut it down
+
+ 
+`systemctl --user mask pulseaudio.socket --now`
+ 
+`systemctl --user disable pulseaudio.service --now`
+
+and the pipewire socket and service can be enabled instead
+
+ 
+`systemctl --user enable pipewire.socket --now`
+ 
+`systemctl --user start pipewire.service`
+
+pipewire is very new and still a beta release
+I have no idea what diagnostics and tools are available in pipewire if it does not work, and it is unlikely any tools for PulseAudio will work
 
 GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
