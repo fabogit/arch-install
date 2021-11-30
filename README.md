@@ -1,2 +1,2 @@
 # arch-install
-installation process for arch linux ditro 
+installation process for arch linux distro 
