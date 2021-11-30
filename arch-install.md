@@ -373,34 +373,41 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 
 @extra `kde-applications`
 
+# INSTALL USEFUL PACKAGES
+`pacman -S`
+
+`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch  tmux firefox nm-connection-editor firewalld` and  `dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kde-system-meta kcharselect markdownpart kdialog`
+
 \# `exit`
 
 \# `umount -a`
 
 \# `reboot`
 
-### login into root
+## login into root
 
-### wifi connect after reboot into cli
+## wifi connect after reboot into cli
 
 \# `nmcli device wifi list`
 
 \# `nmcli device wifi connect <SSID_or_BSSID> password <password>`
 
-# INSTALL USEFUL PACKAGES
+# ENABLE WINDOW MANAGER TO LOG IN INTYO DE
+\# `systemctl enable sddm`
+
+### reboot
+
+## KDE apps
 `pacman -S`
 
-`linux-lts-headers git curl wget bash-completion lshw usbutils neofetch  tmux firefox bluedevil nm-connection-editor firewalld dnsmasq`
-
-### KDE apps
-`kde-applications` or install `konsole ark zip unzip p7zip dolphin packagekit-qt5 fwupd discover kate kwrite    kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kde-system-meta kcharselect markdownpart kdialog`
+for kde discover install `packagekit-qt5 fwupd discover`
 
 extra for dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
 `dolphin-plugins kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs raw-thumbnailer taglib`
 
 extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
 
-### PIPEWIRE AUDIO
+## PIPEWIRE AUDIO
 
 @pipewire https://wiki.archlinux.org/title/PipeWire#Installation
 
@@ -409,11 +416,5 @@ extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdecon
 @extra pipewire-alsa
 
 GUI https://gitlab.freedesktop.org/ryuukyu/helvum
-
-
-## ENABLE WINDOW MANAGER TO LOG IN INTYO DE
-\# `systemctl enable sddm`
-
-### reboot
 
 # ENJOY
