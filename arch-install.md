@@ -307,7 +307,7 @@ basic update & upgrade
 
 ### NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
-\# `pacman -S networkmanager bluez`
+\# `pacman -S networkmanager bluez openssh`
 
 @extra bluez-utils network-manager-applet dialog wpa_supplicant wireless_tools netctl
 
