@@ -380,6 +380,55 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 
 `linux-headers git curl wget bash-completion konsole lshw usbutils neofetch  tmux firefox nm-connection-editor firewalld` and  `dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kde-system-meta kcharselect markdownpart kdialog`
 
+## PIPEWIRE AUDIO
+
+@pipewire https://wiki.archlinux.org/title/PipeWire#Installation
+
+\# `pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde`
+
+@extra pipewire-alsa pipewire-jack
+ 
+### PulseAudio clients
+
+Install `pipewire-pulse`. It will replace `pulseaudio` and `pulseaudio-bluetooth`. 
+Reboot, re-login or execute `systemctl start --user pipewire-pulse.service` to see the effect.
+
+Normally, no further action is needed, as the user service pipewire-pulse.socket` should be enabled automatically by the package. 
+To check if the replacement is working, run the following command and see the output:
+
+$ `pactl info`
+
+...
+ 
+Server Name: PulseAudio (on PipeWire 0.3.32)
+ 
+...
+
+If PipeWire does not work correctly on system startup, validate that the Systemd/User services `pipewire-pulse.service`, `pipewire.service`, and `pipewire-media-session.service` are up and running. Keep in mind that `pipewire-pulse.service` and `pipewire-pulse.socket` have a `ConditionUser` against running as root.  
+
+ 
+ 
+PulseAudio cannot be uninstalled because it is too tied in to KDE
+but the systemd socket and service for PulseAudio can be disabled to shut it down
+
+ 
+`systemctl --user mask pulseaudio.socket --now`
+ 
+`systemctl --user disable pulseaudio.service --now`
+
+and the pipewire socket and service can be enabled instead
+
+ 
+`systemctl --user enable pipewire.socket --now`
+ 
+`systemctl --user start pipewire.service`
+
+pipewire is very new and still a beta release
+I have no idea what diagnostics and tools are available in pipewire if it does not work, and it is unlikely any tools for PulseAudio will work
+
+GUI https://gitlab.freedesktop.org/ryuukyu/helvum
+
+
 \# `exit`
 
 \# `umount -a`
@@ -409,32 +458,6 @@ extra for dolphin file exploirer plugins and file previews  https://wiki.archlin
 
 extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
 
-## PIPEWIRE AUDIO
 
-@pipewire https://wiki.archlinux.org/title/PipeWire#Installation
-
-\# `pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde`
-
-@extra pipewire-alsa pipewire-jack
- 
-PulseAudio cannot be uninstalled because it is too tied in to KDE
-but the systemd socket and service for PulseAudio can be disabled to shut it down
-
- 
-`systemctl --user mask pulseaudio.socket --now`
- 
-`systemctl --user disable pulseaudio.service --now`
-
-and the pipewire socket and service can be enabled instead
-
- 
-`systemctl --user enable pipewire.socket --now`
- 
-`systemctl --user start pipewire.service`
-
-pipewire is very new and still a beta release
-I have no idea what diagnostics and tools are available in pipewire if it does not work, and it is unlikely any tools for PulseAudio will work
-
-GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 # ENJOY
