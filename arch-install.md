@@ -182,7 +182,7 @@ mount /dev/\<EFIpartition\> /mnt/boot
 
 # 11 pacstrap for base install
 
-\# `pacstrap /mnt base base-devel linux linux-firmware lvm2 amd-ucode vim nano openssh`
+\# `pacstrap /mnt base base-devel linux linux-firmware lvm2 amd-ucode vim nano`
 
 @extra:
 linux-lts
