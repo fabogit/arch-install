@@ -171,7 +171,11 @@ https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
 
 https://github.com/ohmyzsh/ohmyzsh
 
+https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+  
 zsh plugins=( sudo zsh-autosuggestions zsh-syntax-highlighting dirhistory colored-man-pages colorize )
+  
+https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
 
 https://github.com/oguzhaninan/Stacer
 
