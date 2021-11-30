@@ -406,8 +406,10 @@ Server Name: PulseAudio (on PipeWire 0.3.32)
 
 If PipeWire does not work correctly on system startup, validate that the Systemd/User services `pipewire-pulse.service`, `pipewire.service`, and `pipewire-media-session.service` are up and running. Keep in mind that `pipewire-pulse.service` and `pipewire-pulse.socket` have a `ConditionUser` against running as root.  
 
- 
- 
+
+
+...
+
 PulseAudio cannot be uninstalled because it is too tied in to KDE
 but the systemd socket and service for PulseAudio can be disabled to shut it down
 
@@ -425,6 +427,8 @@ and the pipewire socket and service can be enabled instead
 
 pipewire is very new and still a beta release
 I have no idea what diagnostics and tools are available in pipewire if it does not work, and it is unlikely any tools for PulseAudio will work
+
+...
 
 GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
