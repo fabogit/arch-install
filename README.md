@@ -204,6 +204,10 @@ https://www.gnome-look.org/p/1603282
 https://www.gnome-look.org/p/1528917/
 
 https://www.gnome-look.org/p/1482847/
+
+splash screen
+  
+https://www.reddit.com/r/kde/comments/c68o40/i_made_a_gif_i_want_to_use_as_a_splash_screen_how/
   
 window tiling
   
@@ -216,6 +220,9 @@ https://store.kde.org/p/1309653/
 https://github.com/lingtjien/Grid-Tiling-Kwin
   
 manjaro theme
+
+╰─ `yay breath-theme-git`  
+
 
 https://gitlab.manjaro.org/artwork/themes/breath
   
