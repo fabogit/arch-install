@@ -1,4 +1,4 @@
- 
+https://wiki.archlinux.org/title/Installation_guide
 
 # 1 SET KEYBOARD LAYOUT
 
@@ -32,7 +32,7 @@ loadkeys \<kbrdlout ex: us,it\>
 
 ╰─`exit`
 
-
+...
 
 ### SET UP FOR INSTALL OVER SSH
 
