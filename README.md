@@ -204,3 +204,16 @@ https://www.gnome-look.org/p/1603282
 https://www.gnome-look.org/p/1528917/
 
 https://www.gnome-look.org/p/1482847/
+  
+https://github.com/kwin-scripts/kwin-tiling
+  
+https://store.kde.org/p/1309653/
+  
+https://github.com/lingtjien/Grid-Tiling-Kwin
+  
+manjaro theme
+
+https://gitlab.manjaro.org/artwork/themes/breath
+  
+https://manjaro.org/branch-compare/?q=breath2
+  
