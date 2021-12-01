@@ -1,20 +1,20 @@
  
 
-# 1 keyboard layout
+# 1 SET KEYBOARD LAYOUT
 
 loadkeys \<kbrdlout ex: us,it\>
 
 ╰─`loadkeys us`
 
 
-# 2 check ntwk
+# 2 CHECK NETWORK
 
 ╰─`ip link`
 
 ╰─`ping -c 3 archlinux.org`
 
 
-# 3 connect wifi
+# 3 CONNECT WIFI
 
 ╰─`iwctl`
 
@@ -33,7 +33,7 @@ loadkeys \<kbrdlout ex: us,it\>
 ╰─`exit`
 
 
-# SSH install
+# SET UP FOR INSTALL OVER SSH
 
 ╰─`systemctl start sshd`
 
@@ -64,12 +64,12 @@ get ip
 
 then ssh \# `ssh root@<ip addr>`
 
-#### sync clock
+## synking clock
 
 ╰─`timedatectl set-ntp true`
 
 
-# 4 DISK partition UEFI/GPT LVM
+# 4 DISK SETUP UEFI/GPT USING LVM
 
 https://wiki.archlinux.org/title/Partitioning#Example_layouts
 
@@ -96,7 +96,7 @@ fdisk -l /dev/\<drive\>
 ╰─`fdisk -l /dev/nvme0n1`
 
 
-# 5 format /efi to fat32 for bootloader
+# 5 FORMAT /EFI PARTITION TO FAT32 FOR BOOTLOADER
 
 mkfs.fat -F32 /dev/\<EFIpartition\>
 
@@ -108,7 +108,7 @@ mkfs.fat -F32 /dev/\<EFIpartition\>
 
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm.html#fig-lvm-explain
 
-## 6 phisical volume
+## 6 PHISICAL VOLUME
 
 pvcreate /dev/\<LVMpartition\>
 
@@ -117,7 +117,7 @@ pvcreate /dev/\<LVMpartition\>
 ╰─`pvs`
 
 
-## 7 volume group
+## 7 VIRTUAL GROUP
 
 vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
 
@@ -126,7 +126,7 @@ vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
 ╰─`vgs`
 
 
-## 8 logical volumes
+## 8 LOGICAL VOLUMES
 
 lvcreate -L \<size ex: 20G\> \<on ex: archlinux\> -n \<name ex: root\>
 
@@ -141,7 +141,7 @@ onlt if want `/root` and `/home` on separated partions
 ╰─`lvs`
 
 
-# 9 FORMAT lv
+# 9 FORMAT lvs PARTITIONS
 
 format /dev/\<VGname\>/\<partition\>
 
@@ -156,7 +156,7 @@ format /dev/\<VGname\>/\<partition\>
 ╰─`fdisk -l`
 
 
-# 10 MOUNT root and partitions
+# 10 MOUNT PARTITIONS
 
 mount /dev/\<VGname\>/\<root lv\> /mnt
 
@@ -178,13 +178,13 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 ╰─`free -h`
 
-#### CHECK ALL
+## FINAL CHECK
 
 ╰─`df -hT`
 
 ╰─`lsblk`
 
-# 11 pacstrap for base install
+# 11 START INSTALL USING PACSTRAP
 
 ╰─`pacstrap /mnt base base-devel linux linux-firmware lvm2 amd-ucode vim nano`
 
@@ -197,11 +197,11 @@ generate file system tabs
 ╰─`more /mnt/etc/fstab`
 
 
-# 12 root LOG into linux
+# 12 ENTER INTO LINUX 
 
 ╰─`arch-chroot /mnt`
 
-# 13 set timezone&language
+# 13 TZ & LANG
 
 ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
@@ -211,7 +211,7 @@ ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
 ╰─`nano /etc/locale.gen`
 
-### if using vim:
+### vim controls:
 
 ...
 
@@ -237,7 +237,7 @@ keyboard layout
 
 ╰─`echo "KEYMAP=us" > /etc/vconsole.conf`
 
-# 14 hostname
+# 14 CREATE HOSTNAME
 
 echo \<hostname\> > /etc/hostname
 
@@ -274,7 +274,7 @@ if lts is installed
 ( mkinitcpio -p linux-lts )
 
 
-# 15 set ROOT password and USERS
+# 15 SET UP ROOT PASSWORD AND ADD USER
 
 ╰─`passwd`
 
@@ -284,7 +284,7 @@ useradd -m -g users -G wheel \<username\>
 
 ╰─`passwd fabo`
 
-sudoers
+## add to sudoers
 
 check `pacman -S sudo`
 
@@ -292,9 +292,9 @@ check `pacman -S sudo`
 
 uncomment %wheel ALL...
 
-# 16 BOOTMANAGER
+# 16 BOOTMANAGER INSTALL
 
-### UPDATE PACkage MANager
+## UPDATE PACkage MANager
 
 NOTE: You must run `pacman-key --init` before first using pacman; the local
 
@@ -313,7 +313,7 @@ basic update & upgrade
 
 ╰─`sudo pacman -Syu`
 
-### NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
+## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
 ╰─`pacman -S networkmanager bluez openssh`
 
@@ -329,7 +329,7 @@ basic update & upgrade
 
 ╰─`systemctl enable bluetooth.service`
 
-## GRUB
+## GRUB INSTALL
 
 https://wiki.archlinux.org/title/GRUB#UEFI_systems
 
@@ -349,13 +349,13 @@ optional EXIT & REBOOT
 
 ╰─`reboot`
 
-wifi connect after reboot into cli
+### wifi connect after reboot into cli
 
 ╰─`nmcli device wifi list`
 
 ╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
 
-# 17 XORG GUI
+# 17 INSTALL XORG DISPLAY SERVER
 
 https://wiki.archlinux.org/title/Xorg#Installation
 
@@ -364,28 +364,28 @@ https://wiki.archlinux.org/title/Xorg#Installation
 @extra `xorg-server xorg-apps`
 
 
-# 18 VIDEO DRIVERS
+# 18 INSTALL VIDEO DRIVERS
 
-sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu\>
+sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu, intel\>
 
 ╰─`pacman -S xf86-video-amdgpu`
 
 @extra `pulseaudio alsa-utils alsa-plugins pulseaudio-alsa`
 
-# 19 KDE
+# 19 INSTALL KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
 
 ╰─`pacman -S plasma-meta plasma-wayland-session wayland-protocols`
 
 @extra `kde-applications`
 
-# INSTALL USEFUL PACKAGES
+## INSTALL USEFUL PACKAGES
 
 ╰─`pacman -S`
 
 `linux-headers git curl wget bash-completion konsole lshw usbutils neofetch  tmux firefox nm-connection-editor firewalld` and  `dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kde-system-meta kcharselect markdownpart kdialog`
 
-## PIPEWIRE AUDIO
+## PIPEWIRE AUDIO DRIVERS
 
 @pipewire https://wiki.archlinux.org/title/PipeWire#Installation
 
@@ -454,12 +454,14 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 ╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
 
-# ENABLE WINDOW MANAGER TO LOG IN INTYO DE
+# ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
  
 ╰─`systemctl enable sddm`
 
-### reboot
+## REBOOT
 
+login as `root` or user
+ 
 ## KDE apps
 ╰─`pacman -S`
 
@@ -469,7 +471,6 @@ extra for dolphin file exploirer plugins and file previews  https://wiki.archlin
 `dolphin-plugins kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs raw-thumbnailer taglib`
 
 extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
-
 
 
 # ENJOY
