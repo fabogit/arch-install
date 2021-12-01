@@ -455,7 +455,7 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 ## KDE apps
 `pacman -S`
 
-for kde discover install `packagekit-qt5 fwupd discover`
+for kde discover install `packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
 
 extra for dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
 `dolphin-plugins kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs raw-thumbnailer taglib`
