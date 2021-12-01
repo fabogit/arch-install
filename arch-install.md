@@ -33,7 +33,8 @@ loadkeys \<kbrdlout ex: us,it\>
 ╰─`exit`
 
 
-# SET UP FOR INSTALL OVER SSH
+
+### SET UP FOR INSTALL OVER SSH
 
 ╰─`systemctl start sshd`
 
