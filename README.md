@@ -205,6 +205,10 @@ https://www.gnome-look.org/p/1528917/
 
 https://www.gnome-look.org/p/1482847/
   
+window tiling
+  
+https://swaywm.org/
+  
 https://github.com/kwin-scripts/kwin-tiling
   
 https://store.kde.org/p/1309653/
