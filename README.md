@@ -44,15 +44,15 @@ https://itsfoss.com/backup-restore-linux-timeshift/
 
 UPDATE PACMAN
 
-NOTE: You must run pacman-key --init before first using pacman; the local
+NOTE: You must run `pacman-key --init` before first using pacman; the local
 
 keyring can then be populated with the keys of all official Arch Linux
 
-packagers with pacman-key --populate archlinux
+packagers with `pacman-key --populate archlinux`
 
 enable multi mirrors
 
-# sudo vim /etc/pacman.conf
+╰─ `sudo vim /etc/pacman.conf`
 
 uncomment: [multilib] Include
 
@@ -62,15 +62,15 @@ https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallatio
 
 PACMAN ( https://www.youtube.com/watch?v=HD7jJEh4ZaM&ab_channel=LearnLinuxTV )
 
-in /etc/pacman.conf put ParallelDownloads = 10 (or whatever number you want), add ILoveCandy to pacman.conf
+in `/etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want), add `ILoveCandy` to `pacman.conf`
 
 update & upgrade
 
-# sudo pacman -Syyu
+╰─ `sudo pacman -Syyu`
 
 remove
 
-# pacman -Rns <name>
+╰─ `pacman -Rns <name>`
 
 https://wiki.archlinux.org/title/Pacman/Package_signing#Initializing_the_keyring ?? sudo pacman-key --init
 
