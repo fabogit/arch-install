@@ -218,6 +218,10 @@ https://github.com/kwin-scripts/kwin-tiling
 https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
+
+systemd in System settings
+
+https://store.kde.org/p/1127873/
   
 manjaro theme
 
