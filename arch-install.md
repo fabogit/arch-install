@@ -267,7 +267,7 @@ add:
 
 ╰─`nano /etc/mkinitcpio.conf`
 
-add lvm2 at HOOKS between block and filesystems
+add `lvm2` at `HOOKS` between `block` and `filesystems`
 
 ╰─`mkinitcpio -P`
 
