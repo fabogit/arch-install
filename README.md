@@ -74,6 +74,9 @@ remove
 
 https://wiki.archlinux.org/title/Pacman/Package_signing#Initializing_the_keyring ?? sudo pacman-key --init
 
+## Sleep/Hybern
+
+https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
 
 # PAKAGES
 
