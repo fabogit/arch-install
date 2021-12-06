@@ -110,6 +110,8 @@ Use `yay -Y --devel --save` to make development package updates permanently enab
 
 ### Sleep/Hybern
 
+https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
+
 https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
 
 
@@ -117,7 +119,7 @@ https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-think
 
 `linux-lts linux-lts-headers openssh vim nano git curl wget bash-completion`
 
-( https://github.com/scop/bash-completion )
+https://github.com/scop/bash-completion
 
 network
 
@@ -127,24 +129,17 @@ utils
 
 `grub-customizer lshw usbutils neofetch zip unzip p7zip firefox tmux flameshot ktorrent`
 
+printer service
 
+`cups`
 
+fonts https://wiki.archlinux.org/title/fonts#Installation
 
-
-cups (printer service)
-
-all-repository-fonts
+`all-repository-fonts`
 
 `ttf-ms-fonts ttf-ms-win10`
 
-?pamac
-
 font Cantarell??
-
-https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/linux/chromium_packages.md
-
-
-
 
 ### TUXEDO REPO
 
@@ -247,14 +242,13 @@ https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
 
-systemd in System settings
+### systemd in System settings
 
 https://store.kde.org/p/1127873/
   
 ### manjaro theme
 
 ╰─`yay breath-theme-git`  
-
 
 https://gitlab.manjaro.org/artwork/themes/breath
   
