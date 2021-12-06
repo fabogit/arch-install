@@ -60,91 +60,27 @@ uncomment: [multilib] Include
 
 https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallation_optimizations_that/
 
-PACMAN ( https://www.youtube.com/watch?v=HD7jJEh4ZaM&ab_channel=LearnLinuxTV )
+
+### PACMAN ( https://www.youtube.com/watch?v=HD7jJEh4ZaM&ab_channel=LearnLinuxTV )
 
 in `/etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want), add `ILoveCandy` to `pacman.conf`
 
 update & upgrade
 
-╰─ `sudo pacman -Syyu`
+╰─`sudo pacman -Syu`
+
+query
+╰─`sudo pacman -Ss <to search>`
 
 remove
 
-╰─ `pacman -Rns <name>`
+╰─`pacman -Rns <name>`
 
 https://wiki.archlinux.org/title/Pacman/Package_signing#Initializing_the_keyring ?? sudo pacman-key --init
 
-## Sleep/Hybern
+...
 
-https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
-
-# PAKAGES
-
-linux-lts
-
-linux-lts-headers
-
-openssh
-
-vim
-
-nano
-
-git
-
-curl
-
-wget
-
-bash-completion ( https://github.com/scop/bash-completion )
-
-nm-connection-editor
-
-network-manager-applet
-
-xorg-apps
-
-wpa_supplicant
-
-wireless_tools
-
-netctl
-
-grub-customizer
-
-lshw
-
-usbutils
-
-neofetch
-
-zip
-
-unzip
-
-p7zip
-
-firefox
-
-tmux
-
-ktorrent
-
-flameshot
-
-cups (printer service)
-
-all-repository-fonts
-
-ttf-ms-fonts
-
-ttf-ms-win10
-
-?pamac ?kwayland ?packagekit-qt5 ?powertop https://wiki.archlinux.org/title/Powertop
-
-font Cantarell??
-
-https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/linux/chromium_packages.md
+### YAY
 
 https://github.com/Jguer/yay
 
@@ -158,6 +94,60 @@ $ makepkg -si
 
 $ cd .. && sudo rm -r yay-git
 
+#### First Use
+
+Development packages upgrade
+
+Use `yay -Y --gendb` to generate a development package database for *-git packages that were installed without yay. This command should only be run once.
+
+`yay -Syu --devel` will then check for development package updates
+
+Use `yay -Y --devel --save` to make development package updates permanently enabled (`yay` and `yay -Syu` will then always check dev packages)
+
+
+...
+
+
+### Sleep/Hybern
+
+https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
+
+
+# PAKAGES
+
+`linux-lts linux-lts-headers openssh vim nano git curl wget bash-completion`
+
+( https://github.com/scop/bash-completion )
+
+network
+
+`nm-connection-editor network-manager-applet wpa_supplicant wireless_tools netctl`
+
+utils
+
+`grub-customizer lshw usbutils neofetch zip unzip p7zip firefox tmux flameshot ktorrent`
+
+
+
+
+
+cups (printer service)
+
+all-repository-fonts
+
+`ttf-ms-fonts ttf-ms-win10`
+
+?pamac
+
+font Cantarell??
+
+https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/linux/chromium_packages.md
+
+
+
+
+### TUXEDO REPO
+
 https://github.com/tuxedocomputers
 
 https://www.reddit.com/r/tuxedocomputers/comments/qngn8r/manjaro_and_tuxedo_control_center/
@@ -168,11 +158,32 @@ https://aur.archlinux.org/packages/tuxedo-keyboard/
 
 https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
+### powerlevel10k
+
 https://github.com/romkatv/powerlevel10k
 
-https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
+install font
 
-https://github.com/ohmyzsh/ohmyzsh
+╰─`pacman -S ttf-meslo-nerd-font-powerlevel10k`
+
+Enable font in terminal
+
+`Konsole`: Open Settings → Edit Current Profile → Appearance, click Select Font and select `MesloLGS NF Regular`
+
+`Visual Studio Code`: Open File → Preferences → Settings (PC) or Code → Preferences → Settings (Mac), enter `terminal.integrated.fontFamily` in the search box at the top of Settings tab and set the value below to `MesloLGS NF` see -> https://raw.githubusercontent.com/romkatv/powerlevel10k-media/389133fb8c9a2347929a23702ce3039aacc46c3d/visual-studio-code-font-settings.jpg , https://github.com/romkatv/powerlevel10k/issues/671
+
+in case of trouble: Run `p10k configure` to generate a new `~/.p10k.zsh`. The old config may work incorrectly with the new font.
+
+Install plvl10k
+
+`yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc`
+
+run `p10k configure`
+
+### ohmyzsh plugins
+
+https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
 
 https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
   
@@ -180,27 +191,41 @@ zsh plugins=( sudo zsh-autosuggestions zsh-syntax-highlighting dirhistory colore
   
 https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
 
+### Stacer
+
 https://github.com/oguzhaninan/Stacer
+
+### Timeshift
 
 https://github.com/teejee2008/timeshift ( https://www.youtube.com/watch?v=QE0lyWodWdU )
 
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm-snapshots.html
 
+### sddm themes
+
 https://adhec.github.io/sddm_themes/
+
+### live wallpapers
 
 https://github.com/cheesecakeufo/komorebi
 
 https://github.com/GhostNaN/mpvpaper
 
+### postgresql
+
 https://wiki.archlinux.org/title/PostgreSQL
+
+### mongodb
 
 https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
+### vscode
+
 https://wiki.archlinux.org/title/Visual_Studio_Code
 
-pacman -S python-pygments qt5-imageformats breeze-grub packagekit-qt5 fwupd
+### grub themes
 
 https://www.gnome-look.org/p/1603282
 
@@ -208,11 +233,11 @@ https://www.gnome-look.org/p/1528917/
 
 https://www.gnome-look.org/p/1482847/
 
-splash screen
+### splash screen
   
 https://www.reddit.com/r/kde/comments/c68o40/i_made_a_gif_i_want_to_use_as_a_splash_screen_how/
   
-window tiling
+### window tiling
   
 https://swaywm.org/
   
@@ -226,9 +251,9 @@ systemd in System settings
 
 https://store.kde.org/p/1127873/
   
-manjaro theme
+### manjaro theme
 
-╰─ `yay breath-theme-git`  
+╰─`yay breath-theme-git`  
 
 
 https://gitlab.manjaro.org/artwork/themes/breath
