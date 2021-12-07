@@ -283,4 +283,34 @@ https://store.kde.org/p/1127873/
 https://gitlab.manjaro.org/artwork/themes/breath
   
 https://manjaro.org/branch-compare/?q=breath2
-  
+ 
+
+## FONTS
+
+https://wiki.archlinux.org/title/Fonts#Font_packages
+
+https://fontlibrary.org/en
+
+Core TTF Fonts from Microsoft
+
+`ttf-ms-fonts`
+
+Microsoft Vista and Office 2007 True Type Fonts
+
+`ttf-vista-fonts`
+
+fira
+
+`ttf-fira-code`
+
+TrueType fonts from the Google Fonts project (git version)
+
+`ttf-google-fonts-git`
+
+Humanist sans serif font
+
+`cantarell-fonts`
+
+Google Noto emoji fonts
+
+`noto-fonts-emoji`
