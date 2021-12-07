@@ -303,10 +303,6 @@ fira
 
 `ttf-fira-code`
 
-TrueType fonts from the Google Fonts project (git version)
-
-`ttf-google-fonts-git`
-
 Humanist sans serif font
 
 `cantarell-fonts`
@@ -314,3 +310,11 @@ Humanist sans serif font
 Google Noto emoji fonts
 
 `noto-fonts-emoji`
+
+## metapakages
+
+`all-repository-fonts`
+ 
+TrueType fonts from the Google Fonts project (git version)
+
+`ttf-google-fonts-git`
