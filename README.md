@@ -144,6 +144,8 @@ https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
 
 https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
 
+https://forums.linuxmint.com/viewtopic.php?t=287015
+
 check swap partition mount dir
 
 ╰─`sudo cat /etc/fstab`
