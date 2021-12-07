@@ -158,6 +158,12 @@ add swap into grub conf
 
 `GRUB_CMDLINE_LINUX_DEFAULT="...resume=/dev/archVolumeGroup/archLogicalVolume"`
 
+update grub
+
+╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
+add hooks
+
 ╰─`sudo nano /etc/mkinitcpio.conf`
 
 at `HOOKS` add `resume` after `lvm2`
