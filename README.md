@@ -140,6 +140,14 @@ Use `yay -Y --devel --save` to make development package updates permanently enab
 
 ### Sleep/Hybern
 
+/etc/default/grub
+
+╰─`sudo nano /etc/mkinitcpio.conf`
+
+at `HOOKS` add `resume` after `lvm2`
+
+╰─`mkinitcpio -P`
+
 https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
 
 https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
