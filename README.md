@@ -280,9 +280,15 @@ https://store.kde.org/p/1127873/
 
 ╰─`yay breath-theme-git`  
 
+plasma
+
 https://gitlab.manjaro.org/artwork/themes/breath
   
 https://manjaro.org/branch-compare/?q=breath2
+
+grub
+
+https://gitlab.manjaro.org/artwork/branding/grub-theme
  
 
 ## FONTS
