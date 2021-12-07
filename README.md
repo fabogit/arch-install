@@ -140,7 +140,21 @@ Use `yay -Y --devel --save` to make development package updates permanently enab
 
 ### Sleep/Hybern
 
-/etc/default/grub
+https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
+
+https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
+
+check swap partition mount dir
+
+╰─`sudo cat /etc/fstab`
+
+es mount: `/dev/mapper/archVG-swap`
+
+add swap into grub conf
+
+╰─`sudo nano /etc/default/grub`
+
+`GRUB_CMDLINE_LINUX_DEFAULT="...resume=/dev/archVolumeGroup/archLogicalVolume"`
 
 ╰─`sudo nano /etc/mkinitcpio.conf`
 
@@ -148,10 +162,7 @@ at `HOOKS` add `resume` after `lvm2`
 
 ╰─`mkinitcpio -P`
 
-https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
-
-https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/
-
+reboot/hybernate
 
 # PAKAGES
 
