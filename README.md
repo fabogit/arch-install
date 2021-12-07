@@ -52,13 +52,36 @@ packagers with `pacman-key --populate archlinux`
 
 enable multi mirrors
 
-╰─ `sudo vim /etc/pacman.conf`
+╰─`sudo vim /etc/pacman.conf`
 
 uncomment: [multilib] Include
 
 # AFTER INSTALL
 
 https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallation_optimizations_that/
+
+grub config
+
+╰─`sudo nano /etc/default/grub`
+
+...
+
+`GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 mitigations=off"`
+
+...
+
+to improve SSD lifespan and performance in the long term
+
+╰─`sudo systemctl enable fstrim.timer` 
+
+swap file
+
+╰─`sudo nano /etc/sysctl.d/10-swappiness.conf`
+
+...
+
+`vm.swappiness=10`
+...
 
 
 ### PACMAN ( https://www.youtube.com/watch?v=HD7jJEh4ZaM&ab_channel=LearnLinuxTV )
@@ -157,7 +180,7 @@ https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
 https://github.com/romkatv/powerlevel10k
 
-install font
+install pwlv10k font
 
 ╰─`pacman -S ttf-meslo-nerd-font-powerlevel10k`
 
@@ -167,11 +190,11 @@ Enable font in terminal
 
 `Visual Studio Code`: Open File → Preferences → Settings (PC) or Code → Preferences → Settings (Mac), enter `terminal.integrated.fontFamily` in the search box at the top of Settings tab and set the value below to `MesloLGS NF` see -> https://raw.githubusercontent.com/romkatv/powerlevel10k-media/389133fb8c9a2347929a23702ce3039aacc46c3d/visual-studio-code-font-settings.jpg , https://github.com/romkatv/powerlevel10k/issues/671
 
-in case of trouble: Run `p10k configure` to generate a new `~/.p10k.zsh`. The old config may work incorrectly with the new font.
+in case of trouble: Run ╰─`p10k configure` to generate a new `~/.p10k.zsh`. The old config may work incorrectly with the new font.
 
-Install plvl10k
+Install pwlvl10k
 
-`yay -S --noconfirm zsh-theme-powerlevel10k-git
+╰─`yay -S --noconfirm zsh-theme-powerlevel10k-git
 echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc`
 
 run `p10k configure`
