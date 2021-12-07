@@ -42,20 +42,6 @@ https://www.addictivetips.com/ubuntu-linux-tips/backup-kde-plasma-5-desktop-linu
 
 https://itsfoss.com/backup-restore-linux-timeshift/
 
-UPDATE PACMAN
-
-NOTE: You must run `pacman-key --init` before first using pacman; the local
-
-keyring can then be populated with the keys of all official Arch Linux
-
-packagers with `pacman-key --populate archlinux`
-
-enable multi mirrors
-
-╰─`sudo vim /etc/pacman.conf`
-
-uncomment: [multilib] Include
-
 # AFTER INSTALL
 
 https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallation_optimizations_that/
@@ -76,17 +62,40 @@ to improve SSD lifespan and performance in the long term
 
 swap file
 
+online:
+
+╰─`sudo echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/10-swappiness.conf`
+
+or:
+
 ╰─`sudo nano /etc/sysctl.d/10-swappiness.conf`
+
+add:
 
 ...
 
 `vm.swappiness=10`
+
 ...
+
+will be applied after reboot
 
 
 ### PACMAN ( https://www.youtube.com/watch?v=HD7jJEh4ZaM&ab_channel=LearnLinuxTV )
 
+NOTE: You must run `pacman-key --init` before first using pacman; the local
+
+keyring can then be populated with the keys of all official Arch Linux
+
+packagers with `pacman-key --populate archlinux`
+
 in `/etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want), add `ILoveCandy` to `pacman.conf`
+
+enable multi mirrors
+
+╰─`sudo vim /etc/pacman.conf`
+
+uncomment: `[multilib] Include`
 
 update & upgrade
 
@@ -101,7 +110,6 @@ remove
 
 https://wiki.archlinux.org/title/Pacman/Package_signing#Initializing_the_keyring ?? sudo pacman-key --init
 
-...
 
 ### YAY
 
@@ -126,7 +134,6 @@ Use `yay -Y --gendb` to generate a development package database for *-git packag
 `yay -Syu --devel` will then check for development package updates
 
 Use `yay -Y --devel --save` to make development package updates permanently enabled (`yay` and `yay -Syu` will then always check dev packages)
-
 
 ...
 
