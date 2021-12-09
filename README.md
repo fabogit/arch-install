@@ -238,10 +238,12 @@ run `p10k configure`
 https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
 
 https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+
+https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
   
 zsh plugins=( sudo zsh-autosuggestions zsh-syntax-highlighting dirhistory colored-man-pages colorize )
-  
-https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
+
+╰─`yay -S zsh-syntax-highlighting zsh-autosuggestions`
 
 ### Stacer
 
