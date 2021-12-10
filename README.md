@@ -275,17 +275,25 @@ https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
-`yay mongodb-bin mongodb-tools-bin mongodb-compass`
+╰─`yay mongodb-bin mongodb-tools-bin mongodb-compass`
+
+╰─`sudo systemctl mongod status`
+
+╰─`sudo systemctl enable mongodb.service`
+
+╰─`sudo systemctl start mongodb.service`
+
+╰─`mongo`
 
 ### vscode
 
 https://wiki.archlinux.org/title/Visual_Studio_Code
 
-`yay visual-studio-code-bin`
+╰─`yay visual-studio-code-bin`
 
 ### github desktop
 
-`yay github-desktop-bin`
+╰─`yay github-desktop-bin`
 
 ### grub themes
 
