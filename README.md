@@ -275,9 +275,17 @@ https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
+`yay mongodb-bin mongodb-tools-bin mongodb-compass`
+
 ### vscode
 
 https://wiki.archlinux.org/title/Visual_Studio_Code
+
+`yay visual-studio-code-bin`
+
+### github desktop
+
+`yay github-desktop-bin`
 
 ### grub themes
 
