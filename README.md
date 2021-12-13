@@ -295,6 +295,10 @@ https://wiki.archlinux.org/title/Visual_Studio_Code
 
 ╰─`yay github-desktop-bin`
 
+### insomnia
+
+╰─`yay insomnia-bin`
+
 ### grub themes
 
 https://www.gnome-look.org/p/1603282
