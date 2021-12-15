@@ -1,7 +1,6 @@
 # arch-install
 installation process for arch linux distro 
 
-
 # links & utils
 
 https://www.arcolinuxd.com/5-the-actual-installation-of-arch-linux-phase-1-uefi/
