@@ -294,6 +294,10 @@ https://wiki.archlinux.org/title/Visual_Studio_Code
 
 ╰─`yay github-desktop-bin`
 
+https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+https://man.archlinux.org/man/gitcredentials.7
+
 ### insomnia
 
 ╰─`yay insomnia-bin`
@@ -338,6 +342,16 @@ grub
 
 https://gitlab.manjaro.org/artwork/branding/grub-theme
  
+kwallet
+
+https://wiki.archlinux.org/title/KDE_Wallet
+
+https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
+
+`khelpcenter kwallet kwalletmanager gnome-keyring`
+
+
+
 
 ## FONTS
 
