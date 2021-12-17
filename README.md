@@ -274,6 +274,8 @@ https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
+https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_for_mongodb_compass/
+
 ╰─`yay mongodb-bin mongodb-tools-bin mongodb-compass`
 
 ╰─`sudo systemctl mongod status`
