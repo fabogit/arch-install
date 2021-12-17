@@ -304,6 +304,22 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ╰─`yay insomnia-bin`
 
+### Docker
+
+https://wiki.archlinux.org/title/Docker#Installation
+
+╰─`sudo pacman -S docker`
+
+╰─`sudo systemctl enable docker.service`
+
+╰─`sudo systemctl start docker.service`
+
+╰─`sudo docker info`
+
+GUI https://github.com/portainer/portainer
+
+╰─`yay portainer-bin`
+
 ### grub themes
 
 https://www.gnome-look.org/p/1603282
