@@ -316,9 +316,27 @@ https://wiki.archlinux.org/title/Docker#Installation
 
 ╰─`sudo docker info`
 
-GUI https://github.com/portainer/portainer
+PORTAINER GUI https://github.com/portainer/portainer
+
+https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux
+
+╰─`docker volume create portainer_data`
+
+oneliner
+
+╰─`docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
+    --restart=always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data \
+    cr.portainer.io/portainer/portainer-ce:2.9.3`
+    
+╰─`docker ps`
+
+go to https://localhost:9443
 
 ╰─`yay portainer-bin`
+
+change launcher default port 9000 to 9443
 
 ### grub themes
 
