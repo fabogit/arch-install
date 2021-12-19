@@ -312,9 +312,23 @@ https://wiki.archlinux.org/title/Docker#Installation
 
 ╰─`sudo systemctl enable docker.service`
 
+╰─`sudo systemctl enable containerd.service`
+
 ╰─`sudo systemctl start docker.service`
 
+╰─`sudo systemctl start containerd.service`
+
 ╰─`sudo docker info`
+
+remove sudo
+
+╰─`sudo groupadd docker`
+
+╰─`sudo usermod -aG docker $USERTOADD`
+
+REBOOT and test
+
+╰─`docker run hello-world`
 
 PORTAINER GUI https://github.com/portainer/portainer
 
