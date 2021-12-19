@@ -270,6 +270,10 @@ https://github.com/teejee2008/timeshift ( https://www.youtube.com/watch?v=QE0lyW
 
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm-snapshots.html
 
+### snapper
+
+https://wiki.archlinux.org/title/snapper
+
 ### sddm themes
 
 https://adhec.github.io/sddm_themes/
@@ -307,6 +311,10 @@ https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_
 https://wiki.archlinux.org/title/Visual_Studio_Code
 
 ╰─`yay visual-studio-code-bin`
+
+also install
+
+╰─`sudo pacman -S gnome-keyring`
 
 ### github desktop
 
@@ -368,6 +376,14 @@ go to https://localhost:9443
 
 change launcher default port 9000 to 9443
 
+### kwallet
+
+https://wiki.archlinux.org/title/KDE_Wallet
+
+https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
+
+╰─`sudo pacman -S khelpcenter kwallet kwalletmanager`
+
 ### grub themes
 
 https://www.gnome-look.org/p/1603282
@@ -407,19 +423,9 @@ https://manjaro.org/branch-compare/?q=breath2
 grub
 
 https://gitlab.manjaro.org/artwork/branding/grub-theme
- 
-kwallet
-
-https://wiki.archlinux.org/title/KDE_Wallet
-
-https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
-
-`khelpcenter kwallet kwalletmanager gnome-keyring`
 
 
-
-
-## FONTS
+# FONTS
 
 https://wiki.archlinux.org/title/Fonts#Font_packages
 
