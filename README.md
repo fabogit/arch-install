@@ -209,6 +209,21 @@ https://aur.archlinux.org/packages/tuxedo-keyboard/
 
 https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
+### zsh
+
+╰─`sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
+
+list shells
+`chsh -l`
+
+change default shell to zsh for root
+ 
+╰─`sudo chsh -s /bin/zsh`
+ 
+and for the current user
+ 
+╰─`chsh -s /bin/zsh`
+
 ### powerlevel10k
 
 https://github.com/romkatv/powerlevel10k
@@ -241,8 +256,6 @@ https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
   
 zsh plugins=( sudo zsh-autosuggestions zsh-syntax-highlighting dirhistory colored-man-pages colorize )
-
-╰─`yay -S zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
 
 ### Stacer
 
