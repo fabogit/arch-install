@@ -213,6 +213,8 @@ https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
 ╰─`sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
 
+https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
+
 list available shells
 
 ╰─`chsh -l`
