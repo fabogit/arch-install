@@ -213,8 +213,9 @@ https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
 ╰─`sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
 
-list shells
-`chsh -l`
+list available shells
+
+╰─`chsh -l`
 
 change default shell to zsh for root
  
