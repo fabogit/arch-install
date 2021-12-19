@@ -242,7 +242,7 @@ https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-g
   
 zsh plugins=( sudo zsh-autosuggestions zsh-syntax-highlighting dirhistory colored-man-pages colorize )
 
-╰─`yay -S zsh-syntax-highlighting zsh-autosuggestions`
+╰─`yay -S zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
 
 ### Stacer
 
