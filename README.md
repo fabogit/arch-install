@@ -267,6 +267,8 @@ and for the current user
  
 ╰─`chsh -s /bin/zsh`
 
+extra: add line to .zshrc `export SHELL=zsh`
+
 ### powerlevel10k
 
 https://github.com/romkatv/powerlevel10k
