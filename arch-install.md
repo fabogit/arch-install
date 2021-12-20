@@ -64,7 +64,7 @@ to remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 get ip
 
-╰─`ip addr`
+╰─`ip a`
 
 then ssh \# `ssh root@<ip addr>`
 
