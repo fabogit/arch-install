@@ -81,7 +81,97 @@ sync
 ╰─`pacman -Syy`
 
 
-# 4 DISK SETUP UEFI/GPT USING LVM
+
+# 4 DISK SETUP
+
+# UEFI/GPT BTRFS
+
+
+#5 create partitions
+
+╰─`cfdisk /dev/nvme0n1`
+
+...
+
+-> cfdisk GPT
+
+`/dev/EFIpartition`	size: 0.2G	type: `EFI System`
+
+`/dev/root`	size: 900G	type: `Linux FileSystem`
+
+`/dev/swap`	size: 32G	type: `Linux Swap`
+
+write & quit
+
+...
+
+#6 format partitions
+
+boot fat32
+
+╰─`mkfs.fat -F32 /dev/nvme0n1p1`
+
+root btrfs
+
+╰─`mkfs.btrfs /dev/nvme0n1p2`
+
+swap
+
+╰─`mkswap /dev/nvme0n1p3`
+
+╰─`swapon /dev/nvme0n1p3`
+
+#7 mount /root
+
+╰─`mount /dev/nvme0n1p2 /mnt`
+
+#8 create subvolumes
+
+root sbvl
+
+╰─`btrfs su cr /mnt/@`
+
+home sbvl
+
+╰─`btrfs su cr /mnt/@home`
+
+snapshots sbvl
+
+╰─`btrfs su cr /mnt/@snapshots`
+
+#9 umount mount directory
+
+╰─`umount /mnt`
+
+#10 mount subvolumes
+
+
+
+root btrfs option and mount
+
+╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p2 /mnt`
+
+create folders on mount
+
+╰─`mkdir -p /mnt/{boot,home,.snapshots}`
+
+efi partition on boot
+
+╰─`mount /dev/nvme0n1p1 /mnt/boot`
+
+home
+
+╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@home /dev/nvme0n1p2 /mnt/home`
+
+snapshots
+
+╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@snapshots /dev/nvme0n1p2 /mnt/.snapshots`
+
+check
+
+╰─`lsblk`
+
+# UEFI/GPT EXT4 LVM
 
 https://wiki.archlinux.org/title/Partitioning#Example_layouts
 
