@@ -320,6 +320,8 @@ also install
 
 ╰─`sudo pacman -S gnome-keyring`
 
+https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
+
 ### github desktop
 
 ╰─`yay github-desktop-bin`
