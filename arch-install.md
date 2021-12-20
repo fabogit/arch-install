@@ -36,8 +36,6 @@ loadkeys \<kbrdlout ex: us,it\>
 
 ### SET UP FOR INSTALL OVER SSH
 
-╰─`systemctl start sshd`
-
 set root pwd
 
 ╰─`passwd`
@@ -47,10 +45,15 @@ set root pwd
 Check that `PermitRootLogin yes` is present (and uncommented)
 in `/etc/ssh/sshd_config`
 
+╰─`nano /etc/ssh/sshd_config`
+
 This setting allows root login with
 password authentication on the SSH server.
 
-Finally, start the openssh daemon with `sshd.service`,
+Finally, start the openssh daemon with 
+
+╰─`systemctl start sshd.service`
+
 which is included by default on the live CD.
 
 Note: Unless required, after installation it is recommended
