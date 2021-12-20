@@ -86,7 +86,6 @@ sync
 
 # UEFI/GPT BTRFS
 
-
 #5 create partitions
 
 ╰─`cfdisk /dev/nvme0n1`
@@ -145,8 +144,6 @@ snapshots sbvl
 
 #10 mount subvolumes
 
-
-
 root btrfs option and mount
 
 ╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p2 /mnt`
@@ -166,10 +163,6 @@ home
 snapshots
 
 ╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@snapshots /dev/nvme0n1p2 /mnt/.snapshots`
-
-check
-
-╰─`lsblk`
 
 # UEFI/GPT EXT4 LVM
 
@@ -204,8 +197,6 @@ mkfs.fat -F32 /dev/\<EFIpartition\>
 
 ╰─`mkfs.fat -F32 /dev/nvme0n1p1`
 
-
-
 # LVM setup
 
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm.html#fig-lvm-explain
@@ -218,7 +209,6 @@ pvcreate /dev/\<LVMpartition\>
 
 ╰─`pvs`
 
-
 ## 7 VIRTUAL GROUP
 
 vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
@@ -226,7 +216,6 @@ vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
 ╰─`vgcreate archVG /dev/nvme0n1p2`
 
 ╰─`vgs`
-
 
 ## 8 LOGICAL VOLUMES
 
@@ -242,7 +231,6 @@ onlt if want `/root` and `/home` on separated partions
 
 ╰─`lvs`
 
-
 # 9 FORMAT lvs PARTITIONS
 
 format /dev/\<VGname\>/\<partition\>
@@ -256,7 +244,6 @@ format /dev/\<VGname\>/\<partition\>
 ╰─`lvs`
 
 ╰─`fdisk -l`
-
 
 # 10 MOUNT PARTITIONS
 
@@ -280,7 +267,7 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 ╰─`free -h`
 
-## FINAL CHECK
+# BTRFS & LVM FINAL CHECK
 
 ╰─`df -hT`
 
@@ -288,7 +275,9 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # 11 START INSTALL USING PACSTRAP
 
-╰─`pacstrap /mnt base base-devel linux linux-firmware lvm2 amd-ucode vim nano`
+╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim nano`
+
+-> if used LVM install also `lvm2`
 
 @extra: `linux-lts`
 
@@ -365,17 +354,6 @@ add:
 127.0.1.1   Arch.localdomain    Arch
 ```
 
-
-╰─`nano /etc/mkinitcpio.conf`
-
-add `lvm2` at `HOOKS` between `block` and `filesystems`
-
-╰─`mkinitcpio -P`
-
-if lts is installed
-( mkinitcpio -p linux-lts )
-
-
 # 15 SET UP ROOT PASSWORD AND ADD USER
 
 ╰─`passwd`
@@ -434,6 +412,33 @@ to uninstall:
 `R` remove `sc` dependencies and pkgs depending on it `n` config files
 
 GUI pamac https://wiki.manjaro.org/index.php/Pamac
+
+# -> FOR LVM
+
+╰─`nano /etc/mkinitcpio.conf`
+
+add `lvm2` at `HOOKS` between `block` and `filesystems`, save & close
+
+recreate kernel image
+
+╰─`mkinitcpio -P`
+
+if lts is installed
+( mkinitcpio -p linux-lts )
+
+# -> FOR BTRFS
+
+╰─`nano /etc/mkinitcpio.conf`
+
+add `btrfs` into `MODULES` between `()`, save & close
+
+recreate kernel image
+
+╰─`mkinitcpio -P`
+
+snapper for system snapshots
+
+╰─`pacman -S snapper`
 
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
@@ -519,7 +524,7 @@ or `plasma-meta` pckg + wayland
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog`
+`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
 
 ## PIPEWIRE AUDIO DRIVERS
 
@@ -613,7 +618,7 @@ The following packages enable preview thumbnails in dolphin
 
 ╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
 
-extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager cups`
+extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing cups print-manager`
 
 
 # ENJOY
