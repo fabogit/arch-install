@@ -11,7 +11,7 @@ https://wiki.archlinux.org/title/bash#Configuration_files , https://wiki.archlin
 
 zsh
 
-https://superuser.com/questions/997593/why-does-zsh-insert-a-when-i-press-the-delete-key , https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e , https://stackoverflow.com/questions/18042685/list-of-zsh-bindkey-commands
+https://superuser.com/questions/997593/why-does-zsh-insert-a-when-i-press-the-delete-key , https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e , https://stackoverflow.com/questions/18042685/list-of-zsh-bindkey-commands , https://zsh.sourceforge.io/FAQ/zshfaq.html
 
 free ram
 
@@ -62,6 +62,10 @@ https://www.youtube.com/watch?v=SVh4osULjP4&ab_channel=DanielLaera
 ohmyzsh&plugins
 
 https://www.youtube.com/watch?v=UsKd9Y42Mo0&ab_channel=codeTalk
+
+neofetch options
+
+https://www.youtube.com/watch?v=SC4Onk7HdkI
 
 zsh config
 
