@@ -309,13 +309,33 @@ packagers with `pacman-key --populate archlinux`
 in `/etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want),
 add `ILoveCandy` to pacman.conf
 
-update & upgrade & mirrirs
+to clean pkgs download chace install
 
-╰─`sudo pacman -Syyu`
+╰─`sudo pacman -S pacman-contrib`
 
-basic update & upgrade
+run `paccache -r`
+
+`systemctl` `enable` and `start` `paccache.timer`
+
+to clean chache manually
+
+`pacman -Sc`
+
+to install pkgs: `pacman -S packagetoinstall` 
+
+`Ss` to query pkgs dbs. `Si` info on pkgs `Qi` info on local installed pkgs
+
+`Qdt` orphans `Qet` installed and not required as dependencies
+
+`S` sync `y` refresh `u` update
 
 ╰─`sudo pacman -Syu`
+
+to uninstall:
+
+`R` remove `sc` dependencies and pkgs depending on it `n` config files
+
+GUI pamac https://wiki.manjaro.org/index.php/Pamac
 
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
