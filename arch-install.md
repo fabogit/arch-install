@@ -300,9 +300,9 @@ uncomment %wheel ALL...
 
 ## UPDATE PACkage MANager
 
-NOTE: You must run `pacman-key --init` before first using pacman; the local
+NOTE: You must run `pacman-key --init` before first using pacman;
 
-keyring can then be populated with the keys of all official Arch Linux
+the local keyring can then be populated with the keys of all official Arch Linux
 
 packagers with `pacman-key --populate archlinux`
 
