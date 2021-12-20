@@ -284,6 +284,10 @@ https://github.com/cheesecakeufo/komorebi
 
 https://github.com/GhostNaN/mpvpaper
 
+### browsers and mail
+
+╰─`yay google-chrome firefox thunderbird kmail`
+
 ### postgresql
 
 https://wiki.archlinux.org/title/PostgreSQL
