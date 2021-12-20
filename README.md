@@ -410,6 +410,8 @@ PORTAINER GUI https://github.com/portainer/portainer
 
 https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux
 
+https://www.portainer.io/casestudy/firstapp
+
 ╰─`docker volume create portainer_data`
 
 oneliner
