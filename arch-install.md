@@ -72,6 +72,14 @@ then ssh \# `ssh root@<ip addr>`
 
 ╰─`timedatectl set-ntp true`
 
+## rank mirrors
+
+╰─`reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist`
+
+sync
+
+╰─`pacman -Syy`
+
 
 # 4 DISK SETUP UEFI/GPT USING LVM
 
