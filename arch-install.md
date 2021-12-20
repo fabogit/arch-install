@@ -442,7 +442,9 @@ snapper for system snapshots
 
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
-╰─`pacman -S networkmanager bluez openssh`
+network bluethoot ssh printer
+
+╰─`pacman -S networkmanager bluez openssh cups`
 
 @extra `bluez-utils network-manager-applet dialog wpa_supplicant wireless_tools netctl`
 
@@ -455,6 +457,8 @@ snapper for system snapshots
 ╰─`systemctl enable NetworkManager.service`
 
 ╰─`systemctl enable bluetooth.service`
+
+╰─`systemctl enable cups.service`
 
 ## GRUB INSTALL
 
@@ -591,7 +595,63 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 ╰─`nmcli device wifi list`
 
 ╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
+ 
+ 
+# -> BTRFS configure snapper
+ 
+umount snapshots dir
+ 
+╰─`sudo umount /.snapshots`
 
+remove snp dir
+
+╰─`sudo rm -r ./.snapshots`
+ 
+recreate snapper config
+
+╰─`sudo snapper -c root create-config /`
+
+remove created folder
+
+╰─`sudo btrfs subvolume delete /.snapshots`
+
+ recreate
+
+╰─`sudo mkdir /.snapshots`
+
+remount
+
+╰─`sudo mount -a`
+ 
+change permission to replace root
+
+╰─`sudo chmod 750 /.snapshots`
+ 
+edit config
+ 
+╰─`sudo nano /etc/snapper/configs/root`
+
+add user
+
+╰─`sudo mount -a` 
+
+
+╰─`sudo mount -a` 
+
+
+╰─`sudo mount -a` 
+
+
+╰─`sudo mount -a` 
+
+
+╰─`sudo mount -a`
+
+╰─`sudo mount -a`
+
+╰─`sudo mount -a`
+... 
+ 
 # ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
  
 ╰─`systemctl enable sddm`
@@ -618,7 +678,7 @@ The following packages enable preview thumbnails in dolphin
 
 ╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
 
-extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing cups print-manager`
+extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
 
 
 # ENJOY
