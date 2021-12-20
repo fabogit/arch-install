@@ -399,15 +399,29 @@ sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu, intel\>
 # 19 INSTALL KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
 
-╰─`pacman -S plasma-meta plasma-wayland-session wayland-protocols`
+╰─`pacman -S`
 
-@extra `kde-applications`
+from plasma-meta
+
+`bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications  kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings `
+
+from plasma workspace
+
+`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons networkmanager-qt baloo extra-cmake-modules gpsd kdoctools kinit kunitconversion networkmanager-qt plasma-wayland-protocols`
+
+wayland
+
+`kwayland-integration plasma-wayland-session wayland-protocols`
+
+or `plasma-meta` pckg + wayland
+
+@extra `kde-applications plasma-thunderbolt`
 
 ## INSTALL USEFUL PACKAGES
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and  `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog`
+`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog`
 
 ## PIPEWIRE AUDIO DRIVERS
 
@@ -485,7 +499,7 @@ login as `root` or user
  
 ## KDE apps
  
-╰─`pacman -S` for kde discover install `packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
+╰─`pacman -S` for kde discover install `discover packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
