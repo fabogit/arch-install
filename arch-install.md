@@ -387,7 +387,7 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch  tmux firefox nm-connection-editor firewalld` and  `dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kde-system-meta kcharselect markdownpart kdialog`
+`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and  `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog`
 
 ## PIPEWIRE AUDIO DRIVERS
 
@@ -413,9 +413,7 @@ Server Name: PulseAudio (on PipeWire 0.3.32)
  
 ...
 
-If PipeWire does not work correctly on system startup, validate that the Systemd/User services `pipewire-pulse.service`, `pipewire.service`, and `pipewire-media-session.service` are up and running. Keep in mind that `pipewire-pulse.service` and `pipewire-pulse.socket` have a `ConditionUser` against running as root.  
-
-
+If PipeWire does not work correctly on system startup, validate that the Systemd/User services `pipewire-pulse.service`, `pipewire.service`, and `pipewire-media-session.service` are up and running. Keep in mind that `pipewire-pulse.service` and `pipewire-pulse.socket` have a `ConditionUser` against running as root.
 
 ...
 
@@ -431,7 +429,6 @@ but the systemd socket and service for PulseAudio can be disabled to shut it dow
 
 and the pipewire socket and service can be enabled instead
 
- 
 `systemctl --user enable pipewire.socket --now`
  
 `systemctl --user start pipewire.service`
@@ -452,7 +449,7 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 ## login into root
 
-## wifi connect after reboot into cli
+## connect wifi from cli after reboot
 
 ╰─`nmcli device wifi list`
 
@@ -467,14 +464,24 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 login as `root` or user
  
 ## KDE apps
-╰─`pacman -S`
+ 
+╰─`pacman -S` for kde discover install `packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
 
-for kde discover install `packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
+Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
+ 
+The following packages enable preview thumbnails in dolphin
 
-extra for dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
-`dolphin-plugins kdegraphics-thumbnailers qt5-imageformats kimageformats ffmpegthumbs raw-thumbnailer taglib`
+- ffmpegthumbs: video thumbnails
+- kdegraphics-thumbnailers: PDF and PS thumbnails
+- qt5-imageformats: thumbnails for additional image formats
+- kimageformats: thumbnails for additional image formats
+- taglib: audio file thumbnails
+- libappimage: AppImage thumbnails
+- raw-thumbnailer: Raw image files from a camera
 
-extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
+╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
+
+extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager cups`
 
 
 # ENJOY
