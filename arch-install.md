@@ -710,6 +710,16 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 optional install rsync
 
 ╰─`sudo pacman -S rsync`
+ 
+edit permission
+ 
+╰─`sudo chmod a+rx /.snapshots`
+ 
+add user
+
+╰─`sudo chown :fabo /.snapshots`
+ 
+in `/etc/mkinitcpio.cong` remove `fsck` from `HOOKS`, save & close & regenerate ╰─`mkinitcpio -P`
 
 ... 
  
