@@ -86,7 +86,9 @@ sync
 
 # UEFI/GPT BTRFS
 
-#5 create partitions
+https://www.nishantnadkarni.tech/posts/arch_installation/
+
+# 5 create partitions
 
 ╰─`cfdisk /dev/nvme0n1`
 
@@ -104,7 +106,7 @@ write & quit
 
 ...
 
-#6 format partitions
+# 6 format partitions
 
 boot fat32
 
@@ -120,11 +122,11 @@ swap
 
 ╰─`swapon /dev/nvme0n1p3`
 
-#7 mount /root
+# 7 mount /root
 
 ╰─`mount /dev/nvme0n1p2 /mnt`
 
-#8 create subvolumes
+# 8 create subvolumes
 
 root sbvl
 
@@ -138,11 +140,11 @@ snapshots sbvl
 
 ╰─`btrfs su cr /mnt/@snapshots`
 
-#9 umount mount directory
+# 9 umount mount directory
 
 ╰─`umount /mnt`
 
-#10 mount subvolumes
+# 10 mount subvolumes
 
 root btrfs option and mount
 
