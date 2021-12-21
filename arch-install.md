@@ -718,8 +718,8 @@ edit permission
 add user
 
 ╰─`sudo chown :fabo /.snapshots`
- 
-in `/etc/mkinitcpio.cong` remove `fsck` from `HOOKS`, save & close & regenerate ╰─`mkinitcpio -P`
+
+DONE
 
 ... 
  
