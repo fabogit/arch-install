@@ -275,9 +275,11 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # 11 START INSTALL USING PACSTRAP
 
-╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim nano`
+╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim nano git`
 
--> if used LVM install also `lvm2`
+-> for BTRFS install `btrfs-progs`
+
+-> ford LVM install `lvm2`
 
 @extra: `linux-lts`
 
@@ -372,9 +374,7 @@ check `pacman -S sudo`
 
 uncomment %wheel ALL...
 
-# 16 BOOTMANAGER INSTALL
-
-## UPDATE PACkage MANager
+# UPDATE PACkage MANager
 
 NOTE: You must run `pacman-key --init` before first using pacman;
 
@@ -412,6 +412,32 @@ to uninstall:
 `R` remove `sc` dependencies and pkgs depending on it `n` config files
 
 GUI pamac https://wiki.manjaro.org/index.php/Pamac
+
+# YAY
+
+https://github.com/Jguer/yay
+
+$ sudo pacman -S git [optional if you have installed it]
+
+$ git clone https://aur.archlinux.org/yay-git.git
+
+$ cd yay-git/
+
+$ makepkg -si
+
+$ cd .. && sudo rm -r yay-git
+
+#### First Use
+
+Development packages upgrade
+
+Use `yay -Y --gendb` to generate a development package database for *-git packages that were installed without yay. This command should only be run once.
+
+`yay -Syu --devel` will then check for development package updates
+
+Use `yay -Y --devel --save` to make development package updates permanently enabled (`yay` and `yay -Syu` will then always check dev packages)
+
+...
 
 # -> FOR LVM
 
@@ -458,13 +484,17 @@ network bluethoot ssh printer
 
 ╰─`systemctl enable bluetooth.service`
 
-╰─`systemctl enable cups.service`
+╰─`systemctl enable cups.service` if error `systemctl enable org.cups.cupsd`
+
+# 16 BOOTMANAGER INSTALL
 
 ## GRUB INSTALL
 
 https://wiki.archlinux.org/title/GRUB#UEFI_systems
 
 ╰─`pacman -S grub efibootmgr grub-customizer`
+
+-> for BTRFS install `grub-btrfs`
 
 ╰─`grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck`
 
@@ -528,7 +558,7 @@ or `plasma-meta` pckg + wayland
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
+`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta kde-graphics-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
 
 ## PIPEWIRE AUDIO DRIVERS
 
@@ -631,25 +661,54 @@ edit config
  
 ╰─`sudo nano /etc/snapper/configs/root`
 
-add user
+in `ALLOW_USERS` inside "" add username, set `TIMELINE_LIMIT_` to 0, `WEEKLY=3`, `DAILY=7`, `HOURLY=8`. save & close
 
-╰─`sudo mount -a` 
+enable timeline and timeline cleanup
+ 
+╰─`sudo systemctl enable --now snapper-timeline.timer` 
 
+╰─`sudo systemctl enable --now snapper-cleanup.timer` 
 
-╰─`sudo mount -a` 
+install snap-pac-grub and GUI
+ 
+╰─`yay -S snap-pac-grub snapper-gui-git` 
 
+configure hook for grub
 
-╰─`sudo mount -a` 
+╰─`sudo mkdir /etc/pacman.d/hooks`
 
+╰─`sudo nano /etc/pacman.d/hooks/50-bootbackup.hook` 
 
-╰─`sudo mount -a` 
+...
+ 
+[Trigger]
+ 
+Operation = Upgrade
+ 
+Operation = Install
+ 
+Operation = Remove
+ 
+Type = Path
+ 
+Target = boot/*
+ 
+[Action]
+ 
+Depends = rsync
+ 
+Description = Backup /boot...
 
+When = PreTransaction
 
-╰─`sudo mount -a`
+Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
-╰─`sudo mount -a`
+...
 
-╰─`sudo mount -a`
+optional install rsync
+
+╰─`sudo pacman -S rsync`
+
 ... 
  
 # ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
