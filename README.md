@@ -362,11 +362,11 @@ https://wiki.archlinux.org/title/Visual_Studio_Code
 
 ╰─`yay visual-studio-code-bin`
 
-also install
+config git
 
 ╰─`sudo pacman -S gnome-keyring`
 
-https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
+and https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
 
 ### github desktop
 
