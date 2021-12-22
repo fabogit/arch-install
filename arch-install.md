@@ -117,7 +117,7 @@ nvme0n1                 953.9G      disk    /dev        GPT     2000409264
 ...
 
 
-# UEFI/GPT BTRFS
+# UEFI/GPT BTRFS SETUP
 
 https://www.nishantnadkarni.tech/posts/arch_installation/
 
