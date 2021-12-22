@@ -84,6 +84,39 @@ sync
 
 # 4 DISK SETUP
 
+`Size: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors`
+
+### BFTRS
+
+...
+
+```
+NAME                    SIZE        TYPE    MOUNTPOINTS FS      SECTORS
+nvme0n1                 953.9G      disk    /dev        GPT     2000409264
+├─nvme0n1p1             0.2G        part    /boot       f32     419840
+├─nvme0n1p2             921.7G      part    /           btrfs   1932878479
+├─nvme0n1p3             32G         part    [SWAP]      swap    367108864
+
+```
+...
+
+### LVM
+
+...
+
+```
+NAME                    SIZE        TYPE    MOUNTPOINTS FS      SECTORS
+nvme0n1                 953.9G      disk    /dev        GPT     2000409264
+├─nvme0n1p1             370M        part    /boot       f32     757760
+└─nvme0n1p2             953.5G      part                lvm     1999649423
+  ├─archVG-root         715.5G      lvm     /           ext4    1500512256
+  └─archVG-swap         38G         lvm     [SWAP]      swap    79691776
+  
+```
+
+...
+
+
 # UEFI/GPT BTRFS
 
 https://www.nishantnadkarni.tech/posts/arch_installation/
