@@ -99,8 +99,8 @@ sync
 NAME                    SIZE        TYPE    MOUNTPOINTS FS      SECTORS
 nvme0n1                 953.9G      disk    /dev        GPT     2000409264
 ├─nvme0n1p1             0.2G        part    /boot       f32     419840
-├─nvme0n1p2             921.7G      part    /           btrfs   1932878479
-├─nvme0n1p3             32G         part    [SWAP]      swap    367108864
+├─nvme0n1p2             32G         part    [SWAP]      swap    367108864
+├─nvme0n1p3             921.7G      part    /           btrfs   1932878479
 
 ```
 ...
@@ -138,9 +138,9 @@ https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Part
 
 `/dev/EFIpartition`	size: 0.2G	type: `EFI System`
 
-`/dev/root`	size: 900G	type: `Linux FileSystem`
-
 `/dev/swap`	size: 32G	type: `Linux Swap`
+
+`/dev/root`	size: 900G	type: `Linux FileSystem`
 
 write & quit
 
@@ -154,13 +154,13 @@ boot fat32
 
 swap
 
-╰─`mkswap /dev/nvme0n1p3`
+╰─`mkswap /dev/nvme0n1p2`
 
-╰─`swapon /dev/nvme0n1p3`
+╰─`swapon /dev/nvme0n1p2`
 
 root btrfs
 
-╰─`mkfs.btrfs /dev/nvme0n1p2`
+╰─`mkfs.btrfs /dev/nvme0n1p3`
 
 # TEST THIS 
 
@@ -210,7 +210,7 @@ create boot and mount the partition
 
 # 7 mount /root
 
-╰─`mount /dev/nvme0n1p2 /mnt`
+╰─`mount /dev/nvme0n1p3 /mnt`
 
 # 8 create subvolumes
 
@@ -234,7 +234,7 @@ snapshots sbvl
 
 root btrfs option and mount
 
-╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p2 /mnt`
+╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p3 /mnt`
 
 create folders on mount
 
@@ -246,11 +246,11 @@ efi partition on boot
 
 home
 
-╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@home /dev/nvme0n1p2 /mnt/home`
+╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@home /dev/nvme0n1p3 /mnt/home`
 
 snapshots
 
-╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@snapshots /dev/nvme0n1p2 /mnt/.snapshots`
+╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@snapshots /dev/nvme0n1p3 /mnt/.snapshots`
 
 # UEFI/GPT EXT4 LVM
 
