@@ -179,6 +179,8 @@ snapshots sbvl
 
 # 10 mount subvolumes
 
+TEST `mount -t btrfs -o subvol=rootnoatime,commit=60,compress=zstd,space_cache=v2 LABEL=system /mnt`
+
 root btrfs option and mount
 
 ╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p2 /mnt`
