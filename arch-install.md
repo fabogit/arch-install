@@ -121,6 +121,8 @@ nvme0n1                 953.9G      disk    /dev        GPT     2000409264
 
 https://www.nishantnadkarni.tech/posts/arch_installation/
 
+https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Partition_Drive
+
 # 5 create partitions
 
 ╰─`cfdisk /dev/nvme0n1`
