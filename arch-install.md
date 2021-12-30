@@ -84,6 +84,11 @@ sync
 
 # 4 DISK SETUP
 
+## ERASE DRIVE
+
+`sgdisk --zap-all /dev/<DRIVE>`
+
+
 `Size: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors`
 
 ### BFTRS
