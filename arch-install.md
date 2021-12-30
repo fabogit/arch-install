@@ -147,15 +147,61 @@ boot fat32
 
 ╰─`mkfs.fat -F32 /dev/nvme0n1p1`
 
-root btrfs
-
-╰─`mkfs.btrfs /dev/nvme0n1p2`
-
 swap
 
 ╰─`mkswap /dev/nvme0n1p3`
 
 ╰─`swapon /dev/nvme0n1p3`
+
+root btrfs
+
+╰─`mkfs.btrfs /dev/nvme0n1p2`
+
+# TEST THIS 
+
+make btrfs
+
+╰─`mkfs.btrfs --force --label system /dev/<BTRFS-PART>`
+
+set btrfs options as variable
+
+╰─`o=defaults,x-mount.mkdir`
+
+╰─`o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime`
+
+mount system
+ 
+╰─`mount -t btrfs LABEL=system /mnt`
+
+create subvolumes
+
+```
+
+╰─ btrfs subvolume create /mnt/root
+╰─ btrfs subvolume create /mnt/home
+╰─ btrfs subvolume create /mnt/snapshots
+
+```
+
+umount all
+
+`umount -R /mnt`
+
+mount subvolumes
+
+```
+
+╰─ mount -t btrfs -o subvol=root,$o_btrfs LABEL=system /mnt
+╰─ mount -t btrfs -o subvol=home,$o_btrfs LABEL=system /mnt/home
+╰─ mount -t btrfs -o subvol=snapshots,$o_btrfs LABEL=system /mnt/.snapshots
+
+```
+
+create boot and mount the partition
+
+`mkdir /mnt/boot` && `mount LABEL=EFI /mnt/boot`
+
+
 
 # 7 mount /root
 
@@ -180,8 +226,6 @@ snapshots sbvl
 ╰─`umount /mnt`
 
 # 10 mount subvolumes
-
-TEST `mount -t btrfs -o subvol=rootnoatime,commit=60,compress=zstd,space_cache=v2 LABEL=system /mnt`
 
 root btrfs option and mount
 
