@@ -148,43 +148,35 @@ write & quit
 
 # 6 format partitions
 
-boot fat32
+efi partition
 
-╰─`mkfs.fat -F32 /dev/nvme0n1p1`
+╰─`mkfs.fat -F32 -n EFI /dev/nvme0n1p1` on /dev/EFI-PART
 
-swap
+swap partition
 
-╰─`mkswap /dev/nvme0n1p2`
+╰─`mkswap -L swap /dev/nvme0n1p2` on /dev/SWAP-PART
+ 
+system btrfs partition
 
-╰─`swapon /dev/nvme0n1p2`
+╰─`mkfs.btrfs --force --label system /dev/nvme0n1p2` on /dev/BTRFS-PART
 
-root btrfs
-
-╰─`mkfs.btrfs /dev/nvme0n1p3`
-
-# TEST THIS 
-
-make btrfs
-
-╰─`mkfs.btrfs --force --label system /dev/<BTRFS-PART>`
-
-set btrfs options as variable
+# 7 set btrfs options as variable
 
 ╰─`o=defaults,x-mount.mkdir`
 
 ╰─`o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime`
 
-mount system
+# 8 mount system partition
  
 ╰─`mount -t btrfs LABEL=system /mnt`
 
-create subvolumes
+# 9 create subvolumes
 
 ```
 
-╰─ btrfs subvolume create /mnt/root
-╰─ btrfs subvolume create /mnt/home
-╰─ btrfs subvolume create /mnt/snapshots
+╰─ btrfs subvolume create /mnt/@
+╰─ btrfs subvolume create /mnt/@home
+╰─ btrfs subvolume create /mnt/@snapshots
 
 ```
 
@@ -192,65 +184,26 @@ umount all
 
 `umount -R /mnt`
 
-mount subvolumes
+# 10 mount partitions and btrfs @subvolumes
+
+boot
+
+╰─`mkdir /mnt/boot` && ╰─`mount LABEL=EFI /mnt/boot`
+
+swap
+
+╰─`swapon -L swap`
+
+system
 
 ```
 
-╰─ mount -t btrfs -o subvol=root,$o_btrfs LABEL=system /mnt
-╰─ mount -t btrfs -o subvol=home,$o_btrfs LABEL=system /mnt/home
-╰─ mount -t btrfs -o subvol=snapshots,$o_btrfs LABEL=system /mnt/.snapshots
+╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
+╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
+╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 
 ```
 
-create boot and mount the partition
-
-`mkdir /mnt/boot` && `mount LABEL=EFI /mnt/boot`
-
-
-
-# 7 mount /root
-
-╰─`mount /dev/nvme0n1p3 /mnt`
-
-# 8 create subvolumes
-
-root sbvl
-
-╰─`btrfs su cr /mnt/@`
-
-home sbvl
-
-╰─`btrfs su cr /mnt/@home`
-
-snapshots sbvl
-
-╰─`btrfs su cr /mnt/@snapshots`
-
-# 9 umount mount directory
-
-╰─`umount /mnt`
-
-# 10 mount subvolumes
-
-root btrfs option and mount
-
-╰─`mount -o noatime,commit=60,compress=zstd ,space_cache=v2,subvol=@ /dev/nvme0n1p3 /mnt`
-
-create folders on mount
-
-╰─`mkdir -p /mnt/{boot,home,.snapshots}`
-
-efi partition on boot
-
-╰─`mount /dev/nvme0n1p1 /mnt/boot`
-
-home
-
-╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@home /dev/nvme0n1p3 /mnt/home`
-
-snapshots
-
-╰─`mount -o noatime,commit=60,compress=zstd,space_cache=v2,subvol=@snapshots /dev/nvme0n1p3 /mnt/.snapshots`
 
 # UEFI/GPT EXT4 LVM
 
