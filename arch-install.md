@@ -696,7 +696,7 @@ umount snapshots dir
 
 remove snp dir
 
-╰─`sudo rm -r ./.snapshots`
+╰─`sudo rm -r /.snapshots`
  
 recreate snapper config
 
@@ -706,7 +706,7 @@ remove created folder
 
 ╰─`sudo btrfs subvolume delete /.snapshots`
 
- recreate
+recreate
 
 ╰─`sudo mkdir /.snapshots`
 
@@ -718,19 +718,37 @@ change permission to replace root
 
 ╰─`sudo chmod 750 /.snapshots`
  
-edit config
+## edit config
  
 ╰─`sudo nano /etc/snapper/configs/root`
 
-in `ALLOW_USERS` inside "" add username, set `TIMELINE_LIMIT_` to 0, `WEEKLY=3`, `DAILY=7`, `HOURLY=8`. save & close
-
+in `ALLOW_USERS` inside "" add \<username\>, set `TIMELINE_LIMIT_` to 0, `WEEKLY=3`, `DAILY=7`, `HOURLY=8`. save & close
+  
 enable timeline and timeline cleanup
  
-╰─`sudo systemctl enable --now snapper-timeline.timer` 
+╰─`sudo systemctl enable --now snapper-timeline.timer`  
 
-╰─`sudo systemctl enable --now snapper-cleanup.timer` 
+╰─`sudo systemctl enable --now snapper-cleanup.timer`
+  
+╰─`sudo systemctl enable --now grub-btrfs.path`
+ 
+show snpshots
+  
+╰─`snapper -c root list`  
+  
+create snapshot
+  
+╰─`snapper -c root create -c timeline --descriptioon AfterInstall`
+  
+snpts property
+  
+`sudo btrfs property list -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/` 
+  
+set read only to false
+  
+`sudo btrfs property set -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/ ro false` 
 
-install snap-pac-grub and GUI
+## install snap-pac-grub and GUI
  
 ╰─`yay -S snap-pac-grub snapper-gui-git` 
 
