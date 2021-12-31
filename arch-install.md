@@ -724,6 +724,8 @@ configure hook for grub
 
 ...
  
+```
+  
 [Trigger]
  
 Operation = Upgrade
@@ -746,6 +748,7 @@ When = PreTransaction
 
 Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
+```
 ...
 
 optional install rsync
@@ -756,6 +759,8 @@ edit permission
  
 ╰─`sudo chmod a+rx /.snapshots`
  
+  
+# FIX :fabo  
 add user
 
 ╰─`sudo chown :fabo /.snapshots`
