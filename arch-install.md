@@ -557,11 +557,11 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 
 from plasma-meta
 
-`bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications  kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings `
+`bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings `
 
 from plasma workspace
 
-`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons networkmanager-qt baloo extra-cmake-modules gpsd kdoctools kinit kunitconversion networkmanager-qt plasma-wayland-protocols`
+`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules  kdoctools kinit kunitconversion networkmanager-qt plasma-wayland-protocols`
 
 wayland
 
@@ -569,13 +569,31 @@ wayland
 
 or `plasma-meta` pckg + wayland
 
-@extra `kde-applications plasma-thunderbolt`
+@extra `kde-applications kde-graphics-meta plasma-thunderbolt gpsd lshw`
 
 ## INSTALL USEFUL PACKAGES
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole lshw usbutils neofetch tmux firefox nm-connection-editor firewalld` and `kde-system-meta kde-graphics-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview spectacle okular kamoso sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
+`linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox nm-connection-editor firewalld kdf` 
+
+and
+
+`kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kolourpaint krita kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
+
+Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
+ 
+The following packages enable preview thumbnails in dolphin
+
+- ffmpegthumbs: video thumbnails
+- kdegraphics-thumbnailers: PDF and PS thumbnails
+- qt5-imageformats: thumbnails for additional image formats
+- kimageformats: thumbnails for additional image formats
+- taglib: audio file thumbnails
+- libappimage: AppImage thumbnails
+- raw-thumbnailer: Raw image files from a camera
+
+╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
 
 ## PIPEWIRE AUDIO DRIVERS
 
@@ -781,21 +799,7 @@ login as `root` or user
  
 ╰─`pacman -S` for kde discover install `discover packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
 
-Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
- 
-The following packages enable preview thumbnails in dolphin
-
-- ffmpegthumbs: video thumbnails
-- kdegraphics-thumbnailers: PDF and PS thumbnails
-- qt5-imageformats: thumbnails for additional image formats
-- kimageformats: thumbnails for additional image formats
-- taglib: audio file thumbnails
-- libappimage: AppImage thumbnails
-- raw-thumbnailer: Raw image files from a camera
-
-╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
-
-extras `python-pygments digikam filelight kcolorchooser kontrast skanlite kdeconnect kdenetwork-filesharing print-manager`
+extras `python-pygments kdeconnect kdenetwork-filesharing print-manager`
 
 
 # ENJOY
