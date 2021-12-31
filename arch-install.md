@@ -438,7 +438,7 @@ to clean chache manually
 
 `pacman -Sc`
 
-to install pkgs: `pacman -S packagetoinstall` 
+to install pkgs: `pacman -S pkg-name` 
 
 `Ss` to query pkgs dbs. `Si` info on pkgs `Qi` info on local installed pkgs
 
@@ -454,33 +454,9 @@ to uninstall:
 
 GUI pamac https://wiki.manjaro.org/index.php/Pamac
 
-# YAY
+# mkinitcpio.conf 
 
-https://github.com/Jguer/yay
-
-$ sudo pacman -S git [optional if you have installed it]
-
-$ git clone https://aur.archlinux.org/yay-git.git
-
-$ cd yay-git/
-
-$ makepkg -si
-
-$ cd .. && sudo rm -r yay-git
-
-#### First Use
-
-Development packages upgrade
-
-Use `yay -Y --gendb` to generate a development package database for *-git packages that were installed without yay. This command should only be run once.
-
-`yay -Syu --devel` will then check for development package updates
-
-Use `yay -Y --devel --save` to make development package updates permanently enabled (`yay` and `yay -Syu` will then always check dev packages)
-
-...
-
-# -> FOR LVM
+-> FOR LVM
 
 ╰─`nano /etc/mkinitcpio.conf`
 
@@ -493,7 +469,7 @@ recreate kernel image
 if lts is installed
 ( mkinitcpio -p linux-lts )
 
-# -> FOR BTRFS
+-> FOR BTRFS
 
 ╰─`nano /etc/mkinitcpio.conf`
 
@@ -659,7 +635,7 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 ╰─`reboot`
 
-## login into root
+## login as user
 
 ## connect wifi from cli after reboot
 
@@ -667,6 +643,32 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 ╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
  
+
+# YAY (after reboot as normal user)
+
+https://github.com/Jguer/yay
+
+$ sudo pacman -S git [optional if you have installed it]
+
+$ git clone https://aur.archlinux.org/yay-git.git
+
+$ cd yay-git/
+
+$ makepkg -si
+
+$ cd .. && sudo rm -r yay-git
+
+#### First Use
+
+Development packages upgrade
+
+Use `yay -Y --gendb` to generate a development package database for *-git packages that were installed without yay. This command should only be run once.
+
+`yay -Syu --devel` will then check for development package updates
+
+Use `yay -Y --devel --save` to make development package updates permanently enabled (`yay` and `yay -Syu` will then always check dev packages)
+
+...
  
 # -> BTRFS configure snapper
  
