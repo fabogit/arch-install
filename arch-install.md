@@ -648,15 +648,15 @@ GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 https://github.com/Jguer/yay
 
-$ sudo pacman -S git [optional if you have installed it]
+╰─`sudo pacman -S git` [optional if you have installed it]
 
-$ git clone https://aur.archlinux.org/yay-git.git
+╰─`git clone https://aur.archlinux.org/yay-git.git`
 
-$ cd yay-git/
+╰─`cd yay-git/`
 
-$ makepkg -si
+╰─`makepkg -si`
 
-$ cd .. && sudo rm -r yay-git
+╰─`cd .. && sudo rm -r yay-git`
 
 #### First Use
 
