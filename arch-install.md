@@ -747,7 +747,7 @@ show snpshots
   
 create snapshot
   
-╰─`snapper -c root create -c timeline --descriptioon AfterInstall`
+╰─`snapper -c root create -c timeline -d AfterInstall`
   
 snpts property
   
@@ -809,6 +809,11 @@ edit permission
 add user
 
 ╰─`sudo chown :fabo /.snapshots`
+  
+# EDIT
+  
+╰─`sudo chown fabo: /.snapshots`
+
 
 DONE
 
