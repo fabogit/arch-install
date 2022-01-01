@@ -440,6 +440,15 @@ https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
 
 ╰─`sudo pacman -S khelpcenter kwallet kwalletmanager`
 
+### pamac
+
+https://wiki.manjaro.org/index.php/Pamac
+
+https://aur.archlinux.org/packages/pamac-aur/?O=10&PP=10
+
+╰─`yay pamac` also `pamac-tray-appindicator`
+
+
 ### grub themes
 
 https://www.gnome-look.org/p/1603282
