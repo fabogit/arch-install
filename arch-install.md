@@ -812,7 +812,7 @@ add user
   
 # EDIT
   
-╰─`sudo chown fabo: /.snapshots`
+╰─`sudo chown fabo:users /.snapshots`
 
 
 DONE
