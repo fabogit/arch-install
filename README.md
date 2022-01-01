@@ -481,6 +481,8 @@ https://store.kde.org/p/1127873/
 
 plasma
 
+https://wiki.manjaro.org/index.php/Install_Desktop_Environments
+
 https://gitlab.manjaro.org/artwork/themes/breath
   
 https://manjaro.org/branch-compare/?q=breath2
