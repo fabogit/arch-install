@@ -279,7 +279,7 @@ https://github.com/romkatv/powerlevel10k
 
 install pwlv10k font
 
-╰─`pacman -S ttf-meslo-nerd-font-powerlevel10k`
+╰─`yay ttf-meslo-nerd-font-powerlevel10k`
 
 Enable font in terminal
 
