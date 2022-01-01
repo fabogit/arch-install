@@ -804,15 +804,9 @@ edit permission
  
 ╰─`sudo chmod a+rx /.snapshots`
  
-  
-# FIX :fabo  
-add user
+allow users
 
-╰─`sudo chown :fabo /.snapshots`
-  
-# EDIT
-  
-╰─`sudo chown fabo:users /.snapshots`
+╰─`sudo chown :users /.snapshots` or ╰─`sudo chown fabo:users /.snapshots`
 
 
 DONE
