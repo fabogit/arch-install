@@ -164,7 +164,7 @@ swap partition
  
 system btrfs partition
 
-╰─`mkfs.btrfs --force --label system /dev/nvme0n1p2` on /dev/BTRFS-PART
+╰─`mkfs.btrfs --force --label system /dev/nvme0n1p3` on /dev/BTRFS-PART
 
 # 7 set btrfs options as variable
 
