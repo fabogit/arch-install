@@ -130,6 +130,8 @@ https://wiki.manjaro.org/index.php/Btrfs
 
 https://www.nishantnadkarni.tech/posts/arch_installation/
 
+https://www.ordinatechnic.com/distribution-specific-guides/arch-linux/an-arch-linux-installation-on-a-btrfs-filesystem-with-snapper-for-system-snapshots-and-rollbacks
+
 https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Partition_Drive
 
 # 5 create partitions
