@@ -186,15 +186,6 @@ umount all
 
 # 10 mount partitions and btrfs @subvolumes
 
-boot
-
-╰─`mkdir /mnt/boot`
-
-╰─`mount LABEL=EFI /mnt/boot`
-
-swap
-
-╰─`swapon -L swap`
 
 system
 
@@ -205,6 +196,16 @@ system
 ╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 
 ```
+
+boot
+
+╰─`mkdir /mnt/boot`
+
+╰─`mount LABEL=EFI /mnt/boot`
+
+swap
+
+╰─`swapon -L swap`
 
 
 # UEFI/GPT EXT4 LVM
