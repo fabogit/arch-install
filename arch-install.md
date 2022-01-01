@@ -188,7 +188,9 @@ umount all
 
 boot
 
-╰─`mkdir /mnt/boot` && ╰─`mount LABEL=EFI /mnt/boot`
+╰─`mount LABEL=EFI /mnt/boot`
+
+╰─`mkdir /mnt/boot`
 
 swap
 
