@@ -124,6 +124,10 @@ nvme0n1                 953.9G      disk    /dev        GPT     2000409264
 
 # UEFI/GPT BTRFS SETUP
 
+https://wiki.archlinux.org/title/Btrfs#GRUB
+
+https://wiki.manjaro.org/index.php/Btrfs
+
 https://www.nishantnadkarni.tech/posts/arch_installation/
 
 https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Partition_Drive
