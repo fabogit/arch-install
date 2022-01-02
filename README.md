@@ -209,7 +209,9 @@ add hooks
 
 ╰─`sudo nano /etc/mkinitcpio.conf`
 
-at `HOOKS` add `resume` after `lvm2`
+-> BTRFS: at `HOOKS` add `resume` after `filesystem` before `fsck` (wiki says after `udev`)
+
+-> LVM: at `HOOKS` add `resume` after `lvm2` (not sure) 
 
 ╰─`mkinitcpio -P`
 
