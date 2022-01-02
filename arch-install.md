@@ -823,7 +823,7 @@ login as `root` or user
  
 ## KDE apps
  
-╰─`pacman -S` for kde discover install `discover packagekit-qt5 fwupd discover` for flatpack b/end `flatpak`
+╰─`pacman -S` for kde discover install `discover packagekit-qt5 fwupd` for flatpack b/end `flatpak`
 
 extras `python-pygments kdeconnect kdenetwork-filesharing print-manager`
 
