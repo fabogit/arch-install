@@ -821,9 +821,11 @@ DONE
 
 login as `root` or user
  
-## KDE apps
+## KDE discover
+  
+for kde discover install
  
-╰─`pacman -S` for kde discover install `discover packagekit-qt5 fwupd` for flatpack b/end `flatpak`
+╰─`pacman -S discover packagekit-qt5 fwupd` for flatpack b/end `flatpak`
 
 extras `python-pygments kdeconnect kdenetwork-filesharing print-manager`
 
