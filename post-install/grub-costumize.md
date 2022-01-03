@@ -28,3 +28,7 @@ https://wiki.archlinux.org/title/GRUB/Tips_and_tricks#Theme
 
 
 https://gist.github.com/MaxLaumeister/f93717e91c8bd9d435a5
+
+blender logo
+
+https://www.lumalab.net/download/archlogo/
