@@ -434,6 +434,12 @@ go to https://localhost:9443
 
 change launcher default port 9000 to 9443
 
+### libreoffice
+
+╰─`sudo pacman -S libreoffice-fresh libreoffice-extension-texmaths libreoffice-extension-writer2latex hunspell hunspell-en_us hyphen hyphen-en libmythes mythes-en`
+
+fonts `ttf-dejavu noto-fonts`
+
 ### kwallet
 
 https://wiki.archlinux.org/title/KDE_Wallet
@@ -500,6 +506,14 @@ https://wiki.archlinux.org/title/Fonts#Font_packages
 
 https://fontlibrary.org/en
 
+Basic fonts
+
+╰─`yay -S`
+
+`cantarell-fonts ttf-fira-code ttf-merriweather ttf-merriweather-sans ttf-oswald ttf-quintessential ttf-signika` Google Noto emoji fonts `noto-fonts-emoji`
+
+`gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation`
+
 Core TTF Fonts from Microsoft
 
 `ttf-ms-fonts`
@@ -507,18 +521,6 @@ Core TTF Fonts from Microsoft
 Microsoft Vista and Office 2007 True Type Fonts
 
 `ttf-vista-fonts`
-
-fira
-
-`ttf-fira-code`
-
-Humanist sans serif font
-
-`cantarell-fonts`
-
-Google Noto emoji fonts
-
-`noto-fonts-emoji`
 
 ## metapakages
 
