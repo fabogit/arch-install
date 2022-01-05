@@ -510,7 +510,7 @@ Basic fonts
 
 ╰─`yay -S`
 
-`cantarell-fonts ttf-fira-code ttf-merriweather ttf-merriweather-sans ttf-oswald ttf-quintessential ttf-signika` Google Noto emoji fonts `noto-fonts-emoji`
+`cantarell-fonts ttf-fira-code ttf-merriweather ttf-merriweather-sans ttf-oswald ttf-carlito ttf-quintessential ttf-signika` Google Noto emoji fonts `noto-fonts-emoji`
 
 `gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation`
 
