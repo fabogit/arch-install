@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-# start basic .bashrc
+# start vanilla .bashrc
 # If not running interactively, don't do anything
 #[[ $- != *i* ]] && return
 
