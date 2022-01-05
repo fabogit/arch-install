@@ -471,7 +471,9 @@ https://www.reddit.com/r/kde/comments/c68o40/i_made_a_gif_i_want_to_use_as_a_spl
   
 ### window tiling
   
-https://swaywm.org/
+https://swaywm.org/ (wayland)
+
+japokwm (wayland)
   
 https://github.com/kwin-scripts/kwin-tiling
   
