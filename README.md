@@ -440,7 +440,23 @@ go to https://localhost:9443
 
 ╰─`yay portainer-bin`
 
-change http to https and launcher default port 9000 to 9443
+change portainer app settings `http` to `https` and launcher default port `9000` to `9443`
+
+### fix containerd-shim hangs on reboot/shutdown
+
+https://github.com/containerd/containerd/issues/386 , https://github.com/containerd/containerd/issues/386
+
+Instead of directly editing the systemd service files in `/lib` (which might not be writable depending on the Linux distribution), use `sudo systemctl edit docker` and add:
+
+```
+[Unit]
+After=containerd.service
+Wants=containerd.service
+```
+
+(Using `Wants` instead of `Requires` per moby/moby@a985655)
+
+This will create `/etc/systemd/system/docker.service.d/override.conf`, which you’ll also see listed in `systemctl status docker`.
 
 ### libreoffice
 
