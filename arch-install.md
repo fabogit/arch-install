@@ -132,6 +132,8 @@ https://www.ordinatechnic.com/distribution-specific-guides/arch-linux/an-arch-li
 
 https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Partition_Drive
 
+DOCKER & BTRFS https://www.reddit.com/r/docker/comments/mba2c7/how_do_i_make_docker_work_nicely_with_btrfs_host/
+
 # 5 create partitions
 
 ╰─`cfdisk /dev/nvme0n1`
