@@ -293,8 +293,10 @@ in case of trouble: Run ╰─`p10k configure` to generate a new `~/.p10k.zsh`. 
 
 Install pwlvl10k
 
-╰─```yay -S --noconfirm zsh-theme-powerlevel10k-git
-echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc```
+```
+yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
 
 run `p10k configure`
 
