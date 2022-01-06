@@ -40,27 +40,25 @@ set root pwd
 
 ╰─`passwd`
 
+
+
+╰─`nano /etc/ssh/sshd_config` 
+
+Add `PermitRootLogin yes`
+
 ...
-
-Check that `PermitRootLogin yes` is present (and uncommented)
-in `/etc/ssh/sshd_config`
-
-╰─`nano /etc/ssh/sshd_config`
 
 This setting allows root login with
 password authentication on the SSH server.
-
-Finally, start the openssh daemon with 
-
-╰─`systemctl start sshd.service`
-
-which is included by default on the live CD.
 
 Note: Unless required, after installation it is recommended
 to remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 ...
 
+start the openssh daemon with 
+
+╰─`systemctl start sshd.service`
 
 get ip
 
@@ -829,5 +827,6 @@ for kde discover install
 
 extras `python-pygments kdeconnect kdenetwork-filesharing print-manager`
 
+## remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 # ENJOY
