@@ -34,7 +34,7 @@ loadkeys \<kbrdlout ex: us,it\>
 
 ...
 
-### SET UP FOR INSTALL OVER SSH
+### ENABLE INSTALL OVER SSH
 
 set root pwd
 
