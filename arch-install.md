@@ -180,6 +180,8 @@ system btrfs partition
 
 ╰─ btrfs subvolume create /mnt/@
 ╰─ btrfs subvolume create /mnt/@home
+╰─ btrfs subvolume create /mnt/@tmp
+╰─ btrfs subvolume create /mnt/@var
 ╰─ btrfs subvolume create /mnt/@snapshots
 
 ```
@@ -197,6 +199,8 @@ system
 
 ╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
 ╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
+╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/tmp
+╰─ mount -t btrfs -o subvol=@var,$o_btrfs LABEL=system /mnt/var
 ╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 
 ```
