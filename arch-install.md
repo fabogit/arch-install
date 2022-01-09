@@ -408,11 +408,11 @@ add:
 
 ╰─`passwd`
 
-useradd -m -g users -G wheel \<username\>
+useradd -m -g users -G wheel \<\$username\>
 
-╰─`useradd -m -g users -G wheel fabo`
+╰─`useradd -m -g users -G wheel <$USERNAME>`
 
-╰─`passwd fabo`
+╰─`passwd <$USERNAME>`
 
 ## add to sudoers
 
@@ -804,7 +804,7 @@ edit permission
  
 allow users
 
-╰─`sudo chown :users /.snapshots` or ╰─`sudo chown fabo:users /.snapshots`
+╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
 
 
 DONE
