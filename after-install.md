@@ -205,6 +205,22 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ╰─`yay insomnia-bin`
 
+### python
+
+https://wiki.archlinux.org/title/python#Package_management
+
+https://github.com/pypa/pipenv
+
+https://wiki.archlinux.org/title/Python/Virtual_environment
+
+╰─`sudo pacman -S python-pipenv`
+
+### node & npm
+
+https://wiki.archlinux.org/title/Node.js
+
+╰─`sudo pacman -S nodejs npm`
+
 ### Docker
 
 https://wiki.archlinux.org/title/Docker#Installation
