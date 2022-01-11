@@ -735,7 +735,7 @@ change permission to replace root
  
 ╰─`sudo nano /etc/snapper/configs/root`
 
-in `ALLOW_USERS` inside "" add \<username\>, set `TIMELINE_LIMIT_` to 0, `WEEKLY=3`, `DAILY=7`, `HOURLY=8`. save & close
+in `ALLOW_USERS` inside "" add \<username\>, set `TIMELINE_LIMIT_` to 0, `WEEKLY=2`, `DAILY=5`, `HOURLY=2`. save & close
   
 enable timeline and timeline cleanup
  
