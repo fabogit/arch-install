@@ -825,7 +825,7 @@ Target = boot/*
  
 Depends = rsync
  
-Description = Backing-up /boot...
+Description = Backup /boot...
 
 When = PreTransaction
 
