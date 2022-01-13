@@ -6,7 +6,6 @@ loadkeys \<kbrdlout ex: us,it\>
 
 ╰─`loadkeys us`
 
-
 # 2 CHECK NETWORK
 
 ╰─`ip link`
@@ -39,8 +38,6 @@ loadkeys \<kbrdlout ex: us,it\>
 set root pwd
 
 ╰─`passwd`
-
-
 
 ╰─`nano /etc/ssh/sshd_config` 
 
@@ -77,7 +74,6 @@ then ssh \# `ssh root@<ip addr>`
 sync
 
 ╰─`pacman -Syy`
-
 
 
 # 4 DISK SETUP
@@ -138,7 +134,7 @@ https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Part
 
 ...
 
--> cfdisk GPT
+=> cfdisk `GPT`
 
 `/dev/EFIpartition`	size: 0.2G	type: `EFI System`
 
@@ -230,7 +226,7 @@ cfdisk /dev/\<drive ex: nvme0n1\>
 
 ...
 
--> cfdisk GPT
+=> cfdisk `GPT`
 
 `/dev/EFIpartition`	size: 370M	type: `EFI System`
 
@@ -331,9 +327,9 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 ╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim nano git`
 
--> for BTRFS install `btrfs-progs`
+=> for BTRFS install `btrfs-progs`
 
--> ford LVM install `lvm2`
+=> ford LVM install `lvm2`
 
 @extra: `linux-lts`
 
@@ -469,7 +465,7 @@ GUI pamac https://wiki.manjaro.org/index.php/Pamac
 
 # mkinitcpio.conf 
 
--> FOR LVM
+=> LVM
 
 ╰─`nano /etc/mkinitcpio.conf`
 
@@ -482,7 +478,7 @@ recreate kernel image
 if lts is installed
 ( mkinitcpio -p linux-lts )
 
--> FOR BTRFS
+=> BTRFS
 
 ╰─`nano /etc/mkinitcpio.conf`
 
@@ -524,7 +520,7 @@ https://wiki.archlinux.org/title/GRUB#UEFI_systems
 
 ╰─`pacman -S grub efibootmgr grub-customizer`
 
--> for BTRFS install `grub-btrfs`
+=> for BTRFS install `grub-btrfs`
 
 ╰─`grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck`
 
@@ -702,6 +698,10 @@ Use `yay -Y --devel --save` to make development package updates permanently enab
 ...
  
 # -> BTRFS configure snapper
+  
+https://wiki.archlinux.org/title/Snapper  
+  
+https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-snapper-setup
  
 umount snapshots dir
  
@@ -711,9 +711,13 @@ remove snp dir
 
 ╰─`sudo rm -r /.snapshots`
  
-recreate snapper config
+create snapper config for @ sub vol
+  
+snapper -c <config-name> create-config /<snapped-dir>
 
-╰─`sudo snapper -c root create-config /`
+╰─`sudo snapper -c snpr-conf@root create-config /`
+  
+( for @home  `sudo snapper -c snpr-conf@home create-config /@home` )
 
 remove created folder
 
@@ -734,9 +738,39 @@ change permission to replace root
 ## edit config
  
 ╰─`sudo nano /etc/snapper/configs/root`
-
-in `ALLOW_USERS` inside "" add \<username\>, set `TIMELINE_LIMIT_` to 0, `WEEKLY=2`, `DAILY=5`, `HOURLY=2`. save & close
+ 
+in `ALLOW_USERS` inside "" add \<username\> 
   
+=> @  
+  
+```  
+  
+# subvolume to snapshot
+SUBVOLUME="/"
+.
+.
+.
+TIMELINE_LIMIT_*=0, WEEKLY=2, DAILY=5  
+  
+```
+  
+=> @home  
+  
+```  
+  
+# subvolume to snapshot
+SUBVOLUME="/home"
+. 
+. 
+. 
+TIMELINE_LIMIT_*=0, DAILY=5, HOURLY=8  
+  
+```  
+
+save & close
+  
+...
+
 enable timeline and timeline cleanup
  
 ╰─`sudo systemctl enable --now snapper-timeline.timer`  
