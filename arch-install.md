@@ -424,6 +424,10 @@ check `pacman -S sudo`
 
 uncomment %wheel ALL...
 
+check
+
+╰─`id <$USERNAME>`
+
 # UPDATE PACkage MANager
 
 NOTE: You must run `pacman-key --init` before first using pacman;
