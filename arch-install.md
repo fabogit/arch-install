@@ -592,7 +592,7 @@ or `plasma-meta` pckg + wayland
 
 and
 
-`kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kolourpaint krita kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs`
+`kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kolourpaint krita kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager` 
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
@@ -869,7 +869,9 @@ for kde discover install
  
 ╰─`pacman -S discover packagekit-qt5 fwupd` for flatpack b/end `flatpak`
 
-extras `python-pygments kdeconnect kdenetwork-filesharing print-manager`
+extras `python-pygments`
+  
+for network folder sharing `samba kio-fuse kdenetwork-filesharing` https://wiki.archlinux.org/title/Samba#KDE
 
 ## remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
