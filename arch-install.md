@@ -873,6 +873,8 @@ extras `python-pygments`
   
 for network folder sharing `samba kio-fuse kdenetwork-filesharing` https://wiki.archlinux.org/title/Samba#KDE
 
+https://wiki.archlinux.org/title/NetworkManager#Sharing_internet_connection_over_Wi-Fi
+  
 https://wiki.archlinux.org/title/Android_tethering
   
 https://wiki.archlinux.org/title/Software_access_point 
