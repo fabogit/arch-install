@@ -325,7 +325,7 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # 11 START INSTALL USING PACSTRAP
 
-╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim nano git`
+╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib vim nano git`
 
 => for BTRFS install `btrfs-progs`
 
