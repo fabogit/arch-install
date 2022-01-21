@@ -303,7 +303,7 @@ fonts `ttf-dejavu noto-fonts`
 
 https://wiki.archlinux.org/title/Spotify#Installation
 
-`yay spotify`
+╰─`yay spotify`
 
 ### kwallet
 
