@@ -299,6 +299,12 @@ This will create `/etc/systemd/system/docker.service.d/override.conf`, which you
 
 fonts `ttf-dejavu noto-fonts`
 
+### spotify
+
+https://wiki.archlinux.org/title/Spotify#Installation
+
+`yay spotify`
+
 ### kwallet
 
 https://wiki.archlinux.org/title/KDE_Wallet
