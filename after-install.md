@@ -89,9 +89,9 @@ You can also define how many recent versions you want to keep. To retain only on
 
 See `paccache -h` for more options.
 
-### TUXEDO REPO
+### TUXEDO REPO https://github.com/tuxedocomputers
 
-https://github.com/tuxedocomputers
+╰─`yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-keyboard`, `tuxedo-control-center-bin`
 
 https://www.reddit.com/r/tuxedocomputers/comments/qngn8r/manjaro_and_tuxedo_control_center/
 
@@ -111,7 +111,7 @@ list available shells
 
 ╰─`chsh -l`
 
-change default shell to zsh for root
+change default shell to zsh for root (or leave it default to `/bin/bash`)
  
 ╰─`sudo chsh -s /bin/zsh`
  
@@ -172,7 +172,7 @@ https://wiki.archlinux.org/title/snapper
 
 ### browsers and mail
 
-╰─`yay google-chrome firefox thunderbird kmail`
+╰─`yay` `thunderbird` `kmail` `google-chrome` `firefox`
 
 ### postgresql
 
@@ -202,11 +202,11 @@ https://wiki.archlinux.org/title/Visual_Studio_Code
 
 ╰─`yay visual-studio-code-bin`
 
-config git
+install needed keyring
 
 ╰─`sudo pacman -S gnome-keyring`
 
-and https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
+https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
 
 ### github desktop
 
@@ -220,7 +220,7 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ╰─`yay insomnia-bin`
 
-### python
+### python env
 
 https://wiki.archlinux.org/title/python#Package_management
 
@@ -328,14 +328,6 @@ https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
 
 ╰─`sudo pacman -S khelpcenter kwallet kwalletmanager`
 
-### pamac
-
-https://wiki.manjaro.org/index.php/Pamac
-
-https://aur.archlinux.org/packages/pamac-aur/?O=10&PP=10
-
-╰─`yay pamac` also `pamac-tray-appindicator`
-
 ### grub themes
 
 https://www.gnome-look.org/p/1603282
@@ -373,6 +365,14 @@ https://manjaro.org/branch-compare/?q=breath2
 grub
 
 https://gitlab.manjaro.org/artwork/branding/grub-theme
+
+### pamac
+
+https://wiki.manjaro.org/index.php/Pamac
+
+https://aur.archlinux.org/packages/pamac-aur/?O=10&PP=10
+
+╰─`yay pamac` also `pamac-tray-appindicator`
   
 ### window tiling
   
@@ -386,7 +386,6 @@ https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
  
-
 # FONTS
 
 https://wiki.archlinux.org/title/Fonts#Font_packages
