@@ -68,11 +68,26 @@ add hooks
 
 -> LVM: at `HOOKS` add `resume` after `lvm2` (not sure) 
 
-╰─`mkinitcpio -P`
+╰─`sudo mkinitcpio -P`
 
 reboot/hybernate
 
 # PAKAGES
+
+## PACMAN CHACE
+
+The `paccache` script, provided within the `pacman-contrib` package, deletes all cached versions of installed and uninstalled packages, except for the most recent three, by default:
+
+╰─`sudo paccache -r`
+
+-> Enable and start `paccache.timer` to discard unused packages weekly.
+
+Tip: You can create a hook to run this automatically after every pacman transaction, see https://bbs.archlinux.org/viewtopic.php?pid=1694743#p1694743 and `pacman-cleanup-hook`AUR.
+You can also define how many recent versions you want to keep. To retain only one past version use:
+
+╰─`sudo paccache -rk1`
+
+See `paccache -h` for more options.
 
 ### TUXEDO REPO
 
