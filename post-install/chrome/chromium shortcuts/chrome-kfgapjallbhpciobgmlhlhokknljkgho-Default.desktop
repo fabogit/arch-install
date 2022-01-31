@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=Google News
-Exec=/usr/bin/chromium --profile-directory=Default --app-id=kfgapjallbhpciobgmlhlhokknljkgho
-Icon=chrome-kfgapjallbhpciobgmlhlhokknljkgho-Default
-StartupWMClass=crx_kfgapjallbhpciobgmlhlhokknljkgho

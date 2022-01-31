@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=Google Developers
-Exec=/usr/bin/chromium --profile-directory=Default --app-id=nbijalpneffngbkfkdikjeolmphefghm
-Icon=chrome-nbijalpneffngbkfkdikjeolmphefghm-Default
-StartupWMClass=crx_nbijalpneffngbkfkdikjeolmphefghm
