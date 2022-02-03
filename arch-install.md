@@ -177,8 +177,11 @@ https://en.opensuse.org/SDB:BTRFS
 basic:
 
 mnt: /              subvol: /@
+
 mnt: /home          subvol: /@home
+
 mnt: /var/cache     subvol: /@cache
+
 mnt: /var/log       subvol: /@log
 
 ```
