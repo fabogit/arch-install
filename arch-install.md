@@ -172,17 +172,26 @@ system btrfs partition
 
 # 9 create subvolumes
 
+https://en.opensuse.org/SDB:BTRFS
+
+basic:
+
+mnt: /              subvol: /@
+mnt: /home          subvol: /@home
+mnt: /var/cache     subvol: /@cache
+mnt: /var/log       subvol: /@log
+
 ```
 
 ╰─ btrfs subvolume create /mnt/@
 ╰─ btrfs subvolume create /mnt/@home
+╰─ btrfs subvolume create /mnt/@opt
 ╰─ btrfs subvolume create /mnt/@tmp
 ╰─ btrfs subvolume create /mnt/@var
 ╰─ btrfs subvolume create /mnt/@snapshots
 ╰─ btrfs subvolume create /mnt/@snapshots-home
 
 ```
-
 umount all
 
 `umount -R /mnt`
