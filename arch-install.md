@@ -175,14 +175,14 @@ system btrfs partition
 https://en.opensuse.org/SDB:BTRFS
 
 basic:
+```
 
 mnt: /              subvol: /@
-
 mnt: /home          subvol: /@home
-
 mnt: /var/cache     subvol: /@cache
-
 mnt: /var/log       subvol: /@log
+
+```
 
 ```
 
@@ -191,8 +191,8 @@ mnt: /var/log       subvol: /@log
 ╰─ btrfs subvolume create /mnt/@opt
 ╰─ btrfs subvolume create /mnt/@tmp
 ╰─ btrfs subvolume create /mnt/@var
-╰─ btrfs subvolume create /mnt/@snapshots
-╰─ btrfs subvolume create /mnt/@snapshots-home
+
+DONT USE -> TESTING ╰─ btrfs subvolume create /mnt/@snapshots
 
 ```
 umount all
@@ -210,8 +210,9 @@ system
 ╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
 ╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/tmp
 ╰─ mount -t btrfs -o subvol=@var,$o_btrfs LABEL=system /mnt/var
+
+TESTING
 ╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
-╰─ mount -t btrfs -o subvol=@snapshots-home,$o_btrfs LABEL=system /mnt/home/.snapshots
 
 ```
 
@@ -721,6 +722,12 @@ https://wiki.archlinux.org/title/Snapper
   
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-snapper-setup
  
+## REMOVED -> TESTING!  
+
+---
+  
+```
+  
 umount snapshots dir
  
 ╰─`sudo umount /.snapshots`
@@ -728,7 +735,11 @@ umount snapshots dir
 remove snp dir
 
 ╰─`sudo rm -r /.snapshots`
- 
+
+---
+
+```  
+  
 create snapper config for @ sub vol
   
 snapper -c <config-name> create-config /<snapped-dir>
