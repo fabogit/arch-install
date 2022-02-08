@@ -587,11 +587,11 @@ from plasma-meta
 
 from plasma workspace
 
-`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules  kdoctools kinit kunitconversion networkmanager-qt plasma-wayland-protocols`
+`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt`
 
 wayland
 
-`kwayland-integration plasma-wayland-session wayland-protocols`
+`plasma-wayland-protocols kwayland-integration plasma-wayland-session wayland-protocols`
 
 or `plasma-meta` pckg + wayland
 
