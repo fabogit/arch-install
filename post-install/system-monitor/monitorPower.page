@@ -178,6 +178,23 @@ rangeFrom=-50
 rangeTo=50
 showLegend=false
 
+[Face-94564941449248][Appearance]
+chartFace=org.kde.ksysguard.horizontalbars
+showTitle=false
+title=
+
+[Face-94564941449248][SensorColors]
+power/00001/capacity=255,170,0
+power/00001/charge=255,0,0
+power/00001/chargePercentage=110,0,20
+power/00001/chargeRate=0,110,107
+power/00001/design=11,0,110
+power/00001/health=255,85,0
+power/00001/name=105,110,0
+
+[Face-94564941449248][Sensors]
+highPrioritySensorIds=["power/00001/charge","power/00001/health","power/00001/capacity"]
+
 [Face-94609404285056][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
@@ -217,15 +234,10 @@ face=Face-93996169487264
 isSeparator=false
 name=section-0
 
-[page][row-0][column-1]
-name=column-1
-noMargins=
-showBackground=true
-
-[page][row-0][column-1][section-0]
-face=Face-93996169487264
+[page][row-0][column-0][section-1]
+face=Face-94564941449248
 isSeparator=false
-name=section-0
+name=section-1
 
 [page][row-1]
 Title=
@@ -260,11 +272,11 @@ noMargins=
 showBackground=true
 
 [page][row-2][column-0][section-0]
-face=Face-94273475295152
+face=Face-94273488740368
 isSeparator=false
 name=section-0
 
 [page][row-2][column-0][section-1]
-face=Face-94273488740368
+face=Face-94273475295152
 isSeparator=false
 name=section-1

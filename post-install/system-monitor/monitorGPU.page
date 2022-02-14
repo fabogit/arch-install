@@ -157,6 +157,7 @@ lineChartFillOpacity=0
 
 [Face-94266475946256][Appearance]
 chartFace=org.kde.ksysguard.horizontalbars
+showTitle=true
 title=GPU Frequencies
 
 [Face-94266475946256][SensorColors]
@@ -182,8 +183,8 @@ highPrioritySensorIds=["gpu/gpu0/temperature"]
 [Face-94487423023824][org.kde.ksysguard.linechart][General]
 lineChartFillOpacity=0
 rangeAutoY=false
-rangeFromY=20
-rangeToY=80
+rangeFromY=25
+rangeToY=85
 
 [page]
 Title=GPU
@@ -260,10 +261,20 @@ isSeparator=false
 name=section-0
 
 [page][row-3]
-Title=GPU Temperature
-heightMode=minimum
-isTitle=true
+Title=
+heightMode=
+isTitle=false
 name=row-3
+
+[page][row-3][column-0]
+name=column-0
+noMargins=
+showBackground=true
+
+[page][row-3][column-0][section-0]
+face=Face-94487423023824
+isSeparator=false
+name=section-0
 
 [page][row-4]
 Title=
