@@ -386,7 +386,7 @@ https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
 
-# WEB EXTENSIONS
+# CHROME WEB EXTENSIONS
 
 https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?utm_source=chrome-ntp-icon
 
@@ -397,6 +397,24 @@ https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkh
 https://chrome.google.com/webstore/detail/json-viewer-pro/eifflpmocdbdmepbjaopkkhbfmdgijcc?utm_source=chrome-ntp-icon
 
 https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg?utm_source=chrome-ntp-icon
+
+apps (spa/pwa)
+
+https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia/related?hl=en
+
+https://chrome.google.com/webstore/detail/google-drive/apdfllckaahabafndbhieahigkjlhalf
+
+https://chrome.google.com/webstore/detail/docs/aohghmighlieiainnegkcijnfilokake
+
+https://chrome.google.com/webstore/detail/slides/aapocclcgogkmnckokdopfmhonfmgoek
+
+https://chrome.google.com/webstore/detail/sheets/felcaaldnbdncclmgdcncolpebgiejap
+
+https://chrome.google.com/webstore/detail/google-drawings/mkaakpdehdafacodkgkpghoibnmamcme
+
+https://chrome.google.com/webstore/detail/google-forms/jhknlonaankphkkbnmjdlpehkinifeeg
+
+https://chrome.google.com/webstore/detail/youtube/blpcfgokakmgnkcojhhkbfbldkacnbeo?hl=en
  
 # FONTS
 
