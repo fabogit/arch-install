@@ -72,6 +72,18 @@ add hooks
 
 reboot/hybernate
 
+### enable change of user avatar
+
+Open `accounts-daemon.service`
+
+╰─`sudo nano /usr/lib/systemd/system/accounts-daemon.service` EDIT `PrivateTmp=true` to `PrivateTmp=false`
+
+refresh the daemon cache and restart the service
+
+╰─`sudo systemctl daemon-reload`
+
+╰─`sudo systemctl restart accounts-daemon.service`
+
 # PAKAGES
 
 ## PACMAN CHACE
