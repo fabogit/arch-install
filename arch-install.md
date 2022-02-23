@@ -174,26 +174,35 @@ system btrfs partition
 
 https://en.opensuse.org/SDB:BTRFS
 
-basic subvolumes:
-```
-mnt: /              subvol: /@        SYS ROOT
-mnt: /home          subvol: /@home    USR HOME
-mnt: /var/cache     subvol: /@cache   PKGS CACHE
-mnt: /var/log       subvol: /@log     SYS LOGS
-mnt: /var/tmp       subvol: /@tmp     TMP
+subvolumes structure
 
 ```
-
+MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
+/             /@              SYSTEM        YES ON @snap_@
+/home         /@home          USER HOME     YES ON @snap_@home
+/var/cache    /@cache         PKGS CACHE    NO
+/var/log      /@log           LOGS          NO 
+/var/tmp      /@tmp           TMP           NO
+/snap_@       /@snap_@        SNAP SYSTEM   NO
+/snap_@home   /@snap_@home    SNAP HOME     NO
 ```
 
+create subvolumes
+
+for system
+
+```
 ╰─ btrfs subvolume create /mnt/@
 ╰─ btrfs subvolume create /mnt/@home
 ╰─ btrfs subvolume create /mnt/@cache
 ╰─ btrfs subvolume create /mnt/@log
 ╰─ btrfs subvolume create /mnt/@tmp
+```
+for snapshots
 
-DONT USE -> TESTING ╰─ btrfs subvolume create /mnt/@snapshots
-
+```
+╰─ btrfs subvolume create /mnt/@snap_@
+╰─ btrfs subvolume create /mnt/@snap_@home
 ```
 umount all
 
@@ -205,25 +214,28 @@ umount all
 system
 
 ```
-
 ╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
 ╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
 ╰─ mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
 ╰─ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
 ╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
-
-TESTING
-╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
+```
+snapshots  
 
 ```
+╰─ mount -t btrfs -o subvol=@snap_@,$o_btrfs LABEL=system /mnt/snap_@ 
+╰─ mount -t btrfs -o subvol=@snap_@home,$o_btrfs LABEL=system /mnt/snap_@home
+```
 
-boot
+(TESTING snapshots sbvls OLD -> ╰─ `mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`)
+
+make and mount boot
 
 ╰─`mkdir /mnt/boot`
 
 ╰─`mount LABEL=EFI /mnt/boot`
 
-swap
+and swap
 
 ╰─`swapon -L swap`
 
