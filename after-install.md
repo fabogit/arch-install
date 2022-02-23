@@ -310,7 +310,11 @@ This will create `/etc/systemd/system/docker.service.d/override.conf`, which you
 
 ### libreoffice
 
-╰─`sudo pacman -S libreoffice-fresh libreoffice-extension-texmaths libreoffice-extension-writer2latex hunspell hunspell-en_us hyphen hyphen-en libmythes mythes-en`
+╰─`sudo pacman -S libreoffice-fresh` (`libreoffice-fresh-LANGUAGE`)
+
+extensions `libreoffice-extension-texmaths libreoffice-extension-writer2latex`
+
+also `hunspell hyphen libmythes` based on language `hunspell-en_us hyphen-en mythes-en`
 
 fonts `ttf-dejavu noto-fonts`
 
