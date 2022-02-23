@@ -183,8 +183,7 @@ highPrioritySensorIds=["gpu/gpu0/temperature"]
 [Face-94487423023824][org.kde.ksysguard.linechart][General]
 lineChartFillOpacity=0
 rangeAutoY=false
-rangeFromY=25
-rangeToY=85
+rangeFromY=20
 
 [page]
 Title=GPU
