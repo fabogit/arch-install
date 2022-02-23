@@ -36,6 +36,18 @@ add:
 
 will be applied after reboot
 
+### enable change of user avatar
+
+Open `accounts-daemon.service`
+
+╰─`sudo nano /usr/lib/systemd/system/accounts-daemon.service` EDIT `PrivateTmp=true` to `PrivateTmp=false`
+
+refresh the daemon cache and restart the service
+
+╰─`sudo systemctl daemon-reload`
+
+╰─`sudo systemctl restart accounts-daemon.service`
+
 ### Sleep & Hibernate
 
 https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
@@ -70,19 +82,7 @@ add hooks
 
 ╰─`sudo mkinitcpio -P`
 
-reboot/hybernate
-
-### enable change of user avatar
-
-Open `accounts-daemon.service`
-
-╰─`sudo nano /usr/lib/systemd/system/accounts-daemon.service` EDIT `PrivateTmp=true` to `PrivateTmp=false`
-
-refresh the daemon cache and restart the service
-
-╰─`sudo systemctl daemon-reload`
-
-╰─`sudo systemctl restart accounts-daemon.service`
+test reboot/hybernate
 
 # PAKAGES
 
