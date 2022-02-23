@@ -174,13 +174,13 @@ system btrfs partition
 
 https://en.opensuse.org/SDB:BTRFS
 
-basic:
+basic subvolumes:
 ```
-
-mnt: /              subvol: /@
-mnt: /home          subvol: /@home
-mnt: /var/cache     subvol: /@cache
-mnt: /var/log       subvol: /@log
+mnt: /              subvol: /@        SYS ROOT
+mnt: /home          subvol: /@home    USR HOME
+mnt: /var/cache     subvol: /@cache   PKGS CACHE
+mnt: /var/log       subvol: /@log     SYS LOGS
+mnt: /var/tmp       subvol: /@tmp     TMP
 
 ```
 
@@ -188,9 +188,9 @@ mnt: /var/log       subvol: /@log
 
 ╰─ btrfs subvolume create /mnt/@
 ╰─ btrfs subvolume create /mnt/@home
-╰─ btrfs subvolume create /mnt/@opt
+╰─ btrfs subvolume create /mnt/@cache
+╰─ btrfs subvolume create /mnt/@log
 ╰─ btrfs subvolume create /mnt/@tmp
-╰─ btrfs subvolume create /mnt/@var
 
 DONT USE -> TESTING ╰─ btrfs subvolume create /mnt/@snapshots
 
@@ -208,8 +208,9 @@ system
 
 ╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
 ╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
-╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/tmp
-╰─ mount -t btrfs -o subvol=@var,$o_btrfs LABEL=system /mnt/var
+╰─ mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
+╰─ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
+╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
 
 TESTING
 ╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
