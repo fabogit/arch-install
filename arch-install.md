@@ -734,6 +734,8 @@ Use `yay -Y --devel --save` to make development package updates permanently enab
 https://wiki.archlinux.org/title/Snapper  
   
 https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-snapper-setup
+  
+https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
 ## REMOVED -> TESTING!  
 
