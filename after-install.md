@@ -36,6 +36,18 @@ add:
 
 will be applied after reboot
 
+### enable change of user avatar
+
+Open `accounts-daemon.service`
+
+╰─`sudo nano /usr/lib/systemd/system/accounts-daemon.service` EDIT `PrivateTmp=true` to `PrivateTmp=false`
+
+refresh the daemon cache and restart the service
+
+╰─`sudo systemctl daemon-reload`
+
+╰─`sudo systemctl restart accounts-daemon.service`
+
 ### Sleep & Hibernate
 
 https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
@@ -70,7 +82,7 @@ add hooks
 
 ╰─`sudo mkinitcpio -P`
 
-reboot/hybernate
+test reboot/hybernate
 
 # PAKAGES
 
@@ -281,16 +293,14 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
     --name=portainer --restart=always \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
-    portainer/portainer-ce:2.11.0
+    portainer/portainer-ce:2.11.1
 ```
     
 ╰─`docker ps`
 
-go to https://localhost:9443
+go to http://localhost:9000
 
 ╰─`yay portainer-bin`
-
-change portainer app settings `http` to `https` and launcher default port `9000` to `9443`
 
 ### fix containerd-shim hangs on reboot/shutdown
 
@@ -310,7 +320,11 @@ This will create `/etc/systemd/system/docker.service.d/override.conf`, which you
 
 ### libreoffice
 
-╰─`sudo pacman -S libreoffice-fresh libreoffice-extension-texmaths libreoffice-extension-writer2latex hunspell hunspell-en_us hyphen hyphen-en libmythes mythes-en`
+╰─`sudo pacman -S libreoffice-fresh` (`libreoffice-fresh-LANGUAGE`)
+
+extensions `libreoffice-extension-texmaths libreoffice-extension-writer2latex`
+
+also `hunspell hyphen libmythes` based on language `hunspell-en_us hyphen-en mythes-en`
 
 fonts `ttf-dejavu noto-fonts`
 
@@ -385,6 +399,36 @@ https://github.com/kwin-scripts/kwin-tiling
 https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
+
+# CHROME WEB EXTENSIONS
+
+https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?utm_source=chrome-ntp-icon
+
+https://chrome.google.com/webstore/detail/duckduckgo-privacy-essent/bkdgflcldnnnapblkhphbgpggdiikppg?utm_source=chrome-ntp-icon
+
+https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh?utm_source=chrome-ntp-icon
+
+https://chrome.google.com/webstore/detail/json-viewer-pro/eifflpmocdbdmepbjaopkkhbfmdgijcc?utm_source=chrome-ntp-icon
+
+https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg?utm_source=chrome-ntp-icon
+
+apps (spa/pwa)
+
+https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia/related?hl=en
+
+https://chrome.google.com/webstore/detail/google-drive/apdfllckaahabafndbhieahigkjlhalf
+
+https://chrome.google.com/webstore/detail/docs/aohghmighlieiainnegkcijnfilokake
+
+https://chrome.google.com/webstore/detail/slides/aapocclcgogkmnckokdopfmhonfmgoek
+
+https://chrome.google.com/webstore/detail/sheets/felcaaldnbdncclmgdcncolpebgiejap
+
+https://chrome.google.com/webstore/detail/google-drawings/mkaakpdehdafacodkgkpghoibnmamcme
+
+https://chrome.google.com/webstore/detail/google-forms/jhknlonaankphkkbnmjdlpehkinifeeg
+
+( https://chrome.google.com/webstore/detail/youtube/blpcfgokakmgnkcojhhkbfbldkacnbeo?hl=en )
  
 # FONTS
 

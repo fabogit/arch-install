@@ -26,6 +26,11 @@ default `#GRUB_INIT_TUNE="480 440 1"`
 
 https://wiki.archlinux.org/title/GRUB/Tips_and_tricks#Theme
 
+https://breadmaker.github.io/grub-tune-tester/
+
+https://www.askapache.com/linux/grub_init_tune-play-sound-through-pcspkr/
+
+https://github.com/JOELwindows7/GRUB_INIT_TUNE_Compilation/blob/master/List.of.GRUB_INIT_TUNE.music.txt
 
 https://gist.github.com/MaxLaumeister/f93717e91c8bd9d435a5
 

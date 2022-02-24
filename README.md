@@ -3,8 +3,6 @@ installation process for arch linux distro
 
 # links & utils
 
-...
-
 bash
 
 https://wiki.archlinux.org/title/bash#Configuration_files , https://wiki.archlinux.org/title/Bash/Prompt_customization
@@ -83,4 +81,3 @@ timeshift
 
 https://itsfoss.com/backup-restore-linux-timeshift/
 
-...

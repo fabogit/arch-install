@@ -174,26 +174,35 @@ system btrfs partition
 
 https://en.opensuse.org/SDB:BTRFS
 
-basic:
-```
-
-mnt: /              subvol: /@
-mnt: /home          subvol: /@home
-mnt: /var/cache     subvol: /@cache
-mnt: /var/log       subvol: /@log
+subvolumes structure
 
 ```
-
+MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
+/             /@              SYSTEM        YES ON @snap_@
+/home         /@home          USER HOME     YES ON @snap_@home
+/var/cache    /@cache         PKGS CACHE    NO
+/var/log      /@log           LOGS          NO 
+/var/tmp      /@tmp           TMP           NO
+/snap_@       /@snap_@        SNAP SYSTEM   NO
+/snap_@home   /@snap_@home    SNAP HOME     NO
 ```
 
+create subvolumes
+
+for system
+
+```
 ╰─ btrfs subvolume create /mnt/@
 ╰─ btrfs subvolume create /mnt/@home
-╰─ btrfs subvolume create /mnt/@opt
+╰─ btrfs subvolume create /mnt/@cache
+╰─ btrfs subvolume create /mnt/@log
 ╰─ btrfs subvolume create /mnt/@tmp
-╰─ btrfs subvolume create /mnt/@var
+```
+for snapshots
 
-DONT USE -> TESTING ╰─ btrfs subvolume create /mnt/@snapshots
-
+```
+╰─ btrfs subvolume create /mnt/@snap_@
+╰─ btrfs subvolume create /mnt/@snap_@home
 ```
 umount all
 
@@ -205,24 +214,28 @@ umount all
 system
 
 ```
-
 ╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
 ╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
-╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/tmp
-╰─ mount -t btrfs -o subvol=@var,$o_btrfs LABEL=system /mnt/var
-
-TESTING
-╰─ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
+╰─ mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
+╰─ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
+╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
+```
+snapshots  
 
 ```
+╰─ mount -t btrfs -o subvol=@snap_@,$o_btrfs LABEL=system /mnt/snap_@ 
+╰─ mount -t btrfs -o subvol=@snap_@home,$o_btrfs LABEL=system /mnt/snap_@home
+```
 
-boot
+(TESTING snapshots sbvls OLD -> ╰─ `mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`)
+
+make and mount boot
 
 ╰─`mkdir /mnt/boot`
 
 ╰─`mount LABEL=EFI /mnt/boot`
 
-swap
+and swap
 
 ╰─`swapon -L swap`
 
@@ -587,11 +600,11 @@ from plasma-meta
 
 from plasma workspace
 
-`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules  kdoctools kinit kunitconversion networkmanager-qt plasma-wayland-protocols`
+`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt`
 
 wayland
 
-`kwayland-integration plasma-wayland-session wayland-protocols`
+`plasma-wayland-protocols kwayland-integration plasma-wayland-session wayland-protocols`
 
 or `plasma-meta` pckg + wayland
 
@@ -601,7 +614,7 @@ or `plasma-meta` pckg + wayland
 
 ╰─`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition nm-connection-editor firewalld kdf` 
+`linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition nm-connection-editor firewalld kdf` & (`chromium`) 
 
 and
 
@@ -740,21 +753,31 @@ remove snp dir
 
 ```  
   
-create snapper config for @ sub vol
+create snapper config
+
+-> @
   
 snapper -c <config-name> create-config /<snapped-dir>
 
 ╰─`sudo snapper -c snpr-conf@root create-config /`
   
-( for @home  `sudo snapper -c snpr-conf@home create-config /@home` )
+-> @home  
 
-remove created folder
+╰─`sudo snapper -c snpr-conf@home create-config /@home`
 
-╰─`sudo btrfs subvolume delete /.snapshots`
+remove created subvols
+
+╰─`sudo btrfs subvolume delete /snap_@`
+  
+╰─`sudo btrfs subvolume delete /snap_@home`
+  
+TESTING OLD ╰─`sudo btrfs subvolume delete /.snapshots`
 
 recreate
 
-╰─`sudo mkdir /.snapshots`
+╰─`sudo mkdir /snap_@`
+  
+╰─`sudo mkdir /snap_@home`
 
 remount
 
@@ -762,13 +785,17 @@ remount
  
 change permission to replace root
 
-╰─`sudo chmod 750 /.snapshots`
+╰─`sudo chmod 750 /snap_@`
+
+╰─`sudo chmod 750 /snap_@home`
+  
+TESTING OLD ╰─`sudo chmod 750 /.snapshots`
  
 ## edit config
  
-╰─`sudo nano /etc/snapper/configs/root`
+╰─`sudo nano /etc/snapper/configs/root` ( instead of `root` it might be `snpr-conf@root`)
  
-in `ALLOW_USERS` inside "" add \<username\> 
+in `ALLOW_USERS` inside "" add \<USER\> 
   
 => @  
   
@@ -779,7 +806,7 @@ SUBVOLUME="/"
 .
 .
 .
-TIMELINE_LIMIT_*=0, WEEKLY=2, DAILY=5  
+TIMELINE_LIMIT_*any=0, WEEKLY=2, DAILY=5  
   
 ```
   
@@ -792,7 +819,7 @@ SUBVOLUME="/home"
 . 
 . 
 . 
-TIMELINE_LIMIT_*=0, DAILY=5, HOURLY=8  
+TIMELINE_LIMIT_*any=0, DAILY=5, HOURLY=4  
   
 ```  
 
@@ -800,7 +827,7 @@ save & close
   
 ...
 
-enable timeline and timeline cleanup
+## enable timeline and timeline cleanup
  
 ╰─`sudo systemctl enable --now snapper-timeline.timer`  
 
@@ -808,22 +835,6 @@ enable timeline and timeline cleanup
   
 ╰─`sudo systemctl enable --now grub-btrfs.path`
  
-show snpshots
-  
-╰─`snapper -c root list`  
-  
-create snapshot
-  
-╰─`snapper -c root create -c timeline -d AfterInstall`
-  
-snpts property
-  
-`sudo btrfs property list -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/` 
-  
-set read only to false
-  
-`sudo btrfs property set -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/ ro false` 
-
 ## install snap-pac-grub and GUI
  
 ╰─`yay -S snap-pac-grub snapper-gui-git` 
@@ -854,7 +865,7 @@ Target = boot/*
  
 Depends = rsync
  
-Description = Backup /boot...
+Description = Backing up ==> /boot ...
 
 When = PreTransaction
 
@@ -868,15 +879,43 @@ optional install rsync
 ╰─`sudo pacman -S rsync`
  
 edit permission
- 
-╰─`sudo chmod a+rx /.snapshots`
+
+╰─`sudo chmod a+rx /snap_@`
+  
+╰─`sudo chmod a+rx /snap_@home`
+  
+TESTING OLD ╰─`sudo chmod a+rx /.snapshots`
  
 allow users
 
-╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
+╰─`sudo chown <$USERNAME>:users /snap_@` or ╰─`sudo chown :users /snap_@`  
+  
+╰─`sudo chown <$USERNAME>:users /snap_@home` or ╰─`sudo chown :users /snap_@home`
 
+  
+TESTING OLD ╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
 
+...
+  
 DONE
+
+## btrfs utils
+
+show snpshots
+  
+╰─`snapper -c root list`  
+  
+create snapshot
+  
+╰─`snapper -c root create -c timeline -d AfterInstall`
+  
+snpts property
+  
+`sudo btrfs property list -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/` 
+  
+set read only to false
+  
+`sudo btrfs property set -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/ ro false` 
 
 ... 
  
