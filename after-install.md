@@ -298,11 +298,9 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
     
 ╰─`docker ps`
 
-go to https://localhost:9443
+go to http://localhost:9000
 
 ╰─`yay portainer-bin`
-
-change portainer app settings `http` to `https` and launcher default port `9000` to `9443`
 
 ### fix containerd-shim hangs on reboot/shutdown
 
