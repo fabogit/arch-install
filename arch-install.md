@@ -10,7 +10,7 @@ loadkeys \<kbrdlout ex: us,it\>
 
 ╰─`ip link`
 
-╰─`ping -c 3 archlinux.org
+╰─`ping -c 3 archlinux.org`
 
 
 # 3 CONNECT WIFI
