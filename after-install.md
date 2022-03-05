@@ -234,6 +234,8 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ╰─`yay gitkraken`
 
+https://aur.archlinux.org/packages/gitkraken
+
 ### insomnia
 
 ╰─`yay insomnia-bin`
