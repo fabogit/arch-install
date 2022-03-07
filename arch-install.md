@@ -150,7 +150,7 @@ write & quit
 
 efi partition
 
-╰─`mkfs.fat -F32 -n EFI /dev/nvme0n1p1` on /dev/EFI-PART
+╰─`mkfs.fat -F32 -n efi /dev/nvme0n1p1` on /dev/EFI-PART
 
 swap partition
 
@@ -233,7 +233,7 @@ make and mount boot
 
 ╰─`mkdir /mnt/boot`
 
-╰─`mount LABEL=EFI /mnt/boot`
+╰─`mount LABEL=efi /mnt/boot`
 
 and swap
 

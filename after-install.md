@@ -220,13 +220,21 @@ install needed keyring
 
 https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
 
-### github desktop
+### GIT GUI
+
+- github desktop
 
 ╰─`yay github-desktop-bin`
 
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 
 https://man.archlinux.org/man/gitcredentials.7
+
+- gitkraken
+
+╰─`yay gitkraken`
+
+https://aur.archlinux.org/packages/gitkraken
 
 ### insomnia
 
