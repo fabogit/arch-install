@@ -233,7 +233,7 @@ system
 snapshots  
 
 ```
-╰─`mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`
+╰─mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 ```
 
 # UEFI/GPT EXT4 LVM
