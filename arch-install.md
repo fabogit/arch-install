@@ -211,12 +211,10 @@ for system
 ```
 for snapshots
 
-```
-╰─ btrfs subvolume create /mnt/@snapshots
-```
+╰─`btrfs subvolume create /mnt/@snapshots`
 umount all
 
-`umount -R /mnt`
+╰─`umount -R /mnt`
 
 # 10 mount partitions and btrfs @subvolumes
 
@@ -232,9 +230,7 @@ system
 ```
 snapshots  
 
-```
-╰─mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
-```
+╰─`mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`
 
 # UEFI/GPT EXT4 LVM
 
