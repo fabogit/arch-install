@@ -774,6 +774,14 @@ remove created subvols
   
 TESTING OLD ╰─`sudo btrfs subvolume delete /.snapshots`
 
+```
+TESTING
+sudo umount /snap_@
+sudo umount /snap_@home
+sudo rm -r /snap_@
+sudo rm -r /snap_@home
+```
+  
 recreate
 
 ╰─`sudo mkdir /snap_@`
@@ -794,7 +802,7 @@ TESTING OLD ╰─`sudo chmod 750 /.snapshots`
  
 ## edit config
  
-╰─`sudo nano /etc/snapper/configs/root` ( instead of `root` it might be `snpr-conf@root`)
+╰─`sudo nano /etc/snapper/configs/snpr-conf@root` & `snpr-conf@home`
  
 in `ALLOW_USERS` inside "" add \<USER\> 
   
