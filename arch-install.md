@@ -166,8 +166,20 @@ system btrfs partition
 
 ╰─`o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime`
 
-# 8 mount system partition
- 
+# 8 mount partitions
+
+make and mount boot
+
+╰─`mkdir /mnt/boot`
+
+╰─`mount LABEL=efi /mnt/boot`
+
+swap
+
+╰─`swapon -L swap`
+
+system
+
 ╰─`mount -t btrfs LABEL=system /mnt`
 
 # 9 create subvolumes
@@ -228,17 +240,6 @@ snapshots
 ```
 
 (TESTING snapshots sbvls OLD -> ╰─ `mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`)
-
-make and mount boot
-
-╰─`mkdir /mnt/boot`
-
-╰─`mount LABEL=efi /mnt/boot`
-
-and swap
-
-╰─`swapon -L swap`
-
 
 # UEFI/GPT EXT4 LVM
 
