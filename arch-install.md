@@ -190,13 +190,12 @@ subvolumes structure
 
 ```
 MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
-/             /@              SYSTEM        YES ON @snap_@
-/home         /@home          USER HOME     YES ON @snap_@home
+/             /@              SYSTEM        YES ON @snapshots
+/home         /@home          USER HOME     YES ON home/snapshots?snapshots/home?
 /var/cache    /@cache         PKGS CACHE    NO
 /var/log      /@log           LOGS          NO 
 /var/tmp      /@tmp           TMP           NO
-/snap_@       /@snap_@        SNAP SYSTEM   NO
-/snap_@home   /@snap_@home    SNAP HOME     NO
+/.snapshots   /@snapshots     SNAP SYSTEM   NO
 ```
 
 create subvolumes
@@ -213,8 +212,7 @@ for system
 for snapshots
 
 ```
-╰─ btrfs subvolume create /mnt/@snap_@
-╰─ btrfs subvolume create /mnt/@snap_@home
+╰─ btrfs subvolume create /mnt/@snapshots
 ```
 umount all
 
@@ -235,11 +233,8 @@ system
 snapshots  
 
 ```
-╰─ mount -t btrfs -o subvol=@snap_@,$o_btrfs LABEL=system /mnt/snap_@ 
-╰─ mount -t btrfs -o subvol=@snap_@home,$o_btrfs LABEL=system /mnt/snap_@home
+╰─`mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`
 ```
-
-(TESTING snapshots sbvls OLD -> ╰─ `mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`)
 
 # UEFI/GPT EXT4 LVM
 
@@ -736,12 +731,7 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-sn
   
 https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
-## REMOVED -> TESTING!  
 
----
-  
-```
-  
 umount snapshots dir
  
 ╰─`sudo umount /.snapshots`
@@ -750,10 +740,6 @@ remove snp dir
 
 ╰─`sudo rm -r /.snapshots`
 
----
-
-```  
-  
 create snapper config
 
 -> @
@@ -768,25 +754,11 @@ snapper -c <config-name> create-config /<snapped-dir>
 
 remove created subvols
 
-╰─`sudo btrfs subvolume delete /snap_@`
-  
-╰─`sudo btrfs subvolume delete /snap_@home`
-  
-TESTING OLD ╰─`sudo btrfs subvolume delete /.snapshots`
-
-```
-TESTING
-sudo umount /snap_@
-sudo umount /snap_@home
-sudo rm -r /snap_@
-sudo rm -r /snap_@home
-```
+╰─`sudo btrfs subvolume delete /.snapshots`
   
 recreate
 
-╰─`sudo mkdir /snap_@`
-  
-╰─`sudo mkdir /snap_@home`
+╰─`sudo mkdir /.snapshots`
 
 remount
 
@@ -794,11 +766,7 @@ remount
  
 change permission to replace root
 
-╰─`sudo chmod 750 /snap_@`
-
-╰─`sudo chmod 750 /snap_@home`
-  
-TESTING OLD ╰─`sudo chmod 750 /.snapshots`
+╰─`sudo chmod 750 /.snapshots`
  
 ## edit config
  
@@ -889,20 +857,11 @@ optional install rsync
  
 edit permission
 
-╰─`sudo chmod a+rx /snap_@`
-  
-╰─`sudo chmod a+rx /snap_@home`
-  
-TESTING OLD ╰─`sudo chmod a+rx /.snapshots`
+╰─`sudo chmod a+rx /.snapshots`
  
 allow users
 
-╰─`sudo chown <$USERNAME>:users /snap_@` or ╰─`sudo chown :users /snap_@`  
-  
-╰─`sudo chown <$USERNAME>:users /snap_@home` or ╰─`sudo chown :users /snap_@home`
-
-  
-TESTING OLD ╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
+╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
 
 ...
   
