@@ -55,7 +55,7 @@ to remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 start the openssh daemon with 
 
-╰─`systemctl start sshd.service`
+-```systemctl start sshd.service```
 
 get ip
 
@@ -65,22 +65,24 @@ then ssh \# `ssh root@<ip addr>`
 
 ## synking clock
 
-╰─`timedatectl set-ntp true`
+-```timedatectl set-ntp true```
 
 ## rank mirrors
 
-╰─`reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist`
+-```reflector --save /etc/pacman.d/mirrorlist --sort score --number 20```
+
+-```reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist```
 
 sync
 
-╰─`pacman -Syy`
+-```pacman -Syy```
 
 
 # 4 DISK SETUP
 
 ## ERASE DRIVE
 
-`sgdisk --zap-all /dev/<DRIVE>`
+-```sgdisk --zap-all /dev/<DRIVE>```
 
 
 `Size: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors`
@@ -130,7 +132,7 @@ https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Part
 
 # 5 create partitions
 
-╰─`cfdisk /dev/nvme0n1`
+-```cfdisk /dev/nvme0n1``` on `/dev/DISK`
 
 ...
 
@@ -150,37 +152,37 @@ write & quit
 
 efi partition
 
-╰─`mkfs.fat -F32 -n efi /dev/nvme0n1p1` on /dev/EFI-PART
+-```mkfs.fat -F32 -n efi /dev/nvme0n1p1``` on `/dev/EFI-PART`
 
 swap partition
 
-╰─`mkswap -L swap /dev/nvme0n1p2` on /dev/SWAP-PART
+-```mkswap -L swap /dev/nvme0n1p2``` on `/dev/SWAP-PART`
  
 system btrfs partition
 
-╰─`mkfs.btrfs --force --label system /dev/nvme0n1p3` on /dev/BTRFS-PART
+-```mkfs.btrfs --force --label system /dev/nvme0n1p3``` on `/dev/BTRFS-PART`
 
 # 7 set btrfs options as variable
 
-╰─`o=defaults,x-mount.mkdir`
+-```o=defaults,x-mount.mkdir```
 
-╰─`o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime`
+-```o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime```
 
 # 8 mount partitions
 
 make and mount boot
 
-╰─`mkdir /mnt/boot`
+-```mkdir /mnt/boot```
 
-╰─`mount LABEL=efi /mnt/boot`
+-```mount LABEL=efi /mnt/boot``` (just legacy warning)
 
 swap
 
-╰─`swapon -L swap`
+-```swapon -L swap```
 
 system
 
-╰─`mount -t btrfs LABEL=system /mnt`
+-```mount -t btrfs LABEL=system /mnt```
 
 # 9 create subvolumes
 
@@ -200,47 +202,42 @@ MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
 
 create subvolumes
 
-for system
-
 ```
-╰─ btrfs subvolume create /mnt/@
-╰─ btrfs subvolume create /mnt/@home
-╰─ btrfs subvolume create /mnt/@cache
-╰─ btrfs subvolume create /mnt/@log
-╰─ btrfs subvolume create /mnt/@tmp
+SYSTEM
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@cache
+btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@tmp
+SNAPSHOTS
+btrfs subvolume create /mnt/@snapshots
 ```
-for snapshots
-
-╰─`btrfs subvolume create /mnt/@snapshots`
 umount all
 
-╰─`umount -R /mnt`
+-```umount -R /mnt```
 
 # 10 mount partitions and btrfs @subvolumes
 
-
-system
-
 ```
-╰─ mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
-╰─ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
-╰─ mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
-╰─ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
-╰─ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
+SYSTEM
+mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
+mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
+mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
+mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
+mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
+SNAPSHOTS
+mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 ```
-snapshots  
-
-╰─`mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots`
 
 # UEFI/GPT EXT4 LVM
 
 https://wiki.archlinux.org/title/Partitioning#Example_layouts
 
-╰─`fdisk -l`
+-```fdisk -l```
 
 cfdisk /dev/\<drive ex: nvme0n1\>
 
-╰─`cfdisk /dev/nvme0n1`
+-```cfdisk /dev/nvme0n1```
 
 ...
 
@@ -337,13 +334,13 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # BTRFS & LVM FINAL CHECK
 
-╰─`df -hT`
+-```df -hT```
 
-╰─`lsblk`
+-```lsblk```
 
 # 11 START INSTALL USING PACSTRAP
 
-╰─`pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib vim nano git`
+-```pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib vim nano git```
 
 => for BTRFS install `btrfs-progs`
 
@@ -353,24 +350,24 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 generate file system tabs
 
-╰─`genfstab -U /mnt >> /mnt/etc/fstab`
+-```genfstab -U /mnt >> /mnt/etc/fstab```
 
-╰─`more /mnt/etc/fstab`
+check => `more /mnt/etc/fstab`
 
 
 # 12 ENTER INTO LINUX 
 
-╰─`arch-chroot /mnt`
+-```arch-chroot /mnt```
 
 # 13 TZ & LANG
 
 ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
-╰─`ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime`
+-```ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime```
 
-╰─`hwclock --systohc`
+-```hwclock --systohc```
 
-╰─`nano /etc/locale.gen`
+-```nano /etc/locale.gen```
 
 ### vim controls:
 
@@ -386,7 +383,7 @@ ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
 ...
 
-uncomment selected language `en_US.UTF-8`, s&q
+append `en_US.UTF-8`, s&q
 
 ╰─`locale-gen`
 
