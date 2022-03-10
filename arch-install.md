@@ -173,9 +173,9 @@ write & quit
 
 - make efi partition
 
-on `/dev/EFI-PART` (ignore the legacy warning)
+on `/dev/EFI-PART`
 ```
-mkfs.fat -F32 -n efi /dev/nvme0n1p1
+mkfs.fat -F32 -n EFI /dev/nvme0n1p1
 ``` 
 
 
@@ -183,7 +183,7 @@ mkfs.fat -F32 -n efi /dev/nvme0n1p1
 
 on `/dev/SWAP-PART`
 ```
-mkswap -L swap /dev/nvme0n1p2
+mkswap -L SWAP /dev/nvme0n1p2
 ``` 
 
  
@@ -191,7 +191,7 @@ mkswap -L swap /dev/nvme0n1p2
 
 on `/dev/BTRFS-PART`
 ```
-mkfs.btrfs --force --label system /dev/nvme0n1p3
+mkfs.btrfs --force --label SYSTEM /dev/nvme0n1p3
 ``` 
 
 
@@ -223,7 +223,7 @@ MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
 - mount system
 
 ```
-mount -t btrfs LABEL=system /mnt
+mount -t btrfs LABEL=SYSTEM /mnt
 ```
 
 - create subvolumes
@@ -252,26 +252,26 @@ mkdir /mnt/boot
 ```
 
 ```
-mount LABEL=efi /mnt/boot
+mount LABEL=EFI /mnt/boot
 ``` 
 
 - set swap
 
 ```
-swapon -L swap
+swapon -L SWAP
 ```
 
 # 10 mount partitions and btrfs @subvolumes
 
 ```
 => SYSTEM
-mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
-mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
-mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
-mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
-mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
+mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt
+mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
+mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
+mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
+mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
 => SNAPSHOTS
-mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
+mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
 ```
 
 # UEFI/GPT EXT4 LVM
@@ -608,9 +608,11 @@ pacman -S snapper
 
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
-network bluethoot ssh printer
+- network bluethoot ssh printer
 
-╰─`pacman -S networkmanager bluez openssh cups`
+```
+pacman -S networkmanager bluez openssh cups
+```
 
 @extra `bluez-utils network-manager-applet dialog wpa_supplicant wireless_tools netctl`
 
@@ -618,13 +620,13 @@ network bluethoot ssh printer
 
 #### start/enable services
 
-╰─`systemctl enable sshd`
+`systemctl enable sshd`
 
-╰─`systemctl enable NetworkManager.service`
+`systemctl enable NetworkManager.service`
 
-╰─`systemctl enable bluetooth.service`
+`systemctl enable bluetooth.service`
 
-╰─`systemctl enable cups.service` if error `systemctl enable org.cups.cupsd`
+`systemctl enable cups.service` if error `systemctl enable org.cups.cupsd`
 
 # 16 BOOTMANAGER INSTALL
 
@@ -632,35 +634,49 @@ network bluethoot ssh printer
 
 https://wiki.archlinux.org/title/GRUB#UEFI_systems
 
-╰─`pacman -S grub efibootmgr grub-customizer`
+```
+pacman -S grub efibootmgr grub-customizer
+```
 
-=> for BTRFS install `grub-btrfs`
+- => for BTRFS install `grub-btrfs`
 
-╰─`grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck`
+```
+grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck
+```
 
-╰─`cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo`
+```
+cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+```
 
-╰─`grub-mkconfig -o /boot/grub/grub.cfg`
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 optional EXIT & REBOOT
 
-╰─`exit`
+`exit`
 
-╰─`umount -a`
+`umount -a`
 
-╰─`reboot`
+`reboot`
 
 ### wifi connect after reboot into cli
 
-╰─`nmcli device wifi list`
+```
+nmcli device wifi list
+```
 
-╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
+```
+nmcli device wifi connect <SSID_or_BSSID> password <password>
+```
 
 # 17 INSTALL XORG DISPLAY SERVER
 
 https://wiki.archlinux.org/title/Xorg#Installation
 
-╰─`pacman -S xorg`
+```
+pacman -S xorg
+```
 
 @extra `xorg-server xorg-apps`
 
@@ -669,22 +685,28 @@ https://wiki.archlinux.org/title/Xorg#Installation
 
 sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu, intel\>
 
-╰─`pacman -S xf86-video-amdgpu`
+```
+pacman -S xf86-video-amdgpu
+```
 
 @extra `pulseaudio alsa-utils alsa-plugins pulseaudio-alsa`
 
 # 19 INSTALL KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
 
-╰─`pacman -S`
+`pacman -S`
 
 from plasma-meta
 
-`bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings `
+```
+bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings
+```
 
 from plasma workspace
 
-`kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt`
+```
+kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt
+```
 
 wayland
 
@@ -696,13 +718,17 @@ or `plasma-meta` pckg + wayland
 
 ## INSTALL USEFUL PACKAGES
 
-╰─`pacman -S`
+`pacman -S`
 
-`linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition nm-connection-editor firewalld kdf` & (`chromium`) 
+```
+linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition chromium nm-connection-editor firewalld kdf
+```
 
 and
 
-`kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager` 
+```
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager
+``` 
 
 image editing `kolourpaint krita inkscape gimp`
 
@@ -718,13 +744,17 @@ The following packages enable preview thumbnails in dolphin
 - libappimage: AppImage thumbnails
 - raw-thumbnailer: Raw image files from a camera
 
-╰─`sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer`
+```
+sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer
+```
 
 ## PIPEWIRE AUDIO DRIVERS
 
 @pipewire https://wiki.archlinux.org/title/PipeWire#Installation
 
-╰─`pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde`
+```
+pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde
+```
 
 @extra `pipewire-alsa pipewire-jack`
  
@@ -736,7 +766,9 @@ Reboot, re-login or execute `systemctl start --user pipewire-pulse.service` to s
 Normally, no further action is needed, as the user service pipewire-pulse.socket` should be enabled automatically by the package. 
 To check if the replacement is working, run the following command and see the output:
 
-╰─`pactl info`
+```
+pactl info
+```
 
 ...
  
@@ -772,34 +804,48 @@ I have no idea what diagnostics and tools are available in pipewire if it does n
 GUI https://gitlab.freedesktop.org/ryuukyu/helvum
 
 
-╰─`exit`
+- `exit`
 
-╰─`umount -a`
+- `umount -a`
 
-╰─`reboot`
+- `reboot`
 
 ## login as user
 
 ## connect wifi from cli after reboot
 
-╰─`nmcli device wifi list`
+```
+nmcli device wifi list
+```
 
-╰─`nmcli device wifi connect <SSID_or_BSSID> password <password>`
+```
+nmcli device wifi connect <SSID_or_BSSID> password <password>
+```
  
 
 # YAY (after reboot as normal user)
 
 https://github.com/Jguer/yay
 
-╰─`sudo pacman -S git` [optional if you have installed it]
+```
+sudo pacman -S git
+```
 
-╰─`git clone https://aur.archlinux.org/yay-git.git`
+```
+git clone https://aur.archlinux.org/yay-git.git
+```
 
-╰─`cd yay-git/`
+```
+cd yay-git/
+```
 
-╰─`makepkg -si`
+```
+makepkg -si
+```
 
-╰─`cd .. && sudo rm -r yay-git`
+```
+cd .. && sudo rm -r yay-git
+```
 
 #### First Use
 
@@ -822,39 +868,47 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-sn
 https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
 
-umount snapshots dir
- 
-╰─`sudo umount /.snapshots`
+- umount snapshots dir
 
-remove snp dir
+```
+sudo umount /.snapshots
+```
 
-╰─`sudo rm -r /.snapshots`
+- remove snp dir
 
-create snapper config
+```
+sudo rm -r /.snapshots
+```
+
+- create snapper config
 
 -> @
   
 snapper -c <config-name> create-config /<snapped-dir>
 
-╰─`sudo snapper -c snpr-conf@root create-config /`
+```
+sudo snapper -c snpr-conf@root create-config /
+```
+
+
   
 -> @home  
 
-╰─`sudo snapper -c snpr-conf@home create-config /@home`
+`sudo snapper -c snpr-conf@home create-config /@home`
 
-remove created subvols
-
-╰─`sudo btrfs subvolume delete /.snapshots`
+- remove created subvols
   
-recreate
+`sudo btrfs subvolume delete /.snapshots`
+  
+- recreate
 
 ╰─`sudo mkdir /.snapshots`
 
-remount
+- remount
 
 ╰─`sudo mount -a`
  
-change permission to replace root
+- change permission to replace root
 
 ╰─`sudo chmod 750 /.snapshots`
  
