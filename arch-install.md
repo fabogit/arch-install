@@ -19,19 +19,19 @@ ping -c 3 archlinux.org
 
 # 3 CONNECT WIFI
 
--`iwctl`
+`iwctl`
 
--`device list`
+`device list`
 
--`station <device> scan`
+`station <device> scan`
 
--`station <device> get-networks`
+`station <device> get-networks`
 
--`station <device> connect <SSID>`
+`station <device> connect <SSID>`
 
--`device <device> show`
+`device <device> show`
 
--`station <device> show`
+`station <device> show`
 
 -`exit`
 
@@ -63,7 +63,7 @@ start the openssh daemon with
 systemctl start sshd.service
 ```
 
--get ip
+- get ip
 
 ╰─`ip a`
 
@@ -229,15 +229,16 @@ mount -t btrfs LABEL=system /mnt
 - create subvolumes
 
 ```
-SYSTEM
+=> SYSTEM
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@cache
 btrfs subvolume create /mnt/@log
 btrfs subvolume create /mnt/@tmp
-SNAPSHOTS
+=> SNAPSHOTS
 btrfs subvolume create /mnt/@snapshots
 ```
+
 - umount all
 
 ```
@@ -254,7 +255,7 @@ mkdir /mnt/boot
 mount LABEL=efi /mnt/boot
 ``` 
 
-- swap
+- set swap
 
 ```
 swapon -L swap
@@ -263,13 +264,13 @@ swapon -L swap
 # 10 mount partitions and btrfs @subvolumes
 
 ```
-SYSTEM
+=> SYSTEM
 mount -t btrfs -o subvol=@,$o_btrfs LABEL=system /mnt
 mount -t btrfs -o subvol=@home,$o_btrfs LABEL=system /mnt/home
 mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=system /mnt/var/cache
 mount -t btrfs -o subvol=@log,$o_btrfs LABEL=system /mnt/var/log
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=system /mnt/var/tmp
-SNAPSHOTS
+=> SNAPSHOTS
 mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 ```
 
@@ -407,14 +408,15 @@ vim controls:
 
 ...
 
-- i to enter insert mode,
+```
+i to enter insert mode,
 
-- ESC for command mode,
+ESC for command mode,
 
-- to save&quit ESC, :wq
+to save&quit ESC, :wq
 
-- to discard&quit ESC, :q!
-
+to discard&quit ESC, :q!
+```
 ...
 
 - generate file system tabs
@@ -434,42 +436,55 @@ arch-chroot /mnt
 
 # 13 TZ & LANG
 
+- set timezone
+
 ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
 ```
 ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
 ```
+- sync clock
 
 ```
 hwclock --systohc
 ```
+- select and generate locale
 
 ```
 nano /etc/locale.gen
 ```
 
-append `en_US.UTF-8`, s&q
+append `en_US.UTF-8 UTF-8`, s&q
+ 
+```
+locale-gen
+```
 
-╰─`locale-gen`
+- sys language
 
-sys language
+```
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
 
-╰─`echo "LANG=en_US.UTF-8" > /etc/locale.conf`
+- keyboard layout
 
-keyboard layout
-
-╰─`echo "KEYMAP=us" > /etc/vconsole.conf`
+```
+echo "KEYMAP=us" > /etc/vconsole.conf
+```
 
 # 14 CREATE HOSTNAME
 
 echo \<hostname\> > /etc/hostname
 
-╰─`echo Arch > /etc/hostname`
+```
+echo Arch > /etc/hostname
+```
 
-edit host entries
+- edit host entries
 
-╰─`nano /etc/hosts`
-
+```
+nano /etc/hosts
+```
 
 add:
 ```
