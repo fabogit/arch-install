@@ -39,7 +39,7 @@ ping -c 3 archlinux.org
 
 ### ENABLE INSTALL OVER SSH
 
-set root pwd
+- set root pwd
 
 ╰─`passwd`
 
@@ -63,7 +63,7 @@ start the openssh daemon with
 systemctl start sshd.service
 ```
 
-get ip
+-get ip
 
 ╰─`ip a`
 
@@ -85,7 +85,7 @@ try
 reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
-sync
+- sync mirrors
 
 ```
 pacman -Syy
@@ -171,7 +171,7 @@ write & quit
 
 # 6 format partitions
 
-efi partition
+- make efi partition
 
 on `/dev/EFI-PART` (ignore the legacy warning)
 ```
@@ -179,7 +179,7 @@ mkfs.fat -F32 -n efi /dev/nvme0n1p1
 ``` 
 
 
-swap partition
+- swap partition
 
 on `/dev/SWAP-PART`
 ```
@@ -187,7 +187,7 @@ mkswap -L swap /dev/nvme0n1p2
 ``` 
 
  
-system btrfs partition
+- system btrfs partition
 
 on `/dev/BTRFS-PART`
 ```
@@ -209,7 +209,7 @@ o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime
 
 https://en.opensuse.org/SDB:BTRFS
 
-subvolumes structure
+- subvolumes structure
 
 ```
 MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
@@ -220,8 +220,13 @@ MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
 /var/tmp      /@tmp           TMP           NO
 /.snapshots   /@snapshots     SNAP SYSTEM   NO
 ```
+- mount system
 
-create subvolumes
+```
+mount -t btrfs LABEL=system /mnt
+```
+
+- create subvolumes
 
 ```
 SYSTEM
@@ -233,13 +238,13 @@ btrfs subvolume create /mnt/@tmp
 SNAPSHOTS
 btrfs subvolume create /mnt/@snapshots
 ```
-umount all
+- umount all
 
 ```
 umount -R /mnt
 ```
 
-make and mount boot
+- make and mount boot
 
 ```
 mkdir /mnt/boot
@@ -249,16 +254,10 @@ mkdir /mnt/boot
 mount LABEL=efi /mnt/boot
 ``` 
 
-swap
+- swap
 
 ```
 swapon -L swap
-```
-
-system
-
-```
-mount -t btrfs LABEL=system /mnt
 ```
 
 # 10 mount partitions and btrfs @subvolumes
@@ -383,6 +382,7 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # BTRFS & LVM FINAL CHECK
 
+- verify all
 ```
 df -hT
 ```
@@ -417,7 +417,7 @@ vim controls:
 
 ...
 
-generate file system tabs
+- generate file system tabs
 
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
