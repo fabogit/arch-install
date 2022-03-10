@@ -1031,8 +1031,9 @@ sudo chmod a+rx /.snapshots
 - allow users
 
 ```
-sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots
+sudo chown <$USERNAME>:users /.snapshots
 ```
+or `sudo chown :users /.snapshots`
 ...
   
 DONE
