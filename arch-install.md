@@ -205,31 +205,7 @@ o=defaults,x-mount.mkdir
 o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime
 ```
 
-# 8 mount partitions
-
-make and mount boot
-
-```
-mkdir /mnt/boot
-```
-
-```
-mount LABEL=efi /mnt/boot
-``` 
-
-swap
-
-```
-swapon -L swap
-```
-
-system
-
-```
-mount -t btrfs LABEL=system /mnt
-```
-
-# 9 create subvolumes
+# 8 create subvolumes
 
 https://en.opensuse.org/SDB:BTRFS
 
@@ -261,6 +237,28 @@ umount all
 
 ```
 umount -R /mnt
+```
+
+make and mount boot
+
+```
+mkdir /mnt/boot
+```
+
+```
+mount LABEL=efi /mnt/boot
+``` 
+
+swap
+
+```
+swapon -L swap
+```
+
+system
+
+```
+mount -t btrfs LABEL=system /mnt
 ```
 
 # 10 mount partitions and btrfs @subvolumes
