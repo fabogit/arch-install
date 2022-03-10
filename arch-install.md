@@ -173,7 +173,7 @@ write & quit
 
 efi partition
 
-on `/dev/EFI-PART`
+on `/dev/EFI-PART` (ignore the legacy warning)
 ```
 mkfs.fat -F32 -n efi /dev/nvme0n1p1
 ``` 
@@ -197,25 +197,37 @@ mkfs.btrfs --force --label system /dev/nvme0n1p3
 
 # 7 set btrfs options as variable
 
--```o=defaults,x-mount.mkdir```
+```
+o=defaults,x-mount.mkdir
+```
 
--```o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime```
+```
+o_btrfs=$o,commit=60,compress=zstd,space_cache=v2,ssd,noatime
+```
 
 # 8 mount partitions
 
 make and mount boot
 
--```mkdir /mnt/boot```
+```
+mkdir /mnt/boot
+```
 
--```mount LABEL=efi /mnt/boot``` (just legacy warning)
+```
+mount LABEL=efi /mnt/boot
+``` 
 
 swap
 
--```swapon -L swap```
+```
+swapon -L swap
+```
 
 system
 
--```mount -t btrfs LABEL=system /mnt```
+```
+mount -t btrfs LABEL=system /mnt
+```
 
 # 9 create subvolumes
 
@@ -247,7 +259,9 @@ btrfs subvolume create /mnt/@snapshots
 ```
 umount all
 
--```umount -R /mnt```
+```
+umount -R /mnt
+```
 
 # 10 mount partitions and btrfs @subvolumes
 
@@ -266,11 +280,15 @@ mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=system /mnt/.snapshots
 
 https://wiki.archlinux.org/title/Partitioning#Example_layouts
 
--```fdisk -l```
+```
+fdisk -l
+```
 
 cfdisk /dev/\<drive ex: nvme0n1\>
 
--```cfdisk /dev/nvme0n1```
+```
+cfdisk /dev/nvme0n1
+```
 
 ...
 
@@ -367,42 +385,27 @@ if /home has its own partition `mount /dev/archVG/home /mnt/home`
 
 # BTRFS & LVM FINAL CHECK
 
--```df -hT```
+```
+df -hT
+```
 
--```lsblk```
+```
+lsblk
+```
 
 # 11 START INSTALL USING PACSTRAP
 
--```pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib vim nano git```
+```
+pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib nano
+```
 
-=> for BTRFS install `btrfs-progs`
+=> for BTRFS install add `btrfs-progs`
 
-=> ford LVM install `lvm2`
+=> ford LVM install add `lvm2`
 
-@extra: `linux-lts`
+@extra: `linux-lts vim git`
 
-generate file system tabs
-
--```genfstab -U /mnt >> /mnt/etc/fstab```
-
-check => `more /mnt/etc/fstab`
-
-
-# 12 ENTER INTO LINUX 
-
--```arch-chroot /mnt```
-
-# 13 TZ & LANG
-
-ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
-
--```ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime```
-
--```hwclock --systohc```
-
--```nano /etc/locale.gen```
-
-### vim controls:
+vim controls:
 
 ...
 
@@ -415,6 +418,37 @@ ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 - to discard&quit ESC, :q!
 
 ...
+
+generate file system tabs
+
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+check => `more /mnt/etc/fstab`
+
+
+# 12 ENTER INTO LINUX 
+
+```
+arch-chroot /mnt
+```
+
+# 13 TZ & LANG
+
+ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
+
+```
+ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
+```
+
+```
+hwclock --systohc
+```
+
+```
+nano /etc/locale.gen
+```
 
 append `en_US.UTF-8`, s&q
 
