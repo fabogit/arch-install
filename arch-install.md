@@ -154,7 +154,6 @@ on `/dev/DISK`
 cfdisk /dev/nvme0n1
 ``` 
 
-
 ...
 
 => cfdisk `GPT`
@@ -178,14 +177,12 @@ on `/dev/EFI-PART`
 mkfs.fat -F32 -n EFI /dev/nvme0n1p1
 ``` 
 
-
 - swap partition
 
 on `/dev/SWAP-PART`
 ```
 mkswap -L SWAP /dev/nvme0n1p2
 ``` 
-
  
 - system btrfs partition
 
@@ -193,7 +190,6 @@ on `/dev/BTRFS-PART`
 ```
 mkfs.btrfs --force --label SYSTEM /dev/nvme0n1p3
 ``` 
-
 
 # 7 set btrfs options as variable
 
@@ -245,6 +241,21 @@ btrfs subvolume create /mnt/@snapshots
 umount -R /mnt
 ```
 
+# 9 mount partitions and btrfs @subvolumes
+
+```
+=> SYSTEM
+mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt
+mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
+mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
+mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
+mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
+=> SNAPSHOTS
+mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+```
+
+# 10
+
 - make and mount boot
 
 ```
@@ -259,19 +270,6 @@ mount LABEL=EFI /mnt/boot
 
 ```
 swapon -L SWAP
-```
-
-# 10 mount partitions and btrfs @subvolumes
-
-```
-=> SYSTEM
-mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt
-mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
-mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
-mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
-mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
-=> SNAPSHOTS
-mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
 ```
 
 # UEFI/GPT EXT4 LVM
