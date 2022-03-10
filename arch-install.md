@@ -96,7 +96,7 @@ pacman -Syy
 
 ## ERASE DRIVE
 
-on `/dev/<DISK>
+on `/dev/<DISK>`
 ```
 sgdisk --zap-all /dev/nvme0n1
 ```
