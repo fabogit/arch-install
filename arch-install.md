@@ -4,32 +4,36 @@ https://wiki.archlinux.org/title/Installation_guide
 
 loadkeys \<kbrdlout ex: us,it\>
 
-╰─`loadkeys us`
+```
+loadkeys us
+```
 
 # 2 CHECK NETWORK
 
-╰─`ip link`
+`ip link` or `ip a`
 
-╰─`ping -c 3 archlinux.org`
+```
+ping -c 3 archlinux.org
+```
 
 
 # 3 CONNECT WIFI
 
-╰─`iwctl`
+-`iwctl`
 
-╰─`device list`
+-`device list`
 
-╰─`station <device> scan`
+-`station <device> scan`
 
-╰─`station <device> get-networks`
+-`station <device> get-networks`
 
-╰─`station <device> connect <SSID>`
+-`station <device> connect <SSID>`
 
-╰─`device <device> show`
+-`device <device> show`
 
-╰─`station <device> show`
+-`station <device> show`
 
-╰─`exit`
+-`exit`
 
 ...
 
@@ -55,7 +59,9 @@ to remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 start the openssh daemon with 
 
--```systemctl start sshd.service```
+```
+systemctl start sshd.service
+```
 
 get ip
 
@@ -65,24 +71,35 @@ then ssh \# `ssh root@<ip addr>`
 
 ## synking clock
 
--```timedatectl set-ntp true```
+```
+timedatectl set-ntp true
+```
 
 ## rank mirrors
 
--```reflector --save /etc/pacman.d/mirrorlist --sort score --number 20```
-
--```reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist```
+```
+reflector --save /etc/pacman.d/mirrorlist --sort score --number 20
+```
+try
+```
+reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+```
 
 sync
 
--```pacman -Syy```
+```
+pacman -Syy
+```
 
 
 # 4 DISK SETUP
 
 ## ERASE DRIVE
 
--```sgdisk --zap-all /dev/<DRIVE>```
+on `/dev/<DISK>
+```
+sgdisk --zap-all /dev/nvme0n1
+```
 
 
 `Size: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors`
@@ -132,7 +149,11 @@ https://wiki.archlinux.org/title/User:Altercation/Bullet_Proof_Arch_Install#Part
 
 # 5 create partitions
 
--```cfdisk /dev/nvme0n1``` on `/dev/DISK`
+on `/dev/DISK`
+```
+cfdisk /dev/nvme0n1
+``` 
+
 
 ...
 
@@ -152,15 +173,27 @@ write & quit
 
 efi partition
 
--```mkfs.fat -F32 -n efi /dev/nvme0n1p1``` on `/dev/EFI-PART`
+on `/dev/EFI-PART`
+```
+mkfs.fat -F32 -n efi /dev/nvme0n1p1
+``` 
+
 
 swap partition
 
--```mkswap -L swap /dev/nvme0n1p2``` on `/dev/SWAP-PART`
+on `/dev/SWAP-PART`
+```
+mkswap -L swap /dev/nvme0n1p2
+``` 
+
  
 system btrfs partition
 
--```mkfs.btrfs --force --label system /dev/nvme0n1p3``` on `/dev/BTRFS-PART`
+on `/dev/BTRFS-PART`
+```
+mkfs.btrfs --force --label system /dev/nvme0n1p3
+``` 
+
 
 # 7 set btrfs options as variable
 
