@@ -501,25 +501,32 @@ add:
 
 # 15 SET UP ROOT PASSWORD AND ADD USER
 
-╰─`passwd`
+- change root pass
+
+`passwd`
+
+- create user
 
 useradd -m -g users -G wheel \<\$username\>
 
-╰─`useradd -m -g users -G wheel <$USERNAME>`
+```
+useradd -m -g users -G wheel <$USERNAME>
+```
 
-╰─`passwd <$USERNAME>`
+```
+passwd <$USERNAME>
+```
 
 ## add to sudoers
 
 check `pacman -S sudo`
 
-╰─`EDITOR=nano visudo` or `EDITOR=vim visudo`
+`EDITOR=nano visudo` or `EDITOR=vim visudo`
 
-uncomment %wheel ALL...
+uncomment `%wheel ALL=(ALL:ALL) ALL`
 
-check
+check `id <$USERNAME>`
 
-╰─`id <$USERNAME>`
 
 # UPDATE PACkage MANager
 
@@ -534,11 +541,11 @@ add `ILoveCandy` to pacman.conf
 
 to clean pkgs download chace install
 
-╰─`sudo pacman -S pacman-contrib`
+`sudo pacman -S pacman-contrib`
 
 run `paccache -r`
 
-`systemctl` `enable` and `start` `paccache.timer`
+`systemctl enable paccache.timer`
 
 to clean chache manually
 
@@ -552,7 +559,7 @@ to install pkgs: `pacman -S pkg-name`
 
 `S` sync `y` refresh `u` update
 
-╰─`sudo pacman -Syu`
+`sudo pacman -Syu`
 
 to uninstall:
 
@@ -562,32 +569,42 @@ GUI pamac https://wiki.manjaro.org/index.php/Pamac
 
 # mkinitcpio.conf 
 
-=> LVM
+- => LVM
 
-╰─`nano /etc/mkinitcpio.conf`
+```
+nano /etc/mkinitcpio.conf
+```
 
 add `lvm2` at `HOOKS` between `block` and `filesystems`, save & close
 
-recreate kernel image
+- recreate kernel image
 
-╰─`mkinitcpio -P`
+```
+mkinitcpio -P
+```
 
 if lts is installed
 ( mkinitcpio -p linux-lts )
 
-=> BTRFS
+- => BTRFS
 
-╰─`nano /etc/mkinitcpio.conf`
+```
+nano /etc/mkinitcpio.conf
+```
 
 add `btrfs` into `MODULES` between `()`, save & close
 
-recreate kernel image
+- recreate kernel image
 
-╰─`mkinitcpio -P`
+```
+mkinitcpio -P
+```
 
-snapper for system snapshots
+- snapper for system snapshots
 
-╰─`pacman -S snapper`
+```
+pacman -S snapper
+```
 
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
