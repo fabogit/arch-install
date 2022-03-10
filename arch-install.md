@@ -891,7 +891,7 @@ sudo snapper -c snpr-conf@root create-config /
 -> @home  
 
 ```
-sudo snapper -c snpr-conf@home create-config /@home
+sudo snapper -c snpr-conf@home create-config /home
 ```
 
 - remove created subvols
