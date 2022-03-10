@@ -342,6 +342,12 @@ https://wiki.archlinux.org/title/Spotify#Installation
 
 ╰─`yay spotify`
 
+### authy (mfa)
+
+https://aur.archlinux.org/packages/authy
+
+╰─`yay authy`
+
 ### kwallet
 
 https://wiki.archlinux.org/title/KDE_Wallet
