@@ -1059,7 +1059,7 @@ DONE
 # ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
  
 ```
-systemctl enable sddm
+sudo systemctl enable sddm
 ```
 ## REBOOT
 
