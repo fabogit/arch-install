@@ -889,32 +889,43 @@ snapper -c <config-name> create-config /<snapped-dir>
 ```
 sudo snapper -c snpr-conf@root create-config /
 ```
-
-
   
 -> @home  
 
-`sudo snapper -c snpr-conf@home create-config /@home`
+```
+sudo snapper -c snpr-conf@home create-config /@home
+```
 
 - remove created subvols
   
-`sudo btrfs subvolume delete /.snapshots`
+```
+sudo btrfs subvolume delete /.snapshots
+```
   
 - recreate
 
-╰─`sudo mkdir /.snapshots`
+```
+sudo mkdir /.snapshots
+```
 
 - remount
 
-╰─`sudo mount -a`
+```
+sudo mount -a
+```
  
 - change permission to replace root
 
-╰─`sudo chmod 750 /.snapshots`
+```
+sudo chmod 750 /.snapshots
+```
  
 ## edit config
  
-╰─`sudo nano /etc/snapper/configs/snpr-conf@root` & `snpr-conf@home`
+```
+sudo nano /etc/snapper/configs/snpr-conf@root
+```
+& `snpr-conf@home`
  
 in `ALLOW_USERS` inside "" add \<USER\> 
   
@@ -950,22 +961,33 @@ save & close
 
 ## enable timeline and timeline cleanup
  
-╰─`sudo systemctl enable --now snapper-timeline.timer`  
+```
+sudo systemctl enable --now snapper-timeline.timer
+```
 
-╰─`sudo systemctl enable --now snapper-cleanup.timer`
+```
+sudo systemctl enable --now snapper-cleanup.timer
+```
   
-╰─`sudo systemctl enable --now grub-btrfs.path`
- 
+```
+sudo systemctl enable --now grub-btrfs.path
+``` 
+
 ## install snap-pac-grub and GUI
  
-╰─`yay -S snap-pac-grub snapper-gui-git` 
+```
+yay -S snap-pac-grub snapper-gui-git
+```
 
-configure hook for grub
+- configure hook for grub
 
-╰─`sudo mkdir /etc/pacman.d/hooks`
-
-╰─`sudo nano /etc/pacman.d/hooks/50-bootbackup.hook` 
-
+```
+sudo mkdir /etc/pacman.d/hooks
+```
+  
+```
+sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
+```
 ...
  
 ```
@@ -995,37 +1017,41 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 ```
 ...
 
-optional install rsync
+- optional install rsync
 
-╰─`sudo pacman -S rsync`
- 
-edit permission
+```
+sudo pacman -S rsync
+```
+  
+- edit permission
 
-╰─`sudo chmod a+rx /.snapshots`
- 
-allow users
+```
+sudo chmod a+rx /.snapshots
+```
+- allow users
 
-╰─`sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots`
-
+```
+sudo chown <$USERNAME>:users /.snapshots` or ╰─`sudo chown :users /.snapshots
+```
 ...
   
 DONE
 
 ## btrfs utils
 
-show snpshots
+- show snpshots
   
-╰─`snapper -c root list`  
+`snapper -c root list`  
   
-create snapshot
+- create snapshot
   
-╰─`snapper -c root create -c timeline -d AfterInstall`
+`snapper -c root create -c timeline -d AfterInstall`
   
-snpts property
+- snpts property
   
 `sudo btrfs property list -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/` 
   
-set read only to false
+- set read only to false
   
 `sudo btrfs property set -ts /.snapshots/<sn#: es 1,2,3..>/snapshot/ ro false` 
 
@@ -1033,17 +1059,22 @@ set read only to false
  
 # ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
  
-╰─`systemctl enable sddm`
-
+```
+systemctl enable sddm
+```
 ## REBOOT
 
 login as `root` or user
  
 ## KDE discover
   
-for kde discover install
+- for kde discover install
  
-╰─`pacman -S discover packagekit-qt5 fwupd` for flatpack b/end `flatpak`
+```
+pacman -S discover packagekit-qt5 fwupd
+```
+
+for flatpack b/end `flatpak`
 
 extras `python-pygments`
   
