@@ -198,7 +198,7 @@ https://aur.archlinux.org/packages/mongodb-compass/
 
 https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_for_mongodb_compass/
 
-╰─`yay mongodb-bin mongodb-tools-bin mongodb-compass`
+╰─`yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
 
 ╰─`sudo systemctl mongod status`
 
@@ -206,7 +206,9 @@ https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_
 
 ╰─`sudo systemctl start mongodb.service`
 
-╰─`mongo`
+cli
+
+╰─`mongosh` (or use legacy `mongo`)
 
 ### vscode
 
