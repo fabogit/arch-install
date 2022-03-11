@@ -209,8 +209,8 @@ https://en.opensuse.org/SDB:BTRFS
 
 ```
 MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
-/             /@              SYSTEM        YES ON @snapshots
-/home         /@home          USER HOME     YES ON home/snapshots?snapshots/home?
+/             /@              SYSTEM        YES ON /.snapshots
+/home         /@home          USER HOME     YES ON /home/.snapshots
 /var/cache    /@cache         PKGS CACHE    NO
 /var/log      /@log           LOGS          NO 
 /var/tmp      /@tmp           TMP           NO
