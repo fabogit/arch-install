@@ -208,13 +208,14 @@ https://en.opensuse.org/SDB:BTRFS
 - subvolumes structure
 
 ```
-MOUNT POINT   SUBVOLUME NAME  USED FOR      SNAPSHOTS
-/             /@              SYSTEM        YES ON /.snapshots
-/home         /@home          USER HOME     YES ON /home/.snapshots
-/var/cache    /@cache         PKGS CACHE    NO
-/var/log      /@log           LOGS          NO 
-/var/tmp      /@tmp           TMP           NO
-/.snapshots   /@snapshots     SNAP SYSTEM   NO
+MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
+/                 /@                SYSTEM        YES ON /.snapshots
+/home             /@home            USER HOME     YES ON /home/.snapshots
+/var/cache        /@cache           PKGS CACHE    NO
+/var/log          /@log             LOGS          NO 
+/var/tmp          /@tmp             TMP           NO
+/.snapshots       /@snapshots       SNAP SYSTEM   NO
+/home/.snapshots  /@snapshots-home  SNAP HOME     NO
 ```
 - mount system
 
@@ -233,6 +234,7 @@ btrfs subvolume create /mnt/@log
 btrfs subvolume create /mnt/@tmp
 => SNAPSHOTS
 btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@snapshots-home
 ```
 
 - umount all
@@ -252,6 +254,7 @@ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
 => SNAPSHOTS
 mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+mount -t btrfs -o subvol=@snapshots-home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
@@ -387,7 +390,7 @@ df -hT
 ```
 
 ```
-lsblk
+lsblk -f
 ```
 
 # 11 START INSTALL USING PACSTRAP
@@ -866,13 +869,13 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-sn
 https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
 
-- umount snapshots dir
+- umount snapshots dir ( also for `/home/.snapshots` )
 
 ```
 sudo umount /.snapshots
 ```
 
-- remove snp dir
+- remove snp dir ( also for `/home/.snapshots` )
 
 ```
 sudo rm -r /.snapshots
@@ -894,13 +897,13 @@ sudo snapper -c snpr-conf@root create-config /
 sudo snapper -c snpr-conf@home create-config /home
 ```
 
-- remove created subvols
+- remove created subvols ( also for `/home/.snapshots` )
   
 ```
 sudo btrfs subvolume delete /.snapshots
 ```
   
-- recreate
+- recreate ( also for `/home/.snapshots` )
 
 ```
 sudo mkdir /.snapshots
@@ -912,7 +915,7 @@ sudo mkdir /.snapshots
 sudo mount -a
 ```
  
-- change permission to replace root
+- change permission to replace root ( also for `/home/.snapshots` )
 
 ```
 sudo chmod 750 /.snapshots
