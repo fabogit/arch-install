@@ -722,10 +722,10 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager krecorder
 ``` 
 
-image editing `kolourpaint krita inkscape gimp`
+image editing `kolourpaint krita inkscape gimp` video `kdenlive` camera `plasma-camera `
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
