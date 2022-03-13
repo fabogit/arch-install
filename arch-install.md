@@ -862,19 +862,8 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-sn
   
 https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
-
-- umount snapshots dir ( also for `/home/.snapshots` )
-
-```
-sudo umount /.snapshots
-```
-
-- remove snp dir ( also for `/home/.snapshots` )
-
-```
-sudo rm -r /.snapshots
-```
-
+check for existing subvolumes `sudo btrfs subvolume list /` (unmount and delete `.snapshots` subvol)
+ 
 - create snapper config
 
 -> @
@@ -890,26 +879,8 @@ sudo snapper -c root create-config /
 ```
 sudo snapper -c home create-config /home
 ```
-
-- remove created subvols ( also for `/home/.snapshots` )
-  
-```
-sudo btrfs subvolume delete /.snapshots
-```
-  
-- recreate ( also for `/home/.snapshots` )
-
-```
-sudo mkdir /.snapshots
-```
-
-- remount
-
-```
-sudo mount -a
-```
  
-- root ownership if needed ( also for `/home/.snapshots` )
+- root ownership ( also for `/home/.snapshots` )
 
 ```
 sudo chown root /.snapshots 
@@ -969,6 +940,8 @@ sudo systemctl enable --now snapper-cleanup.timer
 ```
 sudo systemctl enable --now grub-btrfs.path
 ``` 
+
+to show all snapshots `snapper list -a`, per config `snapper -c home list`
 
 ## install snap-pac-grub and GUI
  
