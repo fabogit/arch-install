@@ -214,8 +214,8 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 /var/cache        /@cache           PKGS CACHE    NO
 /var/log          /@log             LOGS          NO 
 /var/tmp          /@tmp             TMP           NO
-/.snapshots       /@snapshots       SNAP SYSTEM   NO
-/home/.snapshots  /@snapshots-home  SNAP HOME     NO
+/.snapshots       /.snapshots       SNAP SYSTEM   NO
+/home/.snapshots  /home/.snapshots  SNAP HOME     NO
 ```
 - mount system
 
@@ -232,9 +232,6 @@ btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@cache
 btrfs subvolume create /mnt/@log
 btrfs subvolume create /mnt/@tmp
-=> SNAPSHOTS
-btrfs subvolume create /mnt/@snapshots
-btrfs subvolume create /mnt/@snapshots-home
 ```
 
 - umount all
@@ -252,9 +249,6 @@ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
 mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
 mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
-=> SNAPSHOTS
-mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
-mount -t btrfs -o subvol=@snapshots-home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
@@ -888,13 +882,13 @@ sudo rm -r /.snapshots
 snapper -c <config-name> create-config /<snapped-dir>
 
 ```
-sudo snapper -c snpr-conf@root create-config /
+sudo snapper -c root create-config /
 ```
   
 -> @home  
 
 ```
-sudo snapper -c snpr-conf@home create-config /home
+sudo snapper -c home create-config /home
 ```
 
 - remove created subvols ( also for `/home/.snapshots` )
@@ -915,44 +909,46 @@ sudo mkdir /.snapshots
 sudo mount -a
 ```
  
-- change permission to replace root ( also for `/home/.snapshots` )
+- root ownership if needed ( also for `/home/.snapshots` )
 
 ```
-sudo chmod 750 /.snapshots
+sudo chown root /.snapshots 
 ```
- 
+  
+OLD (`sudo chmod 750 /.snapshots`)
+  
 ## edit config
  
 ```
-sudo nano /etc/snapper/configs/snpr-conf@root
+sudo nano /etc/snapper/configs/root
 ```
-& `snpr-conf@home`
+& `home`
  
 in `ALLOW_USERS` inside "" add \<USER\> 
+
+set `SYNC_ACL` to `yes`
   
 => @  
   
-```  
-  
+```    
 # subvolume to snapshot
 SUBVOLUME="/"
 .
 .
 .
-TIMELINE_LIMIT_*any=0, WEEKLY=2, DAILY=5  
+TIMELINE_LIMIT_*any=0, WEEKLY=2, DAILY=6  
   
 ```
   
 => @home  
   
-```  
-  
+```    
 # subvolume to snapshot
 SUBVOLUME="/home"
 . 
 . 
 . 
-TIMELINE_LIMIT_*any=0, DAILY=5, HOURLY=4  
+TIMELINE_LIMIT_*any=0, WEEKLY=1, DAILY=5, HOURLY=4  
   
 ```  
 
