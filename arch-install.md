@@ -396,7 +396,7 @@ lsblk -f
 # 11 START INSTALL USING PACSTRAP
 
 ```
-pacstrap /mnt base base-devel linux linux-firmware amd-ucode pacman-contrib nano
+pacstrap /mnt base base-devel linux linux-firmware amd-ucode nano
 ```
 
 => for BTRFS install add `btrfs-progs`
