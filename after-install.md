@@ -190,6 +190,35 @@ https://wiki.archlinux.org/title/snapper
 
 https://wiki.archlinux.org/title/PostgreSQL
 
+### MariaDB
+
+`sudo pacman -S mariadb`
+
+initialize
+
+`mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql` (might need `sudo`)
+
+enable/start service
+
+`sudo systemctl enable mariadb.service` & `sudo systemctl start mariadb.service`
+
+log in (password is empty)
+`sudo mysql -u root -p`
+
+create user (change `username` and `password` keep '')
+
+`CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';`
+
+`GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';`
+
+`FLUSH PRIVILEGES;`
+
+`SHOW GRANTS FOR 'user'@localhost;`
+
+enjoy
+
+sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
+
 ### mongodb
 
 https://wiki.archlinux.org/title/MongoDB
