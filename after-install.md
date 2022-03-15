@@ -190,7 +190,6 @@ https://wiki.archlinux.org/title/snapper
 
 https://wiki.archlinux.org/title/PostgreSQL
 
-
 ╰─`sudo pacman -S postgresql`
 
 `su root` and `passwd postgres`
@@ -216,6 +215,8 @@ on BTRFS disable CoW
 ╰─`sudo chattr +C /var/lib/postgres/data`
 
 ### MariaDB
+
+https://wiki.archlinux.org/title/MariaDB
 
 ╰─`sudo pacman -S mariadb`
 
@@ -263,8 +264,6 @@ https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
-https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_for_mongodb_compass/
-
 ╰─`yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
 
 ╰─`sudo systemctl mongod status`
@@ -277,7 +276,7 @@ cli
 
 ╰─`mongosh` (or use legacy `mongo`)
 
-on BTRFS disable CoW
+on BTRFS disable CoW https://www.mongodb.com/community/forums/t/mongodb-with-btrfs/5699
 
 ╰─`sudo chattr +C /var/lib/mongodb`
 
