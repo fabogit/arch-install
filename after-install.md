@@ -190,6 +190,31 @@ https://wiki.archlinux.org/title/snapper
 
 https://wiki.archlinux.org/title/PostgreSQL
 
+
+╰─`sudo pacman -S postgresql`
+
+`su root` and `passwd postgres`
+
+╰─`su USER`
+
+╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
+
+╰─`initdb -D /var/lib/postgres/data` or `initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data`
+
+`su` to user
+
+╰─`sudo systemctl enable postgresql.service` && `sudo systemctl start postgresql.service`
+
+`su postgres` & `createuser --interactive` add user
+
+`su <USER>` and `createdb <DBNAME>`
+
+╰─`psql DBNAME`
+
+on BTRFS disable CoW
+
+╰─`sudo chattr +C /var/lib/postgres/data`
+
 ### MariaDB
 
 ╰─`sudo pacman -S mariadb`
@@ -200,7 +225,7 @@ initialize
 
 enable/start service
 
-`sudo systemctl enable mariadb.service` & `sudo systemctl start mariadb.service`
+╰─`sudo systemctl start mariadb.service` & `sudo systemctl enable mariadb.service`
 
 log in (default password is empty)
 
@@ -223,6 +248,10 @@ apply
 check
 
 `SHOW GRANTS FOR 'user'@localhost;`
+
+on BTRFS disable CoW
+
+╰─`sudo chattr +C /var/lib/mysql`
 
 enjoy
 
@@ -247,6 +276,10 @@ https://www.reddit.com/r/mongodb/comments/mj1zr0/successfully_achieved_darkmode_
 cli
 
 ╰─`mongosh` (or use legacy `mongo`)
+
+on BTRFS disable CoW
+
+╰─`sudo chattr +C /var/lib/mongodb`
 
 ### vscode
 
