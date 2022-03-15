@@ -192,26 +192,34 @@ https://wiki.archlinux.org/title/PostgreSQL
 
 ### MariaDB
 
-`sudo pacman -S mariadb`
+╰─`sudo pacman -S mariadb`
 
 initialize
 
-`mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql` (might need `sudo`)
+╰─`mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql` (might need `sudo`)
 
 enable/start service
 
 `sudo systemctl enable mariadb.service` & `sudo systemctl start mariadb.service`
 
 log in (password is empty)
-`sudo mysql -u root -p`
+╰─`sudo mysql -u root -p`
 
 create user (change `username` and `password` keep '')
 
 `CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';`
 
+grant privileges,
+
+allow all `*.*` or only on db `dbname.*`
+
 `GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';`
 
+apply
+
 `FLUSH PRIVILEGES;`
+
+check
 
 `SHOW GRANTS FOR 'user'@localhost;`
 
