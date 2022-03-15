@@ -228,7 +228,7 @@ create separate subvolumes
 /var/lib/postgres/data    /@postgresql    
 ```
 
-and/or disable CoW
+and/or disable CoW after setup
 
 ```
 sudo chattr +C /var/lib/mongodb
