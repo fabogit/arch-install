@@ -202,7 +202,8 @@ enable/start service
 
 `sudo systemctl enable mariadb.service` & `sudo systemctl start mariadb.service`
 
-log in (password is empty)
+log in (default password is empty)
+
 ╰─`sudo mysql -u root -p`
 
 create user (change `username` and `password` keep '')
