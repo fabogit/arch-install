@@ -192,7 +192,9 @@ https://wiki.archlinux.org/title/PostgreSQL
 
 ╰─`sudo pacman -S postgresql`
 
-`su root` and `passwd postgres`
+set postgres password
+
+`sudo -u postgres psql` & `\password postgres` or `su root` and `passwd postgres`
 
 ╰─`su USER`
 
