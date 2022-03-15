@@ -217,6 +217,27 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 /.snapshots       /.snapshots       SNAP SYSTEM   NO
 /home/.snapshots  /home/.snapshots  SNAP HOME     NO
 ```
+
+### DATABASES 
+
+create separate subvolumes
+
+```
+/var/lib/mongodb          /@mongodb       
+/var/lib/mysql            /@mysql         
+/var/lib/postgres/data    /@postgresql    
+```
+
+and/or disable CoW
+
+```
+sudo chattr +C /var/lib/mongodb
+sudo chattr +C /var/lib/mysql 
+sudo chattr +C /var/lib/postgres/data
+```
+
+leave be `/var/lib/docker` https://forum.garudalinux.org/t/btrfs-docker-and-subvolumes/4601/25
+
 - mount system
 
 ```
