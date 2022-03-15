@@ -234,7 +234,19 @@ log in (default password is empty)
 
 ╰─`sudo mysql -u root -p`
 
-create user (change `username` and `password` keep '')
+`use mysql;`
+
+`set password for 'root'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');`
+
+`flush privileges;`
+
+`quit`
+
+test
+
+╰─`mysql -u root -p`
+
+additionally to create user (change `username` and `password` keep '')
 
 `CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';`
 
