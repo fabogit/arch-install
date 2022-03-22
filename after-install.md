@@ -502,6 +502,8 @@ https://github.com/lingtjien/Grid-Tiling-Kwin
 
 # CHROME WEB EXTENSIONS
 
+https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia?hl=en
+
 https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?utm_source=chrome-ntp-icon
 
 https://chrome.google.com/webstore/detail/duckduckgo-privacy-essent/bkdgflcldnnnapblkhphbgpggdiikppg?utm_source=chrome-ntp-icon
