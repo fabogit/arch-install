@@ -1,14 +1,15 @@
 [Face-94266342442720][Appearance]
 chartFace=org.kde.ksysguard.piechart
-title=GPU Usage %
+title=CPU Usage %
 
 [Face-94266342442720][SensorColors]
+cpu/all/usage=255,170,0
 gpu/gpu0/usage=255,170,0
 
 [Face-94266342442720][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usage"]
+highPrioritySensorIds=["cpu/all/usage"]
 lowPrioritySensorIds=[]
-totalSensors=["gpu/gpu0/usage"]
+totalSensors=["cpu/all/usage"]
 
 [Face-94266342442720][org.kde.ksysguard.piechart][General]
 showLegend=false
@@ -123,7 +124,6 @@ gpu/gpu0/usedVram=255,170,0
 highPrioritySensorIds=["gpu/gpu0/usedVram"]
 
 [Face-94266469980448][org.kde.ksysguard.linechart][General]
-historyAmount=45
 lineChartFillOpacity=0
 rangeAutoY=false
 rangeFromYMultiplier=1073741824
@@ -145,33 +145,57 @@ highPrioritySensorIds=["gpu/gpu0/usage"]
 [Face-94266475685680][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
-title=GPU Usage History
+title=CPU Usage History
 
 [Face-94266475685680][SensorColors]
+cpu/all/usage=255,170,0
 gpu/gpu0/usage=255,170,0
 
 [Face-94266475685680][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usage"]
+highPrioritySensorIds=["cpu/all/usage"]
 
 [Face-94266475685680][org.kde.ksysguard.linechart][General]
+historyAmount=45
 lineChartFillOpacity=0
 
 [Face-94266475946256][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
-title=GPU Frequencies
+title=CPU Frequencies
 
 [Face-94266475946256][SensorColors]
-gpu/gpu0/coreFrequency=255,85,0
-gpu/gpu0/memoryFrequency=255,170,0
+cpu/cpu\requency=2,0,110
+cpu/cpu0/frequency=49,157,162
+cpu/cpu1/frequency=15,116,149
+cpu/cpu10/frequency=247,181,1
+cpu/cpu11/frequency=232,155,0
+cpu/cpu12/frequency=85,255,255
+cpu/cpu13/frequency=255,85,0
+cpu/cpu14/frequency=255,255,0
+cpu/cpu15/frequency=255,170,0
+cpu/cpu2/frequency=249,201,104
+cpu/cpu3/frequency=242,136,77
+cpu/cpu4/frequency=220,54,46
+cpu/cpu5/frequency=162,14,17
+cpu/cpu6/frequency=0,128,128
+cpu/cpu7/frequency=53,147,141
+cpu/cpu8/frequency=84,157,149
+cpu/cpu9/frequency=255,223,1
+gpu/gpu0/coreFrequency=0,75,110
+gpu/gpu0/memoryFrequency=0,104,110
 
 [Face-94266475946256][Sensors]
-highPrioritySensorIds=["gpu/gpu0/coreFrequency","gpu/gpu0/memoryFrequency"]
+highPrioritySensorIds=["cpu/cpu\\\\d+/frequency"]
 lowPrioritySensorIds=[]
 totalSensors=["gpu/gpu0/memoryFrequency"]
 
 [Face-94266475946256][org.kde.ksysguard.linechart][General]
+historyAmount=45
 lineChartFillOpacity=0
+rangeFromY=1200
+rangeFromYUnit=304
+rangeToY=4200
+rangeToYUnit=304
 
 [Face-94487423023824][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -179,20 +203,38 @@ showTitle=false
 title=Temp History
 
 [Face-94487423023824][SensorColors]
+cpu/cpu\temperature=0,99,110
+cpu/cpu0/temperature=0,110,98
+cpu/cpu1/temperature=0,110,82
+cpu/cpu10/temperature=110,28,0
+cpu/cpu11/temperature=110,67,0
+cpu/cpu12/temperature=110,89,0
+cpu/cpu13/temperature=0,76,110
+cpu/cpu14/temperature=110,2,0
+cpu/cpu15/temperature=110,0,95
+cpu/cpu2/temperature=110,99,0
+cpu/cpu3/temperature=2,110,0
+cpu/cpu4/temperature=193,177,1
+cpu/cpu5/temperature=101,0,110
+cpu/cpu6/temperature=102,110,0
+cpu/cpu7/temperature=79,110,0
+cpu/cpu8/temperature=38,110,0
+cpu/cpu9/temperature=110,0,47
 gpu/gpu0/temperature=255,0,0
 
 [Face-94487423023824][Sensors]
-highPrioritySensorIds=["gpu/gpu0/temperature"]
+highPrioritySensorIds=["cpu/cpu0/temperature","cpu/cpu1/temperature","cpu/cpu2/temperature","cpu/cpu3/temperature","cpu/cpu4/temperature","cpu/cpu5/temperature","cpu/cpu6/temperature","cpu/cpu7/temperature","cpu/cpu8/temperature","cpu/cpu9/temperature","cpu/cpu10/temperature","cpu/cpu11/temperature","cpu/cpu12/temperature","cpu/cpu13/temperature","cpu/cpu14/temperature","cpu/cpu15/temperature"]
 
 [Face-94487423023824][org.kde.ksysguard.linechart][General]
+historyAmount=45
 lineChartFillOpacity=0
 rangeAutoY=false
-rangeFromY=20
+rangeFromY=40
 
 [page]
-Title=GPU
+Title=CPU
 actionsFace=
-icon=show-gpu-effects
+icon=cpu
 margin=1
 
 [page][row-0]
@@ -233,64 +275,6 @@ noMargins=
 showBackground=true
 
 [page][row-1][column-0][section-0]
-face=Face-94266354711440
-isSeparator=false
-name=section-0
-
-[page][row-1][column-1]
-name=column-1
-noMargins=
-showBackground=true
-
-[page][row-1][column-1][section-0]
-face=Face-94266469980448
-isSeparator=false
-name=section-0
-
-[page][row-2]
-Title=
-heightMode=
-isTitle=false
-name=row-2
-
-[page][row-2][column-0]
-name=column-0
-noMargins=
-showBackground=true
-
-[page][row-2][column-0][section-0]
 face=Face-94266475946256
-isSeparator=false
-name=section-0
-
-[page][row-3]
-Title=
-heightMode=
-isTitle=false
-name=row-3
-
-[page][row-3][column-0]
-name=column-0
-noMargins=
-showBackground=true
-
-[page][row-3][column-0][section-0]
-face=Face-94487423023824
-isSeparator=false
-name=section-0
-
-[page][row-4]
-Title=
-heightMode=
-isTitle=false
-name=row-4
-
-[page][row-4][column-0]
-name=column-0
-noMargins=
-showBackground=true
-
-[page][row-4][column-0][section-0]
-face=Face-94487423023824
 isSeparator=false
 name=section-0
