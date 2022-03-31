@@ -1,0 +1,101 @@
+Settings:
+
+    Appearance:
+        Colors: ...
+        Window Decorations: ...
+        Fonts:
+            Fixed width: Noto Sans Mono/Monospace/MesloLGS
+        Hinting: Medium
+        Splash Screen: Breeze
+
+    Workspace Behavioour:
+        General Behaviour:
+            Clicking files or folders: Selects them
+        Desktop Effects:
+            Translucency: ...
+            Wobbly Windovs: (10 85 10)
+            Dim Screen for Administration Mode: on
+            Slide Back: on
+            Overview: ...
+        Screen Edges: disable all corners
+        Screen Locking:
+            Configure:
+                Show:
+                    Clock: on
+                    Media Controls: on
+                Wallpaper Type:
+                    Animated Image: ...
+                Enable Day/night: 20%
+                Cache images even if they are large: on
+        Virtual Desktops: 2 rows 2 desktops
+            Show on-screen display when switching: on (500ms)
+        Activities:
+            Activities: Default & Work choose icons
+            Switching:
+                Current virtual desktop: on
+
+    Shortcuts:
+        Activity switching:
+            Activate Application Launcher Widget: Alt+F1
+            Activate Task Manager Entry 10: No active shortcuts ????wtf!?
+        KWin:
+            Switch One Desktop *: all disabled ????wtf!?
+
+    Startup and Shoutdown:
+        SDDM:
+            Breeze: apply plasma settings
+        Background Services: ...
+
+    Search:
+        Enable File Search: on
+        Also index file content: on
+        Folder: /home/user
+
+    Notifications:
+        Do Not Disturb mode:
+            Enable when screens are mirrored: off
+        Low priority notifications:
+            Show in history: on
+
+    Applications:
+        Default Applications: ...
+
+    User Feedback: ...
+
+    Input Devices:
+        Keyboard:
+            Hardware:
+                Keyboard Model: Generic 86-key PC ??
+                Delay: 300ms
+        Touchpad:
+            Tapping:
+                Tap-to-click: on
+                Tap-and-drag: on
+
+    Power Management:
+        Energy Savings:
+            AC:
+                Dim screen: on (5min)
+                Screen Energy Saving: on (10min)
+                Suspend session: on (Sleep 20min)
+                Wireless:
+                    Bluethoot: Turn on
+            Battery:
+                Dim screen: on (2min)
+                Screen Energy Saving: on (5min)
+                Suspend session: on (Sleep 10min)
+                Wireless: off
+            Low Battery:
+                Screen brightness: on (min)
+                Dim screen: on (1min)
+                Screen Energy Saving: on (2min)
+                Suspend session: on (Sleep 5min)
+                    While asleep hybernate: on
+                Wireless:
+                    Bluethoot: Turn off
+            Advanced Power Settings:
+                Low: 25%
+                Critical: 15%
+                At critical: hybernate
+                Low peripheral: 20%
+                Pause media: on
