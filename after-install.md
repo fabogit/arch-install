@@ -280,7 +280,7 @@ https://aur.archlinux.org/packages/mongodb-compass/
 
 ╰─`yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
 
-╰─`sudo systemctl mongod status`
+╰─`sudo systemctl status mongodb`
 
 ╰─`sudo systemctl enable mongodb.service`
 
