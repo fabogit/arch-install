@@ -326,6 +326,10 @@ https://aur.archlinux.org/packages/gitkraken
 
 ╰─`yay insomnia-bin`
 
+### postman
+
+╰─`yay postman-bin`
+
 ### python env
 
 https://wiki.archlinux.org/title/python#Package_management
