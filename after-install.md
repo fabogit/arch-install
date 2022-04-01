@@ -20,7 +20,7 @@ to improve SSD lifespan and performance in the long term
 
 swap file
 
-online:
+oneline:
 
 ╰─`sudo echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/10-swappiness.conf`
 
