@@ -1,12 +1,15 @@
 Settings:
 
     Appearance:
-        Colors: ...
+        Global Themes: Ant-Dark, Aritim-Dark, Materal Dark
+        Plasma Style: Breath (color)
+        Colors: Breath Dark
         Window Decorations: ...
         Fonts:
             Fixed width: Noto Sans Mono/Monospace/MesloLGS
-        Hinting: Medium
-        Splash Screen: Breeze
+                Hinting: Medium
+        Icons: Breeze Dark
+        Splash Screen: Breesze
 
     Workspace Behavioour:
         General Behaviour:
