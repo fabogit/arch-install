@@ -756,8 +756,9 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager krecorder kalendar
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar
 ``` 
+not in repos `krecorder`
 
 image editing `kolourpaint krita inkscape gimp` video `kdenlive` camera `plasma-camera `
 
@@ -774,8 +775,10 @@ The following packages enable preview thumbnails in dolphin
 - raw-thumbnailer: Raw image files from a camera
 
 ```
-sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage raw-thumbnailer
+sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage
 ```
+
+not in repos  `raw-thumbnailer`
 
 ## PIPEWIRE AUDIO DRIVERS
 
