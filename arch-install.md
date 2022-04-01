@@ -214,8 +214,8 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 /var/cache        /@cache           PKGS CACHE    NO
 /var/log          /@log             LOGS          NO 
 /var/tmp          /@tmp             TMP           NO
-/.snapshots       /.snapshots       SNAP SYSTEM   NO
-/home/.snapshots  /home/.snapshots  SNAP HOME     NO
+/.snapshots       /@snapshots       SNAP SYSTEM   NO
+/home/.snapshots  /@home-snapshots  SNAP HOME     NO
 ```
 
 ### DATABASES 
@@ -246,8 +246,9 @@ mount -t btrfs LABEL=SYSTEM /mnt
 
 - create subvolumes
 
-```
 => SYSTEM
+
+```
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@cache
@@ -255,12 +256,21 @@ btrfs subvolume create /mnt/@log
 btrfs subvolume create /mnt/@tmp
 ```
 
-```
 => DBS
+
+```
 btrfs subvolume create /mnt/@mongodb
 btrfs subvolume create /mnt/@mysql
 btrfs subvolume create /mnt/@postgres
 ```
+
+=> SNAPSHOTS
+
+```
+btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@home-snapshots
+```
+
 - umount all
 
 ```
@@ -269,8 +279,9 @@ umount -R /mnt
 
 # 9 mount partitions and btrfs @subvolumes
 
-```
 => SYSTEM
+
+```
 mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt
 mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
 mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
@@ -278,11 +289,19 @@ mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
 ```
 
-```
 => DBS
+
+```
 mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb
 mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql
 mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
+```
+
+=> SNAPSHOTS
+
+```
+mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+mount -t btrfs -o subvol=@home-snapshots,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
