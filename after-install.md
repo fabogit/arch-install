@@ -12,6 +12,8 @@ grub config
 
 ...
 
+╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
 to improve SSD lifespan and performance in the long term
 
 ╰─`sudo systemctl enable fstrim.timer` 
