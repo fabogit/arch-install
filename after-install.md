@@ -198,6 +198,10 @@ set postgres password
 
 ╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
 
+on BTRFS disable CoW (if not present do after initdb)
+
+╰─`sudo chattr +C /var/lib/postgres/data`
+
 change to postgres and initdb
 
 ╰─`su postgres`
@@ -218,9 +222,6 @@ try `sudo psql -U postgres` or create db
 
 ╰─`psql DBNAME`
 
-on BTRFS disable CoW
-
-╰─`sudo chattr +C /var/lib/postgres/data`
 
 ### MariaDB
 
@@ -228,9 +229,13 @@ https://wiki.archlinux.org/title/MariaDB
 
 ╰─`sudo pacman -S mariadb`
 
+on BTRFS disable CoW
+
+╰─`sudo chattr +C /var/lib/mysql`
+
 initialize
 
-╰─`mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql` (might need `sudo`)
+╰─`sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql`
 
 enable/start service
 
@@ -269,10 +274,6 @@ apply
 check
 
 `SHOW GRANTS FOR 'user'@localhost;`
-
-on BTRFS disable CoW
-
-╰─`sudo chattr +C /var/lib/mysql`
 
 enjoy
 
