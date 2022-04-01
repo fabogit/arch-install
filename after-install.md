@@ -194,7 +194,7 @@ https://wiki.archlinux.org/title/PostgreSQL
 
 set postgres password
 
-`sudo passwd postgres` (when postgres service is enabled `sudo psql -U postgres` & `\password postgres`)
+`sudo passwd postgres`
 
 ╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
 
@@ -214,11 +214,15 @@ start service as root/sudo
 
 ╰─`sudo systemctl enable postgresql.service` && `sudo systemctl start postgresql.service`
 
-try `sudo psql -U postgres` or create db
+try `sudo psql -U postgres`
+
+`su postgres` & `createuser --interactive` create `root` user ( `su <USER>` and `createdb <DBNAME>`)
+
+set db user password
+
+`psql -U postgres` & `\password <username>`
 
 `su postgres`, `createdb <DBNAME>`, `su` to user `psql -U postgres -d <DBNAME>`
-
-(`su postgres` & `createuser --interactive` add user, `su <USER>` and `createdb <DBNAME>`)
 
 ╰─`psql DBNAME`
 
