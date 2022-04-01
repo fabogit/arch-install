@@ -257,9 +257,9 @@ btrfs subvolume create /mnt/@tmp
 
 ```
 => DBS
-btrfs subvolume create /mnt/@mongodb       
-btrfs subvolume create /mnt/@mysql         
-btrfs subvolume create /mnt/@postgres   
+btrfs subvolume create /mnt/@mongodb
+btrfs subvolume create /mnt/@mysql
+btrfs subvolume create /mnt/@postgres
 ```
 - umount all
 
@@ -280,8 +280,8 @@ mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
 
 ```
 => DBS
-mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb      
-mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql        
+mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb
+mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql
 mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
 ```
 
