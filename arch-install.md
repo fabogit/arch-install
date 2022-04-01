@@ -225,7 +225,7 @@ create separate subvolumes
 ```
 /var/lib/mongodb          /@mongodb       
 /var/lib/mysql            /@mysql         
-/var/lib/postgres/data    /@postgresql    
+/var/lib/postgres         /@postgres    
 ```
 
 and/or disable CoW after setup
@@ -233,7 +233,7 @@ and/or disable CoW after setup
 ```
 sudo chattr +C /var/lib/mongodb
 sudo chattr +C /var/lib/mysql 
-sudo chattr +C /var/lib/postgres/data
+sudo chattr +C /var/lib/postgres
 ```
 
 leave be `/var/lib/docker` https://forum.garudalinux.org/t/btrfs-docker-and-subvolumes/4601/25
@@ -255,6 +255,12 @@ btrfs subvolume create /mnt/@log
 btrfs subvolume create /mnt/@tmp
 ```
 
+```
+=> DBS
+btrfs subvolume create /mnt/@mongodb       
+btrfs subvolume create /mnt/@mysql         
+btrfs subvolume create /mnt/@postgres   
+```
 - umount all
 
 ```
@@ -270,6 +276,13 @@ mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
 mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
 mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
+```
+
+```
+=> DBS
+mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb      
+mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql        
+mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
 ```
 
 # 10
