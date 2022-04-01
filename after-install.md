@@ -245,7 +245,7 @@ log in (default password is empty)
 
 ╰─`sudo mysql -u root -p`
 
-`use mysql;`
+(`use mysql;`)
 
 `set password for 'root'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');`
 
