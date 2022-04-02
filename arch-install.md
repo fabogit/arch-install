@@ -300,7 +300,7 @@ mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
 => SNAPSHOTS
 
 ```
-mount -t btrfs -o subvol=@snapshots_@ ,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+mount -t btrfs -o subvol=@snapshots_@,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
 mount -t btrfs -o subvol=@snapshots_@home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
