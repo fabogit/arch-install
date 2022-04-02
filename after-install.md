@@ -12,6 +12,8 @@ grub config
 
 ...
 
+uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
+
 ╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
 to improve SSD lifespan and performance in the long term
