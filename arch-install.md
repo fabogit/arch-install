@@ -214,8 +214,8 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 /var/cache        /@cache           PKGS CACHE    NO
 /var/log          /@log             LOGS          NO 
 /var/tmp          /@tmp             TMP           NO
-/.snapshots       /@snapshots       SNAP SYSTEM   NO
-/home/.snapshots  /@home-snapshots  SNAP HOME     NO
+/.snapshots       /@snapshots_@     SNAP SYSTEM   NO
+/home/.snapshots  /@snapshots_@home SNAP HOME     NO
 ```
 
 ### DATABASES 
@@ -267,8 +267,8 @@ btrfs subvolume create /mnt/@postgres
 => SNAPSHOTS
 
 ```
-btrfs subvolume create /mnt/@snapshots
-btrfs subvolume create /mnt/@home-snapshots
+btrfs subvolume create /mnt/@snapshots_@ 
+btrfs subvolume create /mnt/@snapshots_@home
 ```
 
 - umount all
@@ -300,8 +300,8 @@ mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
 => SNAPSHOTS
 
 ```
-mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
-mount -t btrfs -o subvol=@home-snapshots,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
+mount -t btrfs -o subvol=@snapshots_@ ,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+mount -t btrfs -o subvol=@snapshots_@home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
