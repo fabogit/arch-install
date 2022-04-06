@@ -1104,12 +1104,12 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 sudo pacman -S rsync
 ```
   
-- edit permission
+- edit permission, not necessary if using `SYNC_ACL="yes"`
 
 ```
 sudo chmod a+rx /.snapshots
 ```
-- allow users
+- allow users, not necessary if using `SYNC_ACL="yes"`
 
 ```
 sudo chown <$USERNAME>:users /.snapshots
