@@ -214,8 +214,8 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 /var/cache        /@cache           PKGS CACHE    NO
 /var/log          /@log             LOGS          NO 
 /var/tmp          /@tmp             TMP           NO
-/.snapshots       /@snapshots_@     SNAP SYSTEM   NO
-/home/.snapshots  /@snapshots_@home SNAP HOME     NO
+/.snapshots       /@snapshots       SNAP SYSTEM   NO
+/home/.snapshots  /@snapshots-home  SNAP HOME     NO
 ```
 
 ### DATABASES 
@@ -267,8 +267,8 @@ btrfs subvolume create /mnt/@postgres
 => SNAPSHOTS
 
 ```
-btrfs subvolume create /mnt/@snapshots_@ 
-btrfs subvolume create /mnt/@snapshots_@home
+btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@snapshots-home
 ```
 
 - umount all
@@ -300,8 +300,8 @@ mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
 => SNAPSHOTS
 
 ```
-mount -t btrfs -o subvol=@snapshots_@,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
-mount -t btrfs -o subvol=@snapshots_@home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
+mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
+mount -t btrfs -o subvol=@snapshots-home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
@@ -961,7 +961,7 @@ sudo btrfs subvolume delete --subvolid IDNUMBER /.snapshots
 for @home/.snapshots
 
 ```
-sudo btrfs subvolume delete --subvolid IDNUMBER /home
+sudo btrfs subvolume delete --subvolid IDNUMBER /home/.snapshots
 ```
 
 - recreate dir
@@ -977,11 +977,11 @@ sudo mkdir /home/.snapshots
 - and remount subvolume to directory (`sudo mount -o subvol=SNAPSUBVOLUME /dev/SYSTEMPART /.snapshots`)
 
 ```
-sudo mount -o subvol=@snapshots_@ /dev/nvme0n1p3 /.snapshots
+sudo mount -o subvol=@snapshots /dev/nvme0n1p3 /.snapshots
 ```
 
 ```
-sudo mount -o subvol=@snapshots_@home /dev/nvme0n1p3 /home/.snapshots
+sudo mount -o subvol=@snapshots-home /dev/nvme0n1p3 /home/.snapshots
 ```
 
 - remount fstab
