@@ -1,271 +1,178 @@
-[Face-94266342442720][Appearance]
+[Face-94486458185632][Appearance]
 chartFace=org.kde.ksysguard.piechart
-title=CPU Usage %
 
-[Face-94266342442720][SensorColors]
-cpu/all/usage=255,170,0
-gpu/gpu0/usage=255,170,0
-
-[Face-94266342442720][Sensors]
-highPrioritySensorIds=["cpu/all/usage"]
-lowPrioritySensorIds=[]
-totalSensors=["cpu/all/usage"]
-
-[Face-94266342442720][org.kde.ksysguard.piechart][General]
-showLegend=false
-
-[Face-94266354711440][Appearance]
-chartFace=org.kde.ksysguard.piechart
-title=GPU Memory Usage
-
-[Face-94266354711440][SensorColors]
-gpu/gpu0/totalVram=255,170,0
-gpu/gpu0/usedVram=255,85,0
-
-[Face-94266354711440][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usedVram","gpu/gpu0/totalVram"]
-totalSensors=["gpu/gpu0/usedVram","gpu/gpu0/totalVram"]
-
-[Face-94266354711440][org.kde.ksysguard.piechart][General]
-showLegend=false
-
-[Face-94266365132752][Appearance]
+[Face-94486463922512][Appearance]
 chartFace=org.kde.ksysguard.linechart
-title=GPU Temp
+showTitle=false
+updateRateLimit=0
 
-[Face-94266365132752][FaceGrid][Appearance]
+[Face-94486463922512][FaceGrid][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
 
-[Face-94266365132752][FaceGrid][SensorColors]
-gpu/gpu0/temperature=220,18,0
+[Face-94486463922512][FaceGrid][SensorColors]
+cpu/cpu0/temperature=79,110,0
+cpu/cpu1/temperature=101,110,0
+cpu/cpu10/temperature=34,0,110
+cpu/cpu11/temperature=0,110,53
+cpu/cpu12/temperature=0,12,110
+cpu/cpu13/temperature=0,110,75
+cpu/cpu14/temperature=85,110,0
+cpu/cpu15/temperature=47,110,0
+cpu/cpu2/temperature=110,0,2
+cpu/cpu3/temperature=52,0,110
+cpu/cpu4/temperature=110,63,0
+cpu/cpu5/temperature=0,24,110
+cpu/cpu6/temperature=0,13,110
+cpu/cpu7/temperature=0,110,90
+cpu/cpu8/temperature=0,91,110
+cpu/cpu9/temperature=0,54,110
+cpu/cpu\\d+/temperature=0,110,28
+lmsensors/acpitz-acpi-0/temp1=74,0,110
 
-[Face-94266365132752][FaceGrid][Sensors]
-highPrioritySensorIds=["gpu/gpu0/temperature"]
+[Face-94486463922512][FaceGrid][Sensors]
+highPrioritySensorIds=["cpu/cpu15/temperature"]
 
-[Face-94266365132752][SensorColors]
-gpu/gpu0/temperature=255,85,0
+[Face-94486463922512][SensorColors]
+cpu/cpu0/temperature=79,110,0
+cpu/cpu1/temperature=101,110,0
+cpu/cpu10/temperature=34,0,110
+cpu/cpu11/temperature=0,110,53
+cpu/cpu12/temperature=0,12,110
+cpu/cpu13/temperature=0,110,75
+cpu/cpu14/temperature=85,110,0
+cpu/cpu15/temperature=47,110,0
+cpu/cpu2/temperature=110,0,2
+cpu/cpu3/temperature=52,0,110
+cpu/cpu4/temperature=110,63,0
+cpu/cpu5/temperature=0,24,110
+cpu/cpu6/temperature=0,13,110
+cpu/cpu7/temperature=0,110,90
+cpu/cpu8/temperature=0,91,110
+cpu/cpu9/temperature=0,54,110
+cpu/cpu\\d+/temperature=0,110,28
+lmsensors/acpitz-acpi-0/temp1=74,0,110
 
-[Face-94266365132752][Sensors]
-highPrioritySensorIds=["gpu/gpu0/temperature"]
-totalSensors=["gpu/gpu0/temperature"]
+[Face-94486463922512][Sensors]
+highPrioritySensorIds=["cpu/cpu0/temperature","cpu/cpu1/temperature","cpu/cpu2/temperature","cpu/cpu3/temperature","cpu/cpu4/temperature","cpu/cpu5/temperature","cpu/cpu6/temperature","cpu/cpu7/temperature","cpu/cpu8/temperature","cpu/cpu9/temperature","cpu/cpu10/temperature","cpu/cpu11/temperature","cpu/cpu12/temperature","cpu/cpu13/temperature","cpu/cpu14/temperature","cpu/cpu15/temperature"]
 
-[Face-94266365785872][Appearance]
-chartFace=org.kde.ksysguard.facegrid
-title=GPU Usage History
+[Face-94486463922512][org.kde.ksysguard.barchart][General]
+rangeAuto=false
+rangeFrom=20
 
-[Face-94266365785872][FaceGrid][Appearance]
-chartFace=org.kde.ksysguard.linechart
-showTitle=false
-
-[Face-94266365785872][FaceGrid][SensorColors]
-gpu/gpu0/memoryFrequency=56,0,110
-gpu/gpu0/usage=0,0,255
-gpu/gpu0/usedVram=98,110,0
-
-[Face-94266365785872][FaceGrid][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usage"]
-
-[Face-94266365785872][SensorColors]
-gpu/gpu0/memoryFrequency=56,0,110
-gpu/gpu0/usage=0,0,255
-gpu/gpu0/usedVram=98,110,0
-
-[Face-94266365785872][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usage"]
-totalSensors=["gpu/gpu0/usage"]
-
-[Face-94266385742272][Appearance]
-chartFace=org.kde.ksysguard.piechart
-
-[Face-94266385742272][SensorColors]
-gpu/gpu0/memoryFrequency=110,86,0
-
-[Face-94266385742272][Sensors]
-highPrioritySensorIds=["gpu/gpu0/memoryFrequency"]
-totalSensors=["gpu/gpu0/memoryFrequency"]
-
-[Face-94266432963440][Appearance]
-chartFace=org.kde.ksysguard.piechart
-
-[Face-94266438021200][Appearance]
-chartFace=org.kde.ksysguard.linechart
-
-[Face-94266438021200][SensorColors]
-gpu/gpu0/memoryFrequency=110,76,0
-
-[Face-94266438021200][Sensors]
-highPrioritySensorIds=["gpu/gpu0/memoryFrequency"]
-totalSensors=["gpu/gpu0/memoryFrequency"]
-
-[Face-94266459291008][Appearance]
-chartFace=org.kde.ksysguard.linechart
-title=GPU Memory Usage History
-
-[Face-94266459291008][SensorColors]
-gpu/gpu0/usedVram=0,255,0
-
-[Face-94266459291008][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usedVram"]
-
-[Face-94266466185040][Appearance]
-chartFace=org.kde.ksysguard.piechart
-
-[Face-94266469980448][Appearance]
-chartFace=org.kde.ksysguard.linechart
-showTitle=false
-title=GPU Memory Usage History
-
-[Face-94266469980448][SensorColors]
-gpu/gpu0/totalVram=0,110,25
-gpu/gpu0/usedVram=255,170,0
-
-[Face-94266469980448][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usedVram"]
-
-[Face-94266469980448][org.kde.ksysguard.linechart][General]
+[Face-94486463922512][org.kde.ksysguard.linechart][General]
+historyAmount=45
 lineChartFillOpacity=0
 rangeAutoY=false
-rangeFromYMultiplier=1073741824
-rangeFromYUnit=103
-rangeToY=2
-rangeToYMultiplier=1073741824
-rangeToYUnit=103
+rangeFromY=20
 
-[Face-94266473273936][Appearance]
-chartFace=org.kde.ksysguard.linechart
-title=GPU Usage History
+[Face-94661496281696][Appearance]
+chartFace=org.kde.ksysguard.piechart
 
-[Face-94266473273936][SensorColors]
-gpu/gpu0/usage=0,0,255
+[Face-94661498905120][Appearance]
+chartFace=org.kde.ksysguard.piechart
 
-[Face-94266473273936][Sensors]
-highPrioritySensorIds=["gpu/gpu0/usage"]
-
-[Face-94266475685680][Appearance]
+[Face-94661500366976][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
-title=CPU Usage History
+title=CPU Usage %
 
-[Face-94266475685680][SensorColors]
+[Face-94661500366976][SensorColors]
+cpu/all/system=0,110,103
 cpu/all/usage=255,170,0
-gpu/gpu0/usage=255,170,0
+cpu/cpu0/temperature=57,110,0
 
-[Face-94266475685680][Sensors]
-highPrioritySensorIds=["cpu/all/usage"]
+[Face-94661500366976][Sensors]
+highPrioritySensorIds=["cpu/all/usage","cpu/all/system"]
+lowPrioritySensorIds=["cpu/cpu0/temperature"]
 
-[Face-94266475685680][org.kde.ksysguard.linechart][General]
+[Face-94661500366976][org.kde.ksysguard.linechart][General]
 historyAmount=45
 lineChartFillOpacity=0
 
-[Face-94266475946256][Appearance]
+[Face-94805304025520][Appearance]
 chartFace=org.kde.ksysguard.linechart
 showTitle=false
-title=CPU Frequencies
+title=CPU Frequency MHz
 
-[Face-94266475946256][SensorColors]
-cpu/cpu\requency=2,0,110
-cpu/cpu0/frequency=49,157,162
-cpu/cpu1/frequency=15,116,149
-cpu/cpu10/frequency=247,181,1
-cpu/cpu11/frequency=232,155,0
-cpu/cpu12/frequency=85,255,255
-cpu/cpu13/frequency=255,85,0
-cpu/cpu14/frequency=255,255,0
-cpu/cpu15/frequency=255,170,0
-cpu/cpu2/frequency=249,201,104
-cpu/cpu3/frequency=242,136,77
-cpu/cpu4/frequency=220,54,46
-cpu/cpu5/frequency=162,14,17
-cpu/cpu6/frequency=0,128,128
-cpu/cpu7/frequency=53,147,141
-cpu/cpu8/frequency=84,157,149
-cpu/cpu9/frequency=255,223,1
-gpu/gpu0/coreFrequency=0,75,110
-gpu/gpu0/memoryFrequency=0,104,110
+[Face-94805304025520][SensorColors]
+cpu/cpu\requency=90,0,110
+cpu/cpu0/frequency=0,110,98
+cpu/cpu1/frequency=110,37,0
+cpu/cpu10/frequency=0,88,110
+cpu/cpu11/frequency=0,110,64
+cpu/cpu12/frequency=83,110,0
+cpu/cpu13/frequency=53,0,110
+cpu/cpu14/frequency=0,101,110
+cpu/cpu15/frequency=83,0,110
+cpu/cpu2/frequency=110,0,49
+cpu/cpu3/frequency=110,0,40
+cpu/cpu4/frequency=110,0,11
+cpu/cpu5/frequency=10,110,0
+cpu/cpu6/frequency=84,110,0
+cpu/cpu7/frequency=110,57,0
+cpu/cpu8/frequency=23,0,110
+cpu/cpu9/frequency=35,0,110
 
-[Face-94266475946256][Sensors]
+[Face-94805304025520][Sensors]
 highPrioritySensorIds=["cpu/cpu\\\\d+/frequency"]
-lowPrioritySensorIds=[]
-totalSensors=["gpu/gpu0/memoryFrequency"]
 
-[Face-94266475946256][org.kde.ksysguard.linechart][General]
+[Face-94805304025520][org.kde.ksysguard.linechart][General]
 historyAmount=45
 lineChartFillOpacity=0
+rangeAutoY=false
 rangeFromY=1200
 rangeFromYUnit=304
 rangeToY=4200
 rangeToYUnit=304
 
-[Face-94487423023824][Appearance]
+[Face-94805324792080][Appearance]
 chartFace=org.kde.ksysguard.linechart
-showTitle=false
-title=Temp History
 
-[Face-94487423023824][SensorColors]
-cpu/cpu\temperature=0,99,110
-cpu/cpu0/temperature=0,110,98
-cpu/cpu1/temperature=0,110,82
-cpu/cpu10/temperature=110,28,0
-cpu/cpu11/temperature=110,67,0
-cpu/cpu12/temperature=110,89,0
-cpu/cpu13/temperature=0,76,110
-cpu/cpu14/temperature=110,2,0
-cpu/cpu15/temperature=110,0,95
-cpu/cpu2/temperature=110,99,0
-cpu/cpu3/temperature=2,110,0
-cpu/cpu4/temperature=193,177,1
-cpu/cpu5/temperature=101,0,110
-cpu/cpu6/temperature=102,110,0
-cpu/cpu7/temperature=79,110,0
-cpu/cpu8/temperature=38,110,0
-cpu/cpu9/temperature=110,0,47
-gpu/gpu0/temperature=255,0,0
+[Face-94805324792080][SensorColors]
+cpu/all/system=0,170,127
+cpu/all/usage=255,170,0
 
-[Face-94487423023824][Sensors]
-highPrioritySensorIds=["cpu/cpu0/temperature","cpu/cpu1/temperature","cpu/cpu2/temperature","cpu/cpu3/temperature","cpu/cpu4/temperature","cpu/cpu5/temperature","cpu/cpu6/temperature","cpu/cpu7/temperature","cpu/cpu8/temperature","cpu/cpu9/temperature","cpu/cpu10/temperature","cpu/cpu11/temperature","cpu/cpu12/temperature","cpu/cpu13/temperature","cpu/cpu14/temperature","cpu/cpu15/temperature"]
+[Face-94805324792080][Sensors]
+highPrioritySensorIds=["cpu/all/usage","cpu/all/system"]
 
-[Face-94487423023824][org.kde.ksysguard.linechart][General]
+[Face-94805324792080][org.kde.ksysguard.linechart][General]
 historyAmount=45
 lineChartFillOpacity=0
-rangeAutoY=false
-rangeFromY=40
+
+[Face-94805342809616][Appearance]
+chartFace=org.kde.ksysguard.piechart
+showTitle=false
+title=CPU Usage %
+
+[Face-94805342809616][SensorColors]
+cpu/all/system=0,110,103
+cpu/all/usage=255,170,0
+cpu/cpu0/temperature=0,110,90
+
+[Face-94805342809616][Sensors]
+highPrioritySensorIds=["cpu/all/usage","cpu/all/system"]
+lowPrioritySensorIds=[]
+totalSensors=["cpu/all/usage","cpu/all/system"]
+
+[Face-94805342809616][org.kde.ksysguard.piechart][General]
+showLegend=false
 
 [page]
 Title=CPU
 actionsFace=
 icon=cpu
-margin=1
+margin=2
 
 [page][row-0]
-Title=
-heightMode=
-isTitle=false
+Title=CPU usage %
+heightMode=minimum
+isTitle=true
 name=row-0
-
-[page][row-0][column-0]
-name=column-0
-noMargins=
-showBackground=true
-
-[page][row-0][column-0][section-0]
-face=Face-94266342442720
-isSeparator=false
-name=section-0
-
-[page][row-0][column-1]
-name=column-1
-noMargins=
-showBackground=true
-
-[page][row-0][column-1][section-0]
-face=Face-94266475685680
-isSeparator=false
-name=section-0
 
 [page][row-1]
 Title=
-heightMode=
+heightMode=balanced
 isTitle=false
 name=row-1
 
@@ -275,6 +182,38 @@ noMargins=
 showBackground=true
 
 [page][row-1][column-0][section-0]
-face=Face-94266475946256
+face=Face-94805342809616
+isSeparator=false
+name=section-0
+
+[page][row-1][column-1]
+name=column-1
+noMargins=
+showBackground=true
+
+[page][row-1][column-1][section-0]
+face=Face-94661500366976
+isSeparator=false
+name=section-0
+
+[page][row-2]
+Title=CPU Frequency MHz
+heightMode=minimum
+isTitle=true
+name=row-2
+
+[page][row-3]
+Title=
+heightMode=balanced
+isTitle=false
+name=row-3
+
+[page][row-3][column-0]
+name=column-0
+noMargins=
+showBackground=true
+
+[page][row-3][column-0][section-0]
+face=Face-94805304025520
 isSeparator=false
 name=section-0

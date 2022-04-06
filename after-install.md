@@ -12,13 +12,17 @@ grub config
 
 ...
 
+uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
+
+╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
 to improve SSD lifespan and performance in the long term
 
 ╰─`sudo systemctl enable fstrim.timer` 
 
 swap file
 
-online:
+oneline:
 
 ╰─`sudo echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/10-swappiness.conf`
 
@@ -194,27 +198,38 @@ https://wiki.archlinux.org/title/PostgreSQL
 
 set postgres password
 
-`sudo -u postgres psql` & `\password postgres` or `su root` and `passwd postgres`
-
-╰─`su USER`
+`sudo passwd postgres`
 
 ╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
 
+on BTRFS disable CoW (if not present do after initdb)
+
+╰─`sudo chattr +C /var/lib/postgres/data`
+
+change to postgres and initdb
+
+╰─`su postgres`
+
 ╰─`initdb -D /var/lib/postgres/data` or `initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data`
 
-`su` to user
+start service as root/sudo
+
+`su` to user/root
 
 ╰─`sudo systemctl enable postgresql.service` && `sudo systemctl start postgresql.service`
 
-`su postgres` & `createuser --interactive` add user
+try `sudo psql -U postgres`
 
-`su <USER>` and `createdb <DBNAME>`
+`su postgres` & `createuser --interactive` create `root` user ( `su <USER>` and `createdb <DBNAME>`)
+
+set db user password
+
+`psql -U postgres` & `\password <username>`
+
+`su postgres`, `createdb <DBNAME>`, `su` to user `psql -U postgres -d <DBNAME>`
 
 ╰─`psql DBNAME`
 
-on BTRFS disable CoW
-
-╰─`sudo chattr +C /var/lib/postgres/data`
 
 ### MariaDB
 
@@ -222,9 +237,13 @@ https://wiki.archlinux.org/title/MariaDB
 
 ╰─`sudo pacman -S mariadb`
 
+on BTRFS disable CoW
+
+╰─`sudo chattr +C /var/lib/mysql`
+
 initialize
 
-╰─`mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql` (might need `sudo`)
+╰─`sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql`
 
 enable/start service
 
@@ -234,7 +253,7 @@ log in (default password is empty)
 
 ╰─`sudo mysql -u root -p`
 
-`use mysql;`
+(`use mysql;`)
 
 `set password for 'root'@'localhost' = password('YOUR_ROOT_PASSWORD_HERE');`
 
@@ -264,10 +283,6 @@ check
 
 `SHOW GRANTS FOR 'user'@localhost;`
 
-on BTRFS disable CoW
-
-╰─`sudo chattr +C /var/lib/mysql`
-
 enjoy
 
 sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
@@ -280,7 +295,7 @@ https://aur.archlinux.org/packages/mongodb-compass/
 
 ╰─`yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
 
-╰─`sudo systemctl mongod status`
+╰─`sudo systemctl status mongodb`
 
 ╰─`sudo systemctl enable mongodb.service`
 
@@ -325,6 +340,10 @@ https://aur.archlinux.org/packages/gitkraken
 ### insomnia
 
 ╰─`yay insomnia-bin`
+
+### postman
+
+╰─`yay postman-bin`
 
 ### python env
 
