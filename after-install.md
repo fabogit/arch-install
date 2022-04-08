@@ -287,6 +287,10 @@ enjoy
 
 sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
 
+### DBEAVER
+
+╰─`sudo pacman -S dbeaver`
+
 ### mongodb
 
 https://wiki.archlinux.org/title/MongoDB
