@@ -580,6 +580,12 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
+# set word definition
+# echo $WORDCHARS *?_-.[]~=/&;!#$%^(){}<>
+#WORDCHARS="*?[]~=&!#$%^(){}<>"
+autoload -U select-word-style
+select-word-style bash
+
 #bindkey "^X" kill-region           # ctrl + shift + x (cut)
 bindkey "^H" backward-kill-word     # ctrl + backspace
 bindkey "5~" kill-word              # ctrl + delete
