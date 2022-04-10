@@ -198,7 +198,7 @@ https://wiki.archlinux.org/title/PostgreSQL
 
 set postgres password
 
-`sudo passwd postgres`
+╰─`sudo passwd postgres`
 
 ╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
 
@@ -317,7 +317,7 @@ on BTRFS disable CoW https://www.mongodb.com/community/forums/t/mongodb-with-btr
 
 https://aur.archlinux.org/packages/neo4j-desktop
 
-`yay -S neo4j-desktop` electron standalone
+╰─`yay -S neo4j-desktop` electron standalone
 
 https://aur.archlinux.org/packages/neo4j-community
 
