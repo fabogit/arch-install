@@ -313,6 +313,16 @@ on BTRFS disable CoW https://www.mongodb.com/community/forums/t/mongodb-with-btr
 
 ╰─`sudo chattr +C /var/lib/mongodb`
 
+### NEO4J
+
+https://aur.archlinux.org/packages/neo4j-desktop
+
+`yay -S neo4j-desktop` electron standalone
+
+https://aur.archlinux.org/packages/neo4j-community
+
+`neo4j-community` database service
+
 ### vscode
 
 https://wiki.archlinux.org/title/Visual_Studio_Code
