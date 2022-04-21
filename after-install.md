@@ -220,13 +220,15 @@ start service as root/sudo
 
 try `sudo psql -U postgres`
 
-`su postgres` & `createuser --interactive` create `root` user ( `su <USER>` and `createdb <DBNAME>`)
+`su postgres` & `createuser --interactive` create `root` user ( `su <USER>` and/or `createdb <DBNAME>`)
 
 set db user password
 
 `psql -U postgres` & `\password <username>`
 
-`su postgres`, `createdb <DBNAME>`, `su` to user `psql -U postgres -d <DBNAME>`
+`CREATE DATABASE test OWNER root;`
+
+`su postgres`, `createdb <DBNAME>`, `su` to user `psql -U <USER> -d <DBNAME>`
 
 ╰─`psql DBNAME`
 
