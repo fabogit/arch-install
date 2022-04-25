@@ -775,11 +775,11 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular kamoso digikam filelight kcolorchooser kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent kipi-plugins dragon gwenview kamera spectacle okular  digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
 ``` 
-not in repos `krecorder`
+in AUR repos `krecorder` option `audio-recorder`
 
-image editing `kolourpaint krita inkscape gimp` video `kdenlive` camera `plasma-camera `
+image editing `kolourpaint kcolorchooser krita inkscape gimp` video `kdenlive` camera `plasma-camera kamoso`
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
