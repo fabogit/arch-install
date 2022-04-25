@@ -1054,10 +1054,12 @@ sudo systemctl enable --now grub-btrfs.path
 
 to show all snapshots `snapper list -a`, per config `snapper -c home list`
 
+optionally install `yay -S snapper-gui-git btrfs-assistant btrfsmaintenance`
+
 ## install snap-pac-grub and GUI
  
 ```
-yay -S snap-pac-grub snapper-gui-git
+yay -S snap-pac-grub
 ```
 
 - configure hook for grub
