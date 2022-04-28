@@ -674,7 +674,7 @@ pacman -S networkmanager bluez openssh cups
 
 `systemctl enable bluetooth.service`
 
-`systemctl enable cups.service` if error `systemctl enable org.cups.cupsd`
+`systemctl enable cups.service`
 
 # 16 BOOTMANAGER INSTALL
 
