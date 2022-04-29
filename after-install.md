@@ -137,6 +137,12 @@ and for the current user
 
 extra: add line to .zshrc `export SHELL=zsh`
 
+### pacman sound hook
+
+https://aur.archlinux.org/packages/pacman-beep-hook
+
+╰─`yay pacman-beep-hook`
+
 ### powerlevel10k
 
 https://github.com/romkatv/powerlevel10k
