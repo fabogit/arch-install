@@ -779,7 +779,7 @@ kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kf
 ``` 
 in AUR repos `krecorder` option `audio-recorder` `kipi-plugins`
 
-image editing `kolourpaint kcolorchooser krita inkscape gimp` video `kdenlive` camera `plasma-camera kamoso`
+image editing `kcolorchooser kolourpaint krita inkscape gimp` video `kdenlive obs-studio` camera `plasma-camera kamoso`
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
