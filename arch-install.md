@@ -80,10 +80,6 @@ timedatectl set-ntp true
 ```
 reflector --save /etc/pacman.d/mirrorlist --sort score --number 20
 ```
-try
-```
-reflector -c Italy -a 6 --sort rate --save /etc/pacman.d/mirrorlist
-```
 
 - sync mirrors
 
@@ -100,7 +96,6 @@ on `/dev/<DISK>`
 ```
 sgdisk --zap-all /dev/nvme0n1
 ```
-
 
 `Size: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors`
 
@@ -162,7 +157,7 @@ cfdisk /dev/nvme0n1
 
 `/dev/swap`	size: 32G	type: `Linux Swap`
 
-`/dev/root`	size: 900G	type: `Linux FileSystem`
+`/dev/root`	size: ALL	type: `Linux FileSystem`
 
 write & quit
 
@@ -191,6 +186,14 @@ on `/dev/BTRFS-PART`
 mkfs.btrfs --force --label SYSTEM /dev/nvme0n1p3
 ``` 
 
+- all in one comand
+
+```
+mkfs.fat -F32 -n EFI /dev/nvme0n1p1 &&
+mkswap -L SWAP /dev/nvme0n1p2 &&
+mkfs.btrfs --force --label SYSTEM /dev/nvme0n1p3
+``` 
+
 # 7 set btrfs options as variable
 
 ```
@@ -209,13 +212,11 @@ https://en.opensuse.org/SDB:BTRFS
 
 ```
 MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
-/                 /@                SYSTEM        YES ON /.snapshots
-/home             /@home            USER HOME     YES ON /home/.snapshots
+/                 /@                SYSTEM        ON /.snapshots
+/home             /@home            USER HOME     ON /home/.snapshots
 /var/cache        /@cache           PKGS CACHE    NO
 /var/log          /@log             LOGS          NO 
 /var/tmp          /@tmp             TMP           NO
-/.snapshots       /@snapshots       SNAP SYSTEM   NO
-/home/.snapshots  /@snapshots-home  SNAP HOME     NO
 ```
 
 ### DATABASES 
@@ -228,11 +229,11 @@ create separate subvolumes
 /var/lib/postgres         /@postgres    
 ```
 
-and/or disable CoW after setup
+and disable CoW before setup
 
 ```
-sudo chattr +C /var/lib/mongodb
-sudo chattr +C /var/lib/mysql 
+sudo chattr +C /var/lib/mongodb &&
+sudo chattr +C /var/lib/mysql &&
 sudo chattr +C /var/lib/postgres
 ```
 
@@ -249,26 +250,19 @@ mount -t btrfs LABEL=SYSTEM /mnt
 => SYSTEM
 
 ```
-btrfs subvolume create /mnt/@
-btrfs subvolume create /mnt/@home
-btrfs subvolume create /mnt/@cache
-btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@ &&
+btrfs subvolume create /mnt/@home &&
+btrfs subvolume create /mnt/@cache &&
+btrfs subvolume create /mnt/@log &&
 btrfs subvolume create /mnt/@tmp
 ```
 
 => DBS
 
 ```
-btrfs subvolume create /mnt/@mongodb
-btrfs subvolume create /mnt/@mysql
+btrfs subvolume create /mnt/@mongodb &&
+btrfs subvolume create /mnt/@mysql &&
 btrfs subvolume create /mnt/@postgres
-```
-
-=> SNAPSHOTS
-
-```
-btrfs subvolume create /mnt/@snapshots
-btrfs subvolume create /mnt/@snapshots-home
 ```
 
 - umount all
@@ -282,152 +276,30 @@ umount -R /mnt
 => SYSTEM
 
 ```
-mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt
-mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home
-mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache
-mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log
+mount -t btrfs -o subvol=@,$o_btrfs LABEL=SYSTEM /mnt &&
+mount -t btrfs -o subvol=@home,$o_btrfs LABEL=SYSTEM /mnt/home &&
+mount -t btrfs -o subvol=@cache,$o_btrfs LABEL=SYSTEM /mnt/var/cache &&
+mount -t btrfs -o subvol=@log,$o_btrfs LABEL=SYSTEM /mnt/var/log &&
 mount -t btrfs -o subvol=@tmp,$o_btrfs LABEL=SYSTEM /mnt/var/tmp
 ```
 
 => DBS
 
 ```
-mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb
-mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql
+mount -t btrfs -o subvol=@mongodb,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mongodb &&
+mount -t btrfs -o subvol=@mysql,$o_btrfs LABEL=SYSTEM /mnt/var/lib/mysql &&
 mount -t btrfs -o subvol=@postgres,$o_btrfs LABEL=SYSTEM /mnt/var/lib/postgres
-```
-
-=> SNAPSHOTS
-
-```
-mount -t btrfs -o subvol=@snapshots,$o_btrfs LABEL=SYSTEM /mnt/.snapshots
-mount -t btrfs -o subvol=@snapshots-home,$o_btrfs LABEL=SYSTEM /mnt/home/.snapshots
 ```
 
 # 10
 
-- make and mount boot
+- make and mount boot, set swap
 
 ```
-mkdir /mnt/boot
-```
-
-```
-mount LABEL=EFI /mnt/boot
-``` 
-
-- set swap
-
-```
+mkdir /mnt/boot &&
+mount LABEL=EFI /mnt/boot &&
 swapon -L SWAP
 ```
-
-# UEFI/GPT EXT4 LVM
-
-https://wiki.archlinux.org/title/Partitioning#Example_layouts
-
-```
-fdisk -l
-```
-
-cfdisk /dev/\<drive ex: nvme0n1\>
-
-```
-cfdisk /dev/nvme0n1
-```
-
-...
-
-=> cfdisk `GPT`
-
-`/dev/EFIpartition`	size: 370M	type: `EFI System`
-
-`/dev/LVMpartition`	size: \<all\>	type: `Linux LVM`
-
-write & quit
-
-...
-
-fdisk -l /dev/\<drive\>
-
-╰─`fdisk -l /dev/nvme0n1`
-
-
-# 5 FORMAT /EFI PARTITION TO FAT32 FOR BOOTLOADER
-
-mkfs.fat -F32 /dev/\<EFIpartition\>
-
-╰─`mkfs.fat -F32 /dev/nvme0n1p1`
-
-# LVM setup
-
-https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm.html#fig-lvm-explain
-
-## 6 PHISICAL VOLUME
-
-pvcreate /dev/\<LVMpartition\>
-
-╰─`pvcreate /dev/nvme0n1p2`
-
-╰─`pvs`
-
-## 7 VIRTUAL GROUP
-
-vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
-
-╰─`vgcreate archVG /dev/nvme0n1p2`
-
-╰─`vgs`
-
-## 8 LOGICAL VOLUMES
-
-lvcreate -L \<size ex: 20G\> \<on ex: archlinux\> -n \<name ex: root\>
-
-╰─`lvcreate -L 715.5G archVG -n root`	\<665G\>
-
-onlt if want `/root` and `/home` on separated partions
-
-╰─`lvcreate -L 500G archVG -n home` 	\<500G\>
-
-╰─`lvcreate -L 38G archVG -n swap`	\<38gb\>
-
-╰─`lvs`
-
-# 9 FORMAT lvs PARTITIONS
-
-format /dev/\<VGname\>/\<partition\>
-
-╰─`mkfs.ext4 /dev/archVG/root`
-
-╰─ if `/home` has own partiton `mkfs.ext4 /dev/archVG/home`
-
-╰─`mkswap /dev/archVG/swap`
-
-╰─`lvs`
-
-╰─`fdisk -l`
-
-# 10 MOUNT PARTITIONS
-
-mount /dev/\<VGname\>/\<root lv\> /mnt
-
-╰─`mount /dev/archVG/root /mnt`
-
-╰─`df -hT`
-
-╰─`mkdir -p /mnt/boot`
-
-╰─  separated `home` parttion `mkdir -p /mnt/home`
-
-mount /dev/\<EFIpartition\> /mnt/boot
-
-╰─`mount /dev/nvme0n1p1 /mnt/boot` (GRUB)
-
-if /home has its own partition `mount /dev/archVG/home /mnt/home`
-
-╰─`swapon /dev/archVG/swap`
-
-╰─`free -h`
 
 # BTRFS & LVM FINAL CHECK
 
@@ -484,18 +356,15 @@ arch-chroot /mnt
 
 # 13 TZ & LANG
 
-- set timezone
+- set timezone and sync clock
 
 ln -sf /usr/share/zoneinfo/\<Region\>/\<Place\> /etc/localtime
 
 ```
-ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
-```
-- sync clock
-
-```
+ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime &&
 hwclock --systohc
 ```
+
 - select and generate locale
 
 ```
@@ -504,19 +373,11 @@ nano /etc/locale.gen
 
 append `en_US.UTF-8 UTF-8`, s&q
  
-```
-locale-gen
-```
-
-- sys language
+-generate locale, set enUS language and keyboard layout
 
 ```
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-```
-
-- keyboard layout
-
-```
+locale-gen &&
+echo "LANG=en_US.UTF-8" > /etc/locale.conf &&
 echo "KEYMAP=us" > /etc/vconsole.conf
 ```
 
@@ -534,12 +395,14 @@ echo Arch > /etc/hostname
 nano /etc/hosts
 ```
 
-add:
+add blueprint:
 ```
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   <hostname>.localdomain  <hostname>
 ```
+
+like
 
 ```
 127.0.0.1   localhost
@@ -584,8 +447,8 @@ the local keyring can then be populated with the keys of all official Arch Linux
 
 packagers with `pacman-key --populate archlinux`
 
-in `/etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want),
-add `ILoveCandy` to pacman.conf
+`nano /etc/pacman.conf` put `ParallelDownloads = 10` (or whatever number you want),
+add `ILoveCandy` to options
 
 to clean pkgs download chace install
 
@@ -617,6 +480,20 @@ GUI pamac https://wiki.manjaro.org/index.php/Pamac
 
 # mkinitcpio.conf 
 
+- => BTRFS
+
+```
+nano /etc/mkinitcpio.conf
+```
+
+add `btrfs` into `MODULES` between `()`, save & close
+
+- recreate kernel image
+
+```
+mkinitcpio -P
+```
+
 - => LVM
 
 ```
@@ -634,19 +511,7 @@ mkinitcpio -P
 if lts is installed
 ( mkinitcpio -p linux-lts )
 
-- => BTRFS
 
-```
-nano /etc/mkinitcpio.conf
-```
-
-add `btrfs` into `MODULES` between `()`, save & close
-
-- recreate kernel image
-
-```
-mkinitcpio -P
-```
 
 - snapper for system snapshots
 
@@ -676,6 +541,15 @@ pacman -S networkmanager bluez openssh cups
 
 `systemctl enable cups.service`
 
+- all togheter
+
+```
+systemctl enable sshd &&
+systemctl enable NetworkManager.service &&
+systemctl enable bluetooth.service &&
+systemctl enable cups.service
+```
+
 # 16 BOOTMANAGER INSTALL
 
 ## GRUB INSTALL
@@ -693,10 +567,7 @@ grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --re
 ```
 
 ```
-cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-```
-
-```
+cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo &&
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -722,8 +593,10 @@ nmcli device wifi connect <SSID_or_BSSID> password <password>
 
 https://wiki.archlinux.org/title/Xorg#Installation
 
+`pacman -S`
+
 ```
-pacman -S xorg
+xorg
 ```
 
 @extra `xorg-server xorg-apps`
@@ -733,8 +606,10 @@ pacman -S xorg
 
 sudo pacman -S xf86-video-\<DRIVERNAME es:amdgpu, intel\>
 
+`pacman -S`
+
 ```
-pacman -S xf86-video-amdgpu
+xf86-video-amdgpu
 ```
 
 @extra `pulseaudio alsa-utils alsa-plugins pulseaudio-alsa`
@@ -758,7 +633,9 @@ kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays ki
 
 wayland
 
-`plasma-wayland-protocols kwayland-integration plasma-wayland-session wayland-protocols`
+```
+plasma-wayland-protocols kwayland-integration plasma-wayland-session wayland-protocols
+```
 
 or `plasma-meta` pckg + wayland
 
@@ -794,7 +671,7 @@ The following packages enable preview thumbnails in dolphin
 - raw-thumbnailer: Raw image files from a camera
 
 ```
-sudo pacman -S dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage
+dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage
 ```
 
 not in repos  `raw-thumbnailer`
@@ -803,8 +680,10 @@ not in repos  `raw-thumbnailer`
 
 @pipewire https://wiki.archlinux.org/title/PipeWire#Installation
 
+`pacman -S`
+
 ```
-pacman -S pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde
+pipewire pipewire-docs pipewire-pulse xdg-desktop-portal xdg-desktop-portal-kde
 ```
 
 @extra `pipewire-alsa pipewire-jack`
@@ -883,10 +762,7 @@ sudo pacman -S git
 ```
 
 ```
-git clone https://aur.archlinux.org/yay-git.git
-```
-
-```
+git clone https://aur.archlinux.org/yay-git.git &&
 cd yay-git/
 ```
 
@@ -919,6 +795,20 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-snapper.html#sec-sn
 https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
 check for existing subvolumes `sudo btrfs subvolume list /` (unmount and delete `.snapshots` subvol)
+
+## IGNORE, OUTDATED, KEEP JUST FOR REFERENCE
+
+(install `btrfs-assistant` then use the `SYNC_ACL` part after creating the config using the tool)
+
+install btfs tool
+
+```
+yay -S btrfs-assistant btrfsmaintenance
+```
+
+extra `snapper-gui-git`
+
+### old, go to: install snap-pac-grub and GUI
 
 - umount snapshots subvolumes
 
@@ -1054,7 +944,6 @@ sudo systemctl enable --now grub-btrfs.path
 
 to show all snapshots `snapper list -a`, per config `snapper -c home list`
 
-optionally install `yay -S snapper-gui-git btrfs-assistant btrfsmaintenance`
 
 ## install snap-pac-grub and GUI
  
@@ -1155,7 +1044,7 @@ login as `root` or user
 - for kde discover install
  
 ```
-pacman -S discover packagekit-qt5 fwupd
+sudo pacman -S discover packagekit-qt5 fwupd
 ```
 
 for flatpack b/end `flatpak`
@@ -1170,6 +1059,114 @@ https://wiki.archlinux.org/title/Android_tethering
   
 https://wiki.archlinux.org/title/Software_access_point 
 
-## remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
+## if modified remove `PermitRootLogin yes` from `/etc/ssh/sshd_config`
 
 # ENJOY
+
+# UEFI/GPT EXT4 LVM
+
+https://wiki.archlinux.org/title/Partitioning#Example_layouts
+
+```
+fdisk -l
+```
+
+cfdisk /dev/\<drive ex: nvme0n1\>
+
+```
+cfdisk /dev/nvme0n1
+```
+
+...
+
+=> cfdisk `GPT`
+
+`/dev/EFIpartition`	size: 370M	type: `EFI System`
+
+`/dev/LVMpartition`	size: \<all\>	type: `Linux LVM`
+
+write & quit
+
+...
+
+fdisk -l /dev/\<drive\>
+
+╰─`fdisk -l /dev/nvme0n1`
+
+
+# 5 FORMAT /EFI PARTITION TO FAT32 FOR BOOTLOADER
+
+mkfs.fat -F32 /dev/\<EFIpartition\>
+
+╰─`mkfs.fat -F32 /dev/nvme0n1p1`
+
+# LVM setup
+
+https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm.html#fig-lvm-explain
+
+## 6 PHISICAL VOLUME
+
+pvcreate /dev/\<LVMpartition\>
+
+╰─`pvcreate /dev/nvme0n1p2`
+
+╰─`pvs`
+
+## 7 VIRTUAL GROUP
+
+vgcreate \<virtual vol group name ex:archlinux\> /dev/\<partition2\>
+
+╰─`vgcreate archVG /dev/nvme0n1p2`
+
+╰─`vgs`
+
+## 8 LOGICAL VOLUMES
+
+lvcreate -L \<size ex: 20G\> \<on ex: archlinux\> -n \<name ex: root\>
+
+╰─`lvcreate -L 715.5G archVG -n root`	\<665G\>
+
+onlt if want `/root` and `/home` on separated partions
+
+╰─`lvcreate -L 500G archVG -n home` 	\<500G\>
+
+╰─`lvcreate -L 38G archVG -n swap`	\<38gb\>
+
+╰─`lvs`
+
+# 9 FORMAT lvs PARTITIONS
+
+format /dev/\<VGname\>/\<partition\>
+
+╰─`mkfs.ext4 /dev/archVG/root`
+
+╰─ if `/home` has own partiton `mkfs.ext4 /dev/archVG/home`
+
+╰─`mkswap /dev/archVG/swap`
+
+╰─`lvs`
+
+╰─`fdisk -l`
+
+# 10 MOUNT PARTITIONS
+
+mount /dev/\<VGname\>/\<root lv\> /mnt
+
+╰─`mount /dev/archVG/root /mnt`
+
+╰─`df -hT`
+
+╰─`mkdir -p /mnt/boot`
+
+╰─  separated `home` parttion `mkdir -p /mnt/home`
+
+mount /dev/\<EFIpartition\> /mnt/boot
+
+╰─`mount /dev/nvme0n1p1 /mnt/boot` (GRUB)
+
+if /home has its own partition `mount /dev/archVG/home /mnt/home`
+
+╰─`swapon /dev/archVG/swap`
+
+╰─`free -h`
+
