@@ -88,6 +88,10 @@ add hooks
 
 test reboot/hybernate
 
+### set root theme same as user
+
+from home/user `sudo cp -r ~/.config/kdeglobals` to `/root/.config/kdeglobals`
+
 # PAKAGES
 
 ## PACMAN CHACE
