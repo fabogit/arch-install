@@ -90,7 +90,7 @@ test reboot/hybernate
 
 ### set root theme same as user
 
-from home/user `sudo cp -r ~/.config/kdeglobals` to `/root/.config/kdeglobals`
+from home/user `sudo cp ~/.config/kdeglobals` to `/root/.config/kdeglobals`
 
 # PAKAGES
 
