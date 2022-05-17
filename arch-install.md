@@ -511,14 +511,6 @@ mkinitcpio -P
 if lts is installed
 ( mkinitcpio -p linux-lts )
 
-
-
-- snapper for system snapshots
-
-```
-pacman -S snapper
-```
-
 ## NETWORK MANAGER ( https://wiki.archlinux.org/title/NetworkManager#Usage )
 
 - network bluethoot ssh printer
@@ -559,8 +551,6 @@ https://wiki.archlinux.org/title/GRUB#UEFI_systems
 ```
 pacman -S grub efibootmgr grub-customizer
 ```
-
-- => for BTRFS install `grub-btrfs`
 
 ```
 grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck
@@ -807,6 +797,36 @@ yay -S btrfs-assistant btrfsmaintenance
 ```
 
 extra `snapper-gui-git`
+
+### After installing with btrfs selected as the filesystem:
+
+- Install `snap-pac`, `snapper`, `grub-btrfs` and `btrfs-assistant`
+
+Open `Btrfs Assistant`
+
+Switch to the “Snapper Settings” tab
+
+Click on the “New Config” button
+
+Name the config `root` and choose `/` as the mountpoint
+
+Click the “Save Config” button
+
+Set the retention limits you want. In particular you probably want to lower the amount of “Number” snapshots that are retained. These are the snapshots that are taken when pacman runs. It takes 2 snapshots in each run so something like 10 is probably a more reasonable number. That will give you 5 pacman runs. The timeline settings are entirely left to your preferences.
+
+Select the checkboxes for `snapper-timeline` and `snapper-cleanup` and click the “Apply” button to the right of the checkboxes.
+
+- Add support for booting off read-only snapshots
+
+Edit `/etc/mkinitcpio.conf` and add `grub-btrfs-overlayfs` to the end of the `HOOKS` section
+
+Rebuild your initrams with `sudo mkinitcpio -P`
+
+Make sure the snapshots are added to the grub menu. There are two easy ways to do this. Only pick one of them:
+
+Enable the `grub-btrfs.path` systemd unit
+
+Install `snap-pac-grub` from AUR
 
 ### old, go to: install snap-pac-grub and GUI
 
