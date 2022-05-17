@@ -793,14 +793,12 @@ check for existing subvolumes `sudo btrfs subvolume list /` (unmount and delete 
 install btfs tool
 
 ```
-yay -S btrfs-assistant btrfsmaintenance
+yay -S grub-btrfs snap-pac snapper btrfs-assistant btrfsmaintenance
 ```
 
 extra `snapper-gui-git`
 
 ### After installing with btrfs selected as the filesystem:
-
-- Install `snap-pac`, `snapper`, `grub-btrfs` and `btrfs-assistant`
 
 Open `Btrfs Assistant`
 
