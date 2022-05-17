@@ -636,7 +636,7 @@ or `plasma-meta` pckg + wayland
 `pacman -S`
 
 ```
-linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition chromium nm-connection-editor firewalld kdf
+linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition chromium nm-connection-editor dosfstools exfatprogs  firewalld kdf
 ```
 
 and
