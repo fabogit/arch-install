@@ -6,11 +6,15 @@ grub config
 
 ╰─`sudo nano /etc/default/grub`
 
-...
+add `loglevel=3 mitigations=off acpi_backlight=vendor xhci_hcd.quirks=1073741824`
 
-`GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 mitigations=off"`
+```
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 mitigations=off"
+```
 
-...
+for pulse add
+
+`GRUB_CMDLINE_LINUX_DEFAULT="... acpi_backlight=vendor xhci_hcd.quirks=1073741824..."`
 
 uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
 
