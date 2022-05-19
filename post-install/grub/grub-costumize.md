@@ -8,11 +8,15 @@
 - Edit `/etc/default/grub` and add:
 
 
-`GRUB_THEME=/boot/grub/themes/<THEMEFOLDER>/theme.txt`
+```
+GRUB_THEME=/boot/grub/themes/<THEMEFOLDER>/theme.txt
+```
 
 - optional force resolution
 
 `GRUB_GFXMODE=1920x1080`
+
+`GRUB_CMDLINE_LINUX_DEFAULT="acpi_backlight=vendor xhci_hcd.quirks=1073741824"`
 
 - Uncomment to get a beep at grub start,
 default `#GRUB_INIT_TUNE="480 440 1"`
