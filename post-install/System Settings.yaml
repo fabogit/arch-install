@@ -36,13 +36,27 @@ Settings:
             Activities: Default & Work choose icons
             Switching:
                 Current virtual desktop: on
-
+    
+    Window Management:
+        Window Behavious:
+            Titlebar Actions:
+                Titlebar Actions: Mouse Wheel change opacity
+            Window Actions:
+                Inner window: mousewheel previous/next desktop
+        Task Switcher: Grid, Include desktop icon on
+    
     Shortcuts:
-        Activity switching:
-            Activate Application Launcher Widget: Alt+F1
-            Activate Task Manager Entry 10: No active shortcuts ????wtf!?
-        KWin:
-            Switch One Desktop *: all disabled ????wtf!?
+        Applications:
+            Konsole: ctrl+alt+t / or enable from Custom Shortcuts
+        System Services:
+            Activity switching:
+                Activate Application Launcher Widget: Alt+F1
+                Activate Task Manager Entry 10: No active shortcuts !?
+            KWin:
+                Switch One Desktop *: all disabled !?
+        Common Actions:
+            Edit:
+                Cut: ctrl+x
 
     Startup and Shoutdown:
         SDDM:
@@ -62,18 +76,24 @@ Settings:
 
     Applications:
         Default Applications: ...
+        File Associations: ...
 
     User Feedback: ...
 
     Input Devices:
         Keyboard:
             Hardware:
-                Keyboard Model: Generic 86-key PC ??
+                Keyboard Model: Generic 86-key PC ?? || 104Key-pc
                 Delay: 300ms
         Touchpad:
             Tapping:
                 Tap-to-click: on
                 Tap-and-drag: on
+                
+    Display & Monitor:
+        Display: ...
+        Compositor: on
+        Night Color: on
 
     Power Management:
         Energy Savings:
