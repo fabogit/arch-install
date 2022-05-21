@@ -345,7 +345,7 @@ to discard&quit ESC, :q!
 ```
 ...
 
-- generate file system tabs
+- generate file system tabs, `-U` to use UUIS `-L` to use labels
 
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -624,7 +624,7 @@ bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys ki
 from plasma workspace
 
 ```
-kactivities-stats kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt
+kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt
 ```
 
 wayland
@@ -648,11 +648,11 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent dragon gwenview kamera spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
 ``` 
 in AUR repos `krecorder` option `audio-recorder` `kipi-plugins`
 
-image editing `kcolorchooser kolourpaint krita inkscape gimp` video `kdenlive obs-studio` camera `plasma-camera kamoso`
+image editing `kcolorchooser kolourpaint krita inkscape gimp` video `kdenlive obs-studio` camera `kamera plasma-camera kamoso`
 
 Dolphin file exploirer plugins and file previews  https://wiki.archlinux.org/title/Dolphin
  
