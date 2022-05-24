@@ -92,6 +92,20 @@ test reboot/hybernate
 
 from home/user `sudo cp ~/.config/kdeglobals` to `/root/.config/kdeglobals`
 
+### show bluetooth charge %
+
+https://wiki.archlinux.org/title/bluetooth_headset#Headset_via_Pipewire
+
+`sudo nano /etc/bluetooth/main.conf`
+
+set experimental to `true`
+
+```
+# Enables experimental features and interfaces.
+# Defaults to false.
+Experimental = true
+```
+
 # PAKAGES
 
 ## PACMAN CHACE
