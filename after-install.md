@@ -89,7 +89,15 @@ test reboot/hybernate
 
 ### set root theme same as user
 
-from home/user `sudo cp ~/.config/kdeglobals` to `/root/.config/kdeglobals`
+`su root`
+
+copy user settings to root config
+
+```
+cp -rf /home/fabo/.config/gtk-3.0/ /root/.config/ &&
+cp -rf /home/fabo/.config/gtk-4.0/ /root/.config/ &&
+cp /home/fabo/.config/kdeglobals /root/.config/
+```
 
 ### show bluetooth charge %
 
