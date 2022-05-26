@@ -69,7 +69,11 @@ add swap into grub conf
 
 ╰─`sudo nano /etc/default/grub`
 
-`GRUB_CMDLINE_LINUX_DEFAULT="...resume=/dev/archVolumeGroup/archLogicalVolume"`
+set path by UUID/LABEL/LVMPATH 
+
+( ie: `resume=UUID=<string>` `resume=LABEL=SWAP` `resume=/dev/archVolumeGroup/archLogicalVolume`
+
+`GRUB_CMDLINE_LINUX_DEFAULT="...resume=UUID/LABEL/LVMPATH"`
 
 update grub
 
