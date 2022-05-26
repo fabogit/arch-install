@@ -40,17 +40,16 @@ add:
 
 will be applied after reboot
 
-### enable change of user avatar
+### fix cursor theme bug
 
-Open `accounts-daemon.service`
+`sudo nano /usr/share/icons/default/index.theme`
+ 
+change `Adwaita` to `breeze_cursor`
 
-╰─`sudo nano /usr/lib/systemd/system/accounts-daemon.service` EDIT `PrivateTmp=true` to `PrivateTmp=false`
-
-refresh the daemon cache and restart the service
-
-╰─`sudo systemctl daemon-reload`
-
-╰─`sudo systemctl restart accounts-daemon.service`
+```
+[Icon Theme]
+Inherits=breeze_cursors
+```
 
 ### Sleep & Hibernate
 
