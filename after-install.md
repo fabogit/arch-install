@@ -42,7 +42,7 @@ will be applied after reboot
 
 ### fix cursor theme bug
 
-`sudo nano /usr/share/icons/default/index.theme`
+╰─`sudo nano /usr/share/icons/default/index.theme`
  
 change `Adwaita` to `breeze_cursor`
 
@@ -71,7 +71,7 @@ add swap into grub conf
 
 set path by UUID/LABEL/LVMPATH 
 
-( ie: `resume=UUID=<string>` `resume=LABEL=SWAP` `resume=/dev/archVolumeGroup/archLogicalVolume`
+( ie: `resume=UUID=<string>` `resume=LABEL=SWAP` `resume=/dev/archVolumeGroup/archLogicalVolume` )
 
 `GRUB_CMDLINE_LINUX_DEFAULT="...resume=UUID/LABEL/LVMPATH"`
 
@@ -93,7 +93,7 @@ test reboot/hybernate
 
 ### set root theme same as user
 
-`su root`
+╰─`su root`
 
 copy user settings to root config
 
@@ -107,7 +107,7 @@ cp /home/fabo/.config/kdeglobals /root/.config/
 
 https://wiki.archlinux.org/title/bluetooth_headset#Headset_via_Pipewire
 
-`sudo nano /etc/bluetooth/main.conf`
+╰─`sudo nano /etc/bluetooth/main.conf`
 
 set experimental to `true`
 
