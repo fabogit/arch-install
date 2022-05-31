@@ -227,7 +227,7 @@ MOUNT POINT       SUBVOLUME NAME    USED FOR      SNAPSHOTS
 
 ### DATABASES 
 
-create separate subvolumes
+create separate subvolumes || skip and user db containers
 
 ```
 /var/lib/mongodb          /@mongodb       
@@ -235,7 +235,7 @@ create separate subvolumes
 /var/lib/postgres         /@postgres    
 ```
 
-and disable CoW before setup
+remember to disable CoW before installing db
 
 ```
 sudo chattr +C /var/lib/mongodb &&
