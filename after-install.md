@@ -459,6 +459,8 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
     -v portainer_data:/data \
     portainer/portainer-ce:2.11.1
 ```
+
+can omit the version# from `portainer/portainer-ce:2.11.1` => `/portainer-ce`
     
 ╰─`docker ps`
 
