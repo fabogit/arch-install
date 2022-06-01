@@ -354,11 +354,24 @@ on BTRFS disable CoW https://www.mongodb.com/community/forums/t/mongodb-with-btr
 
 https://aur.archlinux.org/packages/neo4j-desktop
 
-╰─`yay -S neo4j-desktop` electron standalone
+ electron standalone
+
+╰─`yay -S neo4j-desktop`
 
 https://aur.archlinux.org/packages/neo4j-community
 
-`neo4j-community` database service
+database service
+
+`neo4j-community` 
+
+(easier to use the docker image and persist data w/ volumes)
+
+```
+docker run \
+    --publish=7474:7474 --publish=7687:7687 \
+    --volume=$HOME/neo4j/data:/data \
+    neo4j
+```
 
 ### vscode
 
