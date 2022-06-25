@@ -103,6 +103,10 @@ cp -rf /home/fabo/.config/gtk-4.0/ /root/.config/ &&
 cp /home/fabo/.config/kdeglobals /root/.config/
 ```
 
+### Fix Discover not showing updates
+
+`sudo rm -rf /var/lib/PackageKit/alpm` && `sudo systemctl restart packagekit`
+
 ### show bluetooth charge %
 
 https://wiki.archlinux.org/title/bluetooth_headset#Headset_via_Pipewire
