@@ -618,7 +618,7 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 from plasma-meta
 
 ```
-bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications kwrited oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings
+bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil sddm-kcm kio kio-extras systemsettings
 ```
 
 from plasma workspace
@@ -648,7 +648,7 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kwrite kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
 ``` 
 in AUR repos `krecorder` option `audio-recorder` `kipi-plugins`
 
