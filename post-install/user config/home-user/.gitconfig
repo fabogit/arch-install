@@ -9,4 +9,8 @@
 	required = true
 	clean = git-lfs clean -- %f
 [core]
-	editor = vim
+	editor = code --wait
+[merge]
+  tool = code
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
