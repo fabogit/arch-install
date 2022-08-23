@@ -11,6 +11,6 @@
 [core]
 	editor = code --wait
 [merge]
-  tool = code
+  	tool = code
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+ 	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
