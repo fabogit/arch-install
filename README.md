@@ -3,6 +3,10 @@ installation process for arch linux distro
 
 # links & utils
 
+grub btrfs
+
+http://logan.tw/posts/2015/05/17/grub-install-and-btrfs-root-file-system/
+
 bash
 
 https://wiki.archlinux.org/title/bash#Configuration_files , https://wiki.archlinux.org/title/Bash/Prompt_customization
