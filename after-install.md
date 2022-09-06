@@ -468,6 +468,8 @@ https://www.portainer.io/casestudy/firstapp
 ╰─`docker volume create portainer_data`
 
 and
+ 
+ OLD
 
 ```
 docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
@@ -475,6 +477,10 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
     portainer/portainer-ce:2.11.1
+```
+NEW (from the docs https://docs.portainer.io/start/upgrade/docker)
+```
+docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest 
 ```
 
 can omit the version# from `portainer/portainer-ce:2.11.1` => `/portainer-ce`
