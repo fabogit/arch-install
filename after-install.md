@@ -465,29 +465,28 @@ https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux
 
 https://www.portainer.io/casestudy/firstapp
 
+create volume
+
 ╰─`docker volume create portainer_data`
 
-and
- 
- OLD
-
-```
-docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
-    --name=portainer --restart=always \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data \
-    portainer/portainer-ce:2.11.1
-```
-
-NEW (from the docs https://docs.portainer.io/start/upgrade/docker)
+pull/run container
 
 ```
 docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest 
 ```
+enterprise edition
+
+```
+docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest
+```
+
+
     
 ╰─`docker ps`
 
 - to update:
+
+NEW (from the docs https://docs.portainer.io/start/upgrade/docker)
 
 ╰─`docker stop portainer`
 
@@ -496,14 +495,14 @@ docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /va
 ╰─`docker pull portainer/portainer-ce:latest`
 
 ```
-docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
+docker run -d -p 9000:9000 -p 9443:9443 \
     --name=portainer --restart=always \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
     portainer/portainer-ce:latest
 ```
 
-go to http://localhost:9000
+go to http://localhost:9000 or https:9443
 
 ╰─`yay portainer-bin`
 
