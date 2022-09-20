@@ -176,6 +176,10 @@ https://aur.archlinux.org/packages/pacman-beep-hook
 
 ╰─`yay pacman-beep-hook`
 
+### manjaro zsh config
+
+`yay manjaro-zsh-config-git`
+
 ### powerlevel10k
 
 https://github.com/romkatv/powerlevel10k
