@@ -138,6 +138,10 @@ You can also define how many recent versions you want to keep. To retain only on
 
 See `paccache -h` for more options.
 
+## yay aur pkg chache
+
+╰─`yay -Scc`
+
 ### TUXEDO REPO https://github.com/tuxedocomputers
 
 ╰─`yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-keyboard`, `tuxedo-control-center-bin`
