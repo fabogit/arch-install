@@ -634,6 +634,8 @@ https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgo
 
 apps (spa/pwa)
 
+for screensharing under wayland enable `WebRTC PipeWire support` in chrome://flags/
+
 https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia/related?hl=en
 
 https://chrome.google.com/webstore/detail/google-drive/apdfllckaahabafndbhieahigkjlhalf
