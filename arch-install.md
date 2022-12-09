@@ -754,11 +754,11 @@ nmcli device wifi connect <SSID_or_BSSID> password <password>
 https://github.com/Jguer/yay
 
 ```
-sudo pacman -S git
+sudo pacman -S --needed git base-devel
 ```
 
 ```
-git clone https://aur.archlinux.org/yay-git.git &&
+git clone https://aur.archlinux.org/yay.git &&
 cd yay-git/
 ```
 
@@ -767,7 +767,7 @@ makepkg -si
 ```
 
 ```
-cd .. && sudo rm -r yay-git
+cd .. && sudo rm -r yay
 ```
 
 #### First Use
