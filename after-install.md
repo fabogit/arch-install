@@ -638,6 +638,8 @@ https://chrome.google.com/webstore/detail/json-viewer-pro/eifflpmocdbdmepbjaopkk
 
 https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg?utm_source=chrome-ntp-icon
 
+https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb
+
 apps (spa/pwa)
 
 for screensharing under wayland enable `WebRTC PipeWire support` in chrome://flags/
