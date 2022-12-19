@@ -235,6 +235,10 @@ https://documentation.suse.com/sles/12-SP4/html/SLES-all/cha-lvm-snapshots.html
 
 https://wiki.archlinux.org/title/snapper
 
+### bitwarden
+
+`yay bitwarden libappindicator-gtk3`
+
 ### browsers and mail
 
 ╰─`yay` `thunderbird` `kmail` `google-chrome` `firefox`
