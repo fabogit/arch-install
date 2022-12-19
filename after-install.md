@@ -121,6 +121,8 @@ set experimental to `true`
 Experimental = true
 ```
 
+also `KernelExperimental = true` if needed
+
 # PAKAGES
 
 ## PACMAN CHACE
