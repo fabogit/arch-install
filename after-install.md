@@ -176,6 +176,32 @@ and for the current user
 
 extra: add line to .zshrc `export SHELL=zsh`
 
+- zsh autocompletion
+
+You should have a directory where the completions can be saved:
+
+`> mkdir ~/.zcompcache`
+
+- deno example
+
+Then output the completions:
+
+`> deno completions zsh > ~/.zcompcache/_deno`
+
+And ensure the completions get loaded in your `~/.zshrc`:
+
+`fpath=(~/.zcompcache $fpath)`
+
+`autoload -Uz compinit`
+
+`compinit -u`
+
+If after reloading your shell and completions are still not loading, you may need to remove `~/.zcompdump/` to remove previously generated completions and then `compinit` to generate them again.
+
+
+
+
+
 ### pacman sound hook
 
 https://aur.archlinux.org/packages/pacman-beep-hook
