@@ -650,6 +650,22 @@ https://store.kde.org/p/1309653/
   
 https://github.com/lingtjien/Grid-Tiling-Kwin
 
+### Retroarch
+
+╰─`sudo pacman -S retroarch`
+
+Open and close retroarch arch once, to ensure it creates the local directories
+
+Edit the local configuration file at `~/.config/retroarch/retroarch.cfg`
+
+and make sure the following 5 lines are set to these settings
+
+`assets_directory = "~/.config/retroarch/assets"`
+`menu_show_core_updater = "true"`
+`core_updater_show_experimental_cores = "true"`
+`libretro_directory = "~/.config/retroarch/cores/"`
+`libretro_info_path = "~/.config/retroarch/cores/info"`
+
 # CHROME WEB EXTENSIONS
 
 https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia?hl=en
