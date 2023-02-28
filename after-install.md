@@ -198,10 +198,6 @@ And ensure the completions get loaded in your `~/.zshrc`:
 
 If after reloading your shell and completions are still not loading, you may need to remove `~/.zcompdump/` to remove previously generated completions and then `compinit` to generate them again.
 
-
-
-
-
 ### pacman sound hook
 
 https://aur.archlinux.org/packages/pacman-beep-hook
@@ -429,7 +425,17 @@ install needed keyring
 
 https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
 
+set up ssh key for github
+
+https://www.golinuxcloud.com/set-up-visual-studio-code-remote-ssh-github/
+
 ### GIT GUI
+
+- gitkraken
+
+╰─`yay gitkraken`
+
+https://aur.archlinux.org/packages/gitkraken
 
 - github desktop
 
@@ -439,11 +445,6 @@ https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 
 https://man.archlinux.org/man/gitcredentials.7
 
-- gitkraken
-
-╰─`yay gitkraken`
-
-https://aur.archlinux.org/packages/gitkraken
 
 ### insomnia
 
