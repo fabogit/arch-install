@@ -109,6 +109,10 @@ https://wiki.archlinux.org/title/SSH_keys#SSH_agents
 
 https://wiki.archlinux.org/title/KDE_Wallet#Using_the_KDE_Wallet_to_store_ssh_key_passphrases
 
+https://support.atlassian.com/bitbucket-cloud/docs/set-up-personal-ssh-keys-on-linux/
+
+https://support.atlassian.com/bitbucket-cloud/docs/managing-multiple-bitbucket-user-ssh-keys-on-one-device/
+
 verify ssh is installed
 
 ❯ `ssh -V` 
@@ -134,7 +138,7 @@ list added keys
 
 ❯ `ssh-add -l`
 
-add to .barshrc / .zshrc
+=> to autostart the process add to .barshrc / .zshrc
 
 ```
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
