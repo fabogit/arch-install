@@ -4,7 +4,7 @@ https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallatio
 
 grub config
 
-╰─`sudo nano /etc/default/grub`
+❯ `sudo nano /etc/default/grub`
 
 add to `GRUB_CMDLINE_LINUX_DEFAULT="..."`
 
@@ -14,21 +14,21 @@ add to `GRUB_CMDLINE_LINUX_DEFAULT="..."`
 
 uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
 
-╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+❯ `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
 to improve SSD lifespan and performance in the long term
 
-╰─`sudo systemctl enable fstrim.timer` 
+❯ `sudo systemctl enable fstrim.timer` 
 
 swap file
 
 oneline:
 
-╰─`sudo echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/10-swappiness.conf`
+❯ `sudo echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/10-swappiness.conf`
 
 or:
 
-╰─`sudo nano /etc/sysctl.d/10-swappiness.conf`
+❯ `sudo nano /etc/sysctl.d/10-swappiness.conf`
 
 add:
 
@@ -42,7 +42,7 @@ will be applied after reboot
 
 ### fix cursor theme bug
 
-╰─`sudo nano /usr/share/icons/default/index.theme`
+❯ `sudo nano /usr/share/icons/default/index.theme`
  
 change `Adwaita` to `breeze_cursor`
 
@@ -61,13 +61,13 @@ https://forums.linuxmint.com/viewtopic.php?t=287015
 
 check swap partition mount dir
 
-╰─`sudo cat /etc/fstab`
+❯ `sudo cat /etc/fstab`
 
 es mount: `/dev/mapper/archVG-swap`
 
 add swap into grub conf
 
-╰─`sudo nano /etc/default/grub`
+❯ `sudo nano /etc/default/grub`
 
 set path by UUID/LABEL/LVMPATH 
 
@@ -77,23 +77,23 @@ set path by UUID/LABEL/LVMPATH
 
 update grub
 
-╰─`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+❯ `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
 add hooks
 
-╰─`sudo nano /etc/mkinitcpio.conf`
+❯ `sudo nano /etc/mkinitcpio.conf`
 
 -> BTRFS: at `HOOKS` add `resume` after `filesystem` before `fsck` (wiki says after `udev`)
 
 -> LVM: at `HOOKS` add `resume` after `lvm2` (not sure) 
 
-╰─`sudo mkinitcpio -P`
+❯ `sudo mkinitcpio -P`
 
 test reboot/hybernate
 
 ### set root theme same as user
 
-╰─`su root`
+❯ `su root`
 
 copy user settings to root config
 
@@ -103,15 +103,57 @@ cp -rf /home/fabo/.config/gtk-4.0/ /root/.config/ &&
 cp /home/fabo/.config/kdeglobals /root/.config/
 ```
 
+### start ssh-agent
+
+https://wiki.archlinux.org/title/SSH_keys#SSH_agents
+
+https://wiki.archlinux.org/title/KDE_Wallet#Using_the_KDE_Wallet_to_store_ssh_key_passphrases
+
+verify ssh is installed
+
+❯ `ssh -V` 
+
+check if process is running
+
+❯ `ps -auxc | grep ssh-agent`   
+
+if no processes, start it
+
+❯ `eval `ssh-agent`
+
+generate key
+
+❯ `ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key`
+
+add key to ssh
+
+❯ `ssh-add ~/.ssh/id_rsa`
+
+
+list added keys
+
+❯ `ssh-add -l`
+
+add to .barshrc / .zshrc
+
+```
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+```
+
 ### Fix Discover not showing updates
 
-`sudo rm -rf /var/lib/PackageKit/alpm` && `sudo systemctl restart packagekit`
+❯ `sudo rm -rf /var/lib/PackageKit/alpm` && `sudo systemctl restart packagekit`
 
 ### show bluetooth charge %
 
 https://wiki.archlinux.org/title/bluetooth_headset#Headset_via_Pipewire
 
-╰─`sudo nano /etc/bluetooth/main.conf`
+❯ `sudo nano /etc/bluetooth/main.conf`
 
 set experimental to `true`
 
@@ -129,24 +171,24 @@ also `KernelExperimental = true` if needed
 
 The `paccache` script, provided within the `pacman-contrib` package, deletes all cached versions of installed and uninstalled packages, except for the most recent three, by default:
 
-╰─`sudo paccache -r`
+❯ `sudo paccache -r`
 
 -> Enable and start `paccache.timer` to discard unused packages weekly.
 
 Tip: You can create a hook to run this automatically after every pacman transaction, see https://bbs.archlinux.org/viewtopic.php?pid=1694743#p1694743 and `pacman-cleanup-hook`AUR.
 You can also define how many recent versions you want to keep. To retain only one past version use:
 
-╰─`sudo paccache -rk1`
+❯ `sudo paccache -rk1`
 
 See `paccache -h` for more options.
 
 ## yay aur pkg chache
 
-╰─`yay -Scc`
+❯ `yay -Scc`
 
 ### TUXEDO REPO https://github.com/tuxedocomputers
 
-╰─`yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-keyboard`, `tuxedo-control-center-bin`
+❯ `yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-keyboard`, `tuxedo-control-center-bin`
 
 https://www.reddit.com/r/tuxedocomputers/comments/qngn8r/manjaro_and_tuxedo_control_center/
 
@@ -158,21 +200,21 @@ https://aur.archlinux.org/packages/tuxedo-control-center-bin/
 
 ### zsh
 
-╰─`sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
+❯ `sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
 
 https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
 
 list available shells
 
-╰─`chsh -l`
+❯ `chsh -l`
 
 change default shell to zsh for root (or leave it default to `/bin/bash`)
  
-╰─`sudo chsh -s /bin/zsh`
+❯ `sudo chsh -s /bin/zsh`
  
 and for the current user
  
-╰─`chsh -s /bin/zsh`
+❯ `chsh -s /bin/zsh`
 
 extra: add line to .zshrc `export SHELL=zsh`
 
@@ -180,21 +222,21 @@ extra: add line to .zshrc `export SHELL=zsh`
 
 You should have a directory where the completions can be saved:
 
-╰─`mkdir ~/.zcompcache`
+❯ `mkdir ~/.zcompcache`
 
 - deno example
 
 Then output the completions:
 
-╰─`deno completions zsh > ~/.zcompcache/_deno`
+❯ `deno completions zsh > ~/.zcompcache/_deno`
 
 And ensure the completions get loaded in your `~/.zshrc`:
 
-╰─`fpath=(~/.zcompcache $fpath)`
+❯ `fpath=(~/.zcompcache $fpath)`
 
-╰─`autoload -Uz compinit`
+❯ `autoload -Uz compinit`
 
-╰─`compinit -u`
+❯ `compinit -u`
 
 If after reloading your shell and completions are still not loading, you may need to remove `~/.zcompdump/` to remove previously generated completions and then `compinit` to generate them again.
 
@@ -202,11 +244,11 @@ If after reloading your shell and completions are still not loading, you may nee
 
 https://aur.archlinux.org/packages/pacman-beep-hook
 
-╰─`yay pacman-beep-hook`
+❯ `yay pacman-beep-hook`
 
 ### manjaro zsh config
 
-`yay manjaro-zsh-config-git`
+❯ `yay manjaro-zsh-config-git`
 
 ### powerlevel10k
 
@@ -214,7 +256,7 @@ https://github.com/romkatv/powerlevel10k
 
 install pwlv10k font
 
-╰─`yay ttf-meslo-nerd-font-powerlevel10k`
+❯ `yay ttf-meslo-nerd-font-powerlevel10k`
 
 Enable font in terminal
 
@@ -259,76 +301,76 @@ https://wiki.archlinux.org/title/snapper
 
 ### bitwarden
 
-`yay bitwarden libappindicator-gtk3`
+❯ `yay bitwarden libappindicator-gtk3`
 
 ### browsers and mail
 
-╰─`yay` `thunderbird` `kmail` `google-chrome` `firefox`
+❯ `yay` `thunderbird` `kmail` `google-chrome` `firefox`
 
 ### postgresql
 
 https://wiki.archlinux.org/title/PostgreSQL
 
-╰─`sudo pacman -S postgresql`
+❯ `sudo pacman -S postgresql`
 
 set postgres password
 
-╰─`sudo passwd postgres`
+❯ `sudo passwd postgres`
 
-╰─`sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
+❯ `sudo chown -R postgres:postgres /var/lib/postgres/` or `sudo chown -R <USER>:users /var/lib/postgres/`
 
 on BTRFS disable CoW (if not present do after initdb)
 
-╰─`sudo chattr +C /var/lib/postgres/data`
+❯ `sudo chattr +C /var/lib/postgres/data`
 
 change to postgres and initdb
 
-╰─`su postgres`
+❯ `su postgres`
 
-╰─`initdb -D /var/lib/postgres/data` or `initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data`
+❯ `initdb -D /var/lib/postgres/data` or `initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data`
 
 start service as root/sudo
 
 `su` to user/root
 
-╰─`sudo systemctl enable postgresql.service` && `sudo systemctl start postgresql.service`
+❯ `sudo systemctl enable postgresql.service` && `sudo systemctl start postgresql.service`
 
 try `sudo psql -U postgres`
 
-`su postgres` & `createuser --interactive` create `root` user ( `su <USER>` and/or `createdb <DBNAME>`)
+❯ `su postgres` & ❯ `createuser --interactive` create `root` user ( `su <USER>` and/or `createdb <DBNAME>`)
 
 set db user password
 
-`psql -U postgres` & `\password <username>`
+❯ `psql -U postgres` & `\password <username>`
 
 `CREATE DATABASE test OWNER root;`
 
 `su postgres`, `createdb <DBNAME>`, `su` to user `psql -U <USER> -d <DBNAME>`
 
-╰─`psql DBNAME`
+❯ `psql DBNAME`
 
 
 ### MariaDB
 
 https://wiki.archlinux.org/title/MariaDB
 
-╰─`sudo pacman -S mariadb`
+❯ `sudo pacman -S mariadb`
 
 on BTRFS disable CoW
 
-╰─`sudo chattr +C /var/lib/mysql`
+❯ `sudo chattr +C /var/lib/mysql`
 
 initialize
 
-╰─`sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql`
+❯ `sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql`
 
 enable/start service
 
-╰─`sudo systemctl start mariadb.service` & `sudo systemctl enable mariadb.service`
+❯ `sudo systemctl start mariadb.service` & `sudo systemctl enable mariadb.service`
 
 log in (default password is empty)
 
-╰─`sudo mysql -u root -p`
+❯ `sudo mysql -u root -p`
 
 (`use mysql;`)
 
@@ -340,7 +382,7 @@ log in (default password is empty)
 
 test
 
-╰─`mysql -u root -p`
+❯ `mysql -u root -p`
 
 additionally to create user (change `username` and `password` keep '')
 
@@ -366,7 +408,7 @@ sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
 
 ### DBEAVER
 
-╰─`sudo pacman -S dbeaver`
+❯ `sudo pacman -S dbeaver`
 
 ### mongodb
 
@@ -374,21 +416,21 @@ https://wiki.archlinux.org/title/MongoDB
 
 https://aur.archlinux.org/packages/mongodb-compass/
 
-╰─`yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
+❯ `yay mongodb-bin mongodb-tools-bin mongosh-bin mongodb-compass`
 
-╰─`sudo systemctl status mongodb`
+❯ `sudo systemctl status mongodb`
 
-╰─`sudo systemctl enable mongodb.service`
+❯ `sudo systemctl enable mongodb.service`
 
-╰─`sudo systemctl start mongodb.service`
+❯ `sudo systemctl start mongodb.service`
 
 cli
 
-╰─`mongosh` (or use legacy `mongo`)
+❯ `mongosh` (or use legacy `mongo`)
 
 on BTRFS disable CoW https://www.mongodb.com/community/forums/t/mongodb-with-btrfs/5699
 
-╰─`sudo chattr +C /var/lib/mongodb`
+❯ `sudo chattr +C /var/lib/mongodb`
 
 ### NEO4J
 
@@ -396,7 +438,7 @@ https://aur.archlinux.org/packages/neo4j-desktop
 
  electron standalone
 
-╰─`yay -S neo4j-desktop`
+❯ `yay -S neo4j-desktop`
 
 https://aur.archlinux.org/packages/neo4j-community
 
@@ -404,7 +446,7 @@ database service
 
 `neo4j-community` 
 
-(easier to use the docker image and persist data w/ volumes)
+(its easier to use the docker image and persist data w/ volumes)
 
 ```
 docker run \
@@ -417,11 +459,11 @@ docker run \
 
 https://wiki.archlinux.org/title/Visual_Studio_Code
 
-╰─`yay visual-studio-code-bin`
+❯ `yay visual-studio-code-bin`
 
 install needed keyring
 
-╰─`sudo pacman -S gnome-keyring`
+❯ `sudo pacman -S gnome-keyring`
 
 https://stackoverflow.com/questions/34400272/visual-studio-code-is-always-asking-for-git-credentials , https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
 
@@ -433,13 +475,13 @@ https://www.golinuxcloud.com/set-up-visual-studio-code-remote-ssh-github/
 
 - gitkraken
 
-╰─`yay gitkraken`
+❯ `yay gitkraken`
 
 https://aur.archlinux.org/packages/gitkraken
 
 - github desktop
 
-╰─`yay github-desktop-bin`
+❯ `yay github-desktop-bin`
 
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 
@@ -448,11 +490,11 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ### insomnia
 
-╰─`yay insomnia-bin`
+❯ `yay insomnia-bin`
 
 ### postman
 
-╰─`yay postman-bin`
+❯ `yay postman-bin`
 
 ### python env
 
@@ -462,13 +504,13 @@ https://github.com/pypa/pipenv
 
 https://wiki.archlinux.org/title/Python/Virtual_environment
 
-╰─`sudo pacman -S python-pipenv`
+❯ `sudo pacman -S python-pipenv`
 
 ### node & npm
 
 https://wiki.archlinux.org/title/Node.js
 
-╰─`sudo pacman -S nodejs npm`
+❯ `sudo pacman -S nodejs npm`
 
 ### Docker
 
@@ -476,27 +518,27 @@ https://wiki.archlinux.org/title/Docker#Installation
 
 for btrfs https://www.reddit.com/r/docker/comments/mba2c7/how_do_i_make_docker_work_nicely_with_btrfs_host/ , https://github.com/egara/arch-btrfs-installation   
 
-╰─`sudo pacman -S docker`
+❯ `sudo pacman -S docker`
 
-╰─`sudo systemctl enable docker.service`
+❯ `sudo systemctl enable docker.service`
 
-╰─`sudo systemctl enable containerd.service`
+❯ `sudo systemctl enable containerd.service`
 
-╰─`sudo systemctl start docker.service`
+❯ `sudo systemctl start docker.service`
 
-╰─`sudo systemctl start containerd.service`
+❯ `sudo systemctl start containerd.service`
 
-╰─`sudo docker info`
+❯ `sudo docker info`
 
 remove sudo
 
-╰─`sudo groupadd docker`
+❯ `sudo groupadd docker`
 
-╰─`sudo usermod -aG docker $USERTOADD`
+❯ `sudo usermod -aG docker $USERTOADD`
 
 REBOOT and test
 
-╰─`docker run hello-world`
+❯ `docker run hello-world`
 
 PORTAINER GUI 
 
@@ -508,7 +550,7 @@ https://www.portainer.io/casestudy/firstapp
 
 create volume
 
-╰─`docker volume create portainer_data`
+❯ `docker volume create portainer_data`
 
 pull/run container
 
@@ -523,17 +565,17 @@ docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /va
 
 
     
-╰─`docker ps`
+❯ `docker ps`
 
 - to update:
 
 NEW (from the docs https://docs.portainer.io/start/upgrade/docker)
 
-╰─`docker stop portainer`
+❯ `docker stop portainer`
 
-╰─`docker rm portainer`
+❯ `docker rm portainer`
 
-╰─`docker pull portainer/portainer-ce:latest`
+❯ `docker pull portainer/portainer-ce:latest`
 
 ```
 docker run -d -p 9000:9000 -p 9443:9443 \
@@ -545,7 +587,7 @@ docker run -d -p 9000:9000 -p 9443:9443 \
 
 go to http://localhost:9000 or https:9443
 
-╰─`yay portainer-bin`
+❯ `yay portainer-bin`
 
 ### fix containerd-shim hangs on reboot/shutdown
 
@@ -565,7 +607,7 @@ This will create `/etc/systemd/system/docker.service.d/override.conf`, which you
 
 ### libreoffice
 
-╰─`sudo pacman -S libreoffice-fresh` (`libreoffice-fresh-LANGUAGE`)
+❯ `sudo pacman -S libreoffice-fresh` (`libreoffice-fresh-LANGUAGE`)
 
 extensions `libreoffice-extension-texmaths libreoffice-extension-writer2latex`
 
@@ -577,13 +619,13 @@ fonts `ttf-dejavu noto-fonts`
 
 https://wiki.archlinux.org/title/Spotify#Installation
 
-╰─`yay spotify`
+❯ `yay spotify`
 
 ### authy (mfa)
 
 https://aur.archlinux.org/packages/authy
 
-╰─`yay authy`
+❯ `yay authy`
 
 ### kwallet
 
@@ -591,7 +633,7 @@ https://wiki.archlinux.org/title/KDE_Wallet
 
 https://wiki.archlinux.org/title/GNOME/Keyring#Troubleshooting
 
-╰─`sudo pacman -S khelpcenter kwallet kwalletmanager`
+❯ `sudo pacman -S khelpcenter kwallet kwalletmanager`
 
 ### grub themes
 
@@ -617,7 +659,7 @@ https://github.com/GhostNaN/mpvpaper
 
 ### manjaro theme
 
-╰─`yay breath-theme-git`  
+❯ `yay breath-theme-git`  
 
 plasma
 
@@ -637,7 +679,7 @@ https://wiki.manjaro.org/index.php/Pamac
 
 https://aur.archlinux.org/packages/pamac-aur/?O=10&PP=10
 
-╰─`yay pamac` also `pamac-tray-appindicator`
+❯ `yay pamac` also `pamac-tray-appindicator`
   
 ### window tiling
   
@@ -653,7 +695,7 @@ https://github.com/lingtjien/Grid-Tiling-Kwin
 
 ### Retroarch
 
-╰─`sudo pacman -S retroarch`
+❯ `sudo pacman -S retroarch`
 
 Open and close retroarch arch once, to ensure it creates the local directories
 
@@ -715,7 +757,7 @@ https://fontlibrary.org/en
 
 ### Basic fonts
 
-╰─`yay -S`
+❯ `yay -S`
 
 `cantarell-fonts ttf-fira-code ttf-merriweather ttf-merriweather-sans ttf-oswald ttf-carlito ttf-quintessential ttf-signika` Google Noto emoji fonts `noto-fonts-emoji`
 
