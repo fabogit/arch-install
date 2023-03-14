@@ -481,6 +481,8 @@ https://www.golinuxcloud.com/set-up-visual-studio-code-remote-ssh-github/
 
 ❯ `yay gitkraken`
 
+`> preferences > SSH > unmark use local SSH agent`
+
 https://aur.archlinux.org/packages/gitkraken
 
 - github desktop
