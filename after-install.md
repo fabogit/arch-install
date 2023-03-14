@@ -500,6 +500,12 @@ https://man.archlinux.org/man/gitcredentials.7
 
 ❯ `yay postman-bin`
 
+## ngrok
+
+https://ngrok.com/download
+
+❯ `yay ngrok`
+
 ### python env
 
 https://wiki.archlinux.org/title/python#Package_management
@@ -510,11 +516,15 @@ https://wiki.archlinux.org/title/Python/Virtual_environment
 
 ❯ `sudo pacman -S python-pipenv`
 
-### node & npm
+### nvm, node & npm
 
 https://wiki.archlinux.org/title/Node.js
 
 ❯ `sudo pacman -S nodejs npm`
+
+❯ `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash`
+
+❯ `source ~/.zshrc`
 
 ### Docker
 
