@@ -506,6 +506,8 @@ https://man.archlinux.org/man/gitcredentials.7
 
 https://ngrok.com/download
 
+https://dashboard.ngrok.com/get-started/setup
+
 ❯ `yay ngrok`
 
 ### python env
