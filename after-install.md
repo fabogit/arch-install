@@ -123,7 +123,7 @@ check if process is running
 
 if no processes, start it
 
-❯ `eval `ssh-agent`
+❯ `eval ssh-agent`
 
 generate key
 
