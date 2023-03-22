@@ -648,7 +648,7 @@ linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firef
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar vlc
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar kompare vlc
 ``` 
 in AUR repos `krecorder` option `audio-recorder` `kipi-plugins`
 
