@@ -16,6 +16,13 @@ uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
 
 ❯ `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
+
+==> after a grub update redo install and cfg
+
+❯ `sudo grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck`
+
+❯ `sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
 to improve SSD lifespan and performance in the long term
 
 ❯ `sudo systemctl enable fstrim.timer` 
