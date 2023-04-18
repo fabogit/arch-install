@@ -19,6 +19,15 @@ uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
 
 ==> after a grub update redo install and cfg
 
+```
+To use the new features provided in this GRUB update, it is recommended
+to install it to the MBR or UEFI. Due to potential configuration
+incompatibilities, it is advised to run both, installation and generation
+of configuration:
+$ grub-install ...
+$ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 ❯ `sudo grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck`
 
 ❯ `sudo grub-mkconfig -o /boot/grub/grub.cfg`
