@@ -424,6 +424,31 @@ check
 
 enjoy
 
+!!! akonadi https://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem
+
+`~/.config/akonadi/akonadiserverrc`
+
+```
+[Debug]
+Tracer=null
+
+[%General]
+Driver=QMYSQL
+
+[QMYSQL]
+Host=
+Name=akonadi_USERNAME
+Options="UNIX_SOCKET=/run/mysqld/mysqld.sock"
+User=USERNAME
+Password=PASSWORD
+ServerPath=/usr/bin/mysqld
+StartServer=false
+```
+
+- check status (or stop/start service)
+
+❯ `akonadictl status`
+
 sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
 
 ### DBEAVER
