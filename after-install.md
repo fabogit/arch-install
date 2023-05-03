@@ -425,6 +425,7 @@ check
 enjoy
 
 !!! akonadi https://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem
+!!! https://gist.github.com/aldolat/e8066baf8a390e5d5f5ed6e0849ec78c
 
 `~/.config/akonadi/akonadiserverrc`
 
