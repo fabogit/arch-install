@@ -185,6 +185,12 @@ Experimental = true
 
 also `KernelExperimental = true` if needed
 
+# FIRMWARE UPDATES
+
+❯ `sudo fwupdmgr get-updates`
+
+❯ `sudo fwupdmgr update`
+
 # PAKAGES
 
 ## PACMAN CHACE
