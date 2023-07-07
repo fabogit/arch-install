@@ -476,6 +476,26 @@ https://aur.archlinux.org/packages/mongodb-compass/
 
 ❯ `sudo systemctl start mongodb.service`
 
+
+- Check Locate native client
+
+Install mysql/mariadb
+
+Open terminal, then type `which mysql`
+
+result: `/usr/bin/mysql`
+
+Fix native client is not specified for connection
+
+Click "Local client"
+
+Select "Browse"
+
+Click "Add home"
+
+Navigate to locate mysql (default: `/usr/bin`) and click "Open"
+
+
 cli
 
 ❯ `mongosh` (or use legacy `mongo`)
