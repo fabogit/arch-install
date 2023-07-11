@@ -165,6 +165,8 @@ if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
 fi
 ```
 
+might also install `keychain` if is still not working
+
 ### Fix Discover not showing updates
 
 ❯ `sudo rm -rf /var/lib/PackageKit/alpm` && `sudo systemctl restart packagekit`
