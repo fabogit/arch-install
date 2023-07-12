@@ -821,6 +821,8 @@ apps (spa/pwa)
 
 for screensharing under wayland enable `WebRTC PipeWire support` in chrome://flags/
 
+for https on localhost: chrome://flags/#allow-insecure-localhost
+
 https://chrome.google.com/webstore/detail/gmail/pjkljhegncpnkpknbcohdijeoejaedia/related?hl=en
 
 https://chrome.google.com/webstore/detail/google-drive/apdfllckaahabafndbhieahigkjlhalf
