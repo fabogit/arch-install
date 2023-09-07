@@ -675,7 +675,9 @@ docker run -d -p 9000:9000 -p 9443:9443 \
 
 go to http://localhost:9000 or https:9443
 
-❯ `yay portainer-bin`
+otherwise install from aur (not needed if portainer container is running)
+
+❯ `yay portainer-bin` 
 
 ### fix containerd-shim hangs on reboot/shutdown
 
