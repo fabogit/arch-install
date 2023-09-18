@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	email = fabo.dev.email@gmail.com
+	email = 
 	name = fabogit
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
