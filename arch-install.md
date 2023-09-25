@@ -243,7 +243,9 @@ sudo chattr +C /var/lib/mysql &&
 sudo chattr +C /var/lib/postgres
 ```
 
-leave be `/var/lib/docker` https://forum.garudalinux.org/t/btrfs-docker-and-subvolumes/4601/25
+leave be `/var/lib/docker` https://forum.garudalinux.org/t/btrfs-docker-and-subvolumes/4601/25   
+
+https://docs.docker.com/storage/storagedriver/btrfs-driver/
 
 - mount system
 
