@@ -335,6 +335,8 @@ https://wiki.archlinux.org/title/snapper
 
 ❯ `yay` `thunderbird` `kmail` `google-chrome` `firefox`
 
+set env var to force wayland use: `https://wiki.archlinux.org/title/firefox`
+
 ### postgresql
 
 https://wiki.archlinux.org/title/PostgreSQL
