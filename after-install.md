@@ -466,6 +466,14 @@ sample dataset => https://www.mysqltutorial.org/mysql-sample-database.aspx
 
 ❯ `sudo pacman -S dbeaver`
 
+fix java version error: https://github.com/dbeaver/dbeaver/issues/15213
+
+❯ `java -version`
+
+❯ `archlinux-java status`
+
+❯ `sudo archlinux-java set <ENV_VERSION>`
+
 ### mongodb
 
 https://wiki.archlinux.org/title/MongoDB
