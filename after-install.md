@@ -216,7 +216,7 @@ See `paccache -h` for more options.
 
 ### TUXEDO REPO https://github.com/tuxedocomputers
 
-❯ `yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-keyboard`, `tuxedo-control-center-bin`
+❯ `yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-drivers-dkms`, `tuxedo-control-center-bin`
 
 https://www.reddit.com/r/tuxedocomputers/comments/qngn8r/manjaro_and_tuxedo_control_center/
 
