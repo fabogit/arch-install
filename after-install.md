@@ -616,6 +616,8 @@ https://wiki.archlinux.org/title/Docker#Installation
 
 for btrfs https://www.reddit.com/r/docker/comments/mba2c7/how_do_i_make_docker_work_nicely_with_btrfs_host/ , https://github.com/egara/arch-btrfs-installation   
 
+https://docs.docker.com/storage/storagedriver/btrfs-driver/
+
 ❯ `sudo pacman -S docker`
 
 ❯ `sudo systemctl enable docker.service`
