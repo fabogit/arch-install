@@ -615,18 +615,20 @@ xf86-video-amdgpu
 # 19 INSTALL KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
 
+=> `updated to use qt ver 5 packages`
+
 `pacman -S`
 
 from plasma-meta
 
 ```
-bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi sddm-kcm kio kio-extras systemsettings
+bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet5 kwalletmanager knotifications5 oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi sddm-kcm kio5 kio-extras systemsettings
 ```
 
 from plasma workspace
 
 ```
-kactivities-stats kactivitymanagerd kde-cli-tools kholidays kio-extras knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt
+kactivities-stats5 kactivitymanagerd kde-cli-tools kholidays5 knotifyconfig5 kpeople5 kquickcharts5 ksystemstats ktexteditor5 kuserfeedback5 kwin libkscreen libqalculate milou plasma-integration prison5 xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo5 extra-cmake-modules kdoctools5 kinit kunitconversion5 networkmanager-qt5
 ```
 
 wayland
