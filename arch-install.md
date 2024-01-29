@@ -796,6 +796,7 @@ https://www.jwillikers.com/btrfs-snapshot-management-with-snapper
  
 check for existing subvolumes `sudo btrfs subvolume list /` (unmount and delete `.snapshots` subvol)
 
+
 ## IGNORE, OUTDATED, KEEP JUST FOR REFERENCE
 
 (install `btrfs-assistant` then use the `SYNC_ACL` part after creating the config using the tool)
@@ -823,6 +824,8 @@ Click the “Save Config” button
 Set the retention limits you want. In particular you probably want to lower the amount of “Number” snapshots that are retained. These are the snapshots that are taken when pacman runs. It takes 2 snapshots in each run so something like 10 is probably a more reasonable number. That will give you 5 pacman runs. The timeline settings are entirely left to your preferences.
 
 Select the checkboxes for `snapper-timeline` and `snapper-cleanup` and click the “Apply” button to the right of the checkboxes.
+
+https://forum.garudalinux.org/t/is-there-a-way-to-theme-btrfs-assistant-and-snapper-tools/33376
 
 - Add support for booting off read-only snapshots
 
