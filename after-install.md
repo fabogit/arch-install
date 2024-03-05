@@ -59,7 +59,7 @@ will be applied after reboot
 
 ### shrink mkinitcpio preset file size enabling compression
 
-this will save space in `/boot`
+this will reduce the size of `/boot/initramfs-linux.img`
 
 ❯ `sudo nano /etc/mkinitcpio.conf`
 
