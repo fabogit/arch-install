@@ -56,6 +56,21 @@ add:
 
 will be applied after reboot
 
+
+### shrink mkinitcpio preset file size enabling compression
+
+this will save space in `/boot`
+
+❯ `sudo nano /etc/mkinitcpio.conf`
+
+```
+COMPRESSION="xz"
+COMPRESSION_OPTIONS=(-9e)
+```
+regen
+
+❯ `sudo mkinitcpio -P`
+
 ### fix cursor theme bug
 
 ❯ `sudo nano /usr/share/icons/default/index.theme`
