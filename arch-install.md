@@ -159,7 +159,7 @@ cfdisk /dev/nvme0n1
 
 => cfdisk `GPT`
 
-`/dev/EFIpartition`	size: 0.2G	type: `EFI System`
+`/dev/EFIpartition`	size: 0.3G	type: `EFI System`
 
 `/dev/swap`	size: 32G	type: `Linux Swap`
 
