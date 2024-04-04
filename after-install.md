@@ -1,4 +1,4 @@
-![image](https://github.com/fabogit/arch-install/assets/77982342/44885966-1997-4273-95c1-b4ad289a53a0)# AFTER INSTALL
+# AFTER INSTALL
 
 https://www.reddit.com/r/archlinux/comments/qzlfsu/what_are_some_postinstallation_optimizations_that/
 
