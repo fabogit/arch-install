@@ -82,6 +82,14 @@ change `Adwaita` to `breeze_cursor`
 Inherits=breeze_cursors
 ```
 
+### fix for `WARNING: Deprecated option 'ALL_microcode'`
+
+❯ `sudo nano /etc/mkinitcpio.conf`
+
+in `HOOKS` after `autodetect` add `microcode`
+
+❯ `sudo mkinitcpio -P`
+
 ### Sleep & Hibernate
 
 https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
