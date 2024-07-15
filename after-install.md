@@ -9,7 +9,7 @@ grub config
 add to `GRUB_CMDLINE_LINUX_DEFAULT="..."`
 
 ```
-"resume=UUID=<uuid#...> acpi_backlight=vendor xhci_hcd.quirks=1073741824 loglevel=3 mitigations=off"
+"resume=UUID=<uuid#...> acpi_backlight=vendor xhci_hcd.quirks=1073741824 loglevel=3 mitigationshttps://starship.rs/w=off"
 ```
 
 uncomment `GRUB_SAVEDEFAULT=true` set `GRUB_DEFAULT=saved`
@@ -307,7 +307,7 @@ https://aur.archlinux.org/packages/pacman-beep-hook
 
 ### powerlevel10k
 
-pw[w10k is now in maintenance mode ( alternative -> https://starship.rs/ )
+pwlv10k is now in maintenance mode ( alternative -> https://starship.rs/ )
 
 https://github.com/romkatv/powerlevel10k
 
