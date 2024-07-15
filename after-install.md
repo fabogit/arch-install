@@ -307,6 +307,8 @@ https://aur.archlinux.org/packages/pacman-beep-hook
 
 ### powerlevel10k
 
+pw[w10k is now in maintenance mode ( alternative -> https://starship.rs/ )
+
 https://github.com/romkatv/powerlevel10k
 
 install pwlv10k font
