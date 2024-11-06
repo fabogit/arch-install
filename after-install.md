@@ -94,6 +94,95 @@ then regenerate
 
 ❯ `sudo mkinitcpio -P`
 
+### fingerprint reader
+
+https://wiki.archlinux.org/title/SDDM
+
+install `sudo pacman -S fprintd` 
+
+❯ `sudo pacman -Qi fprintd`
+
+/etc/pam.d/login
+
+```
+#%PAM-1.0
+auth       substack     system-auth
+auth       include      postlogin
+account    required     pam_nologin.so
+account    include      system-auth
+password   include      system-auth
+# pam_selinux.so close should be the first session rule
+session    required     pam_selinux.so close
+session    required     pam_loginuid.so
+# pam_selinux.so open should only be followed by sessions to be executed in the user context
+session    required     pam_selinux.so open
+session    required     pam_namespace.so
+session    optional     pam_keyinit.so force revoke
+session    include      system-auth
+session    include      postlogin
+-session   optional     pam_ck_connector.so
+```
+
+/etc/pam.d/sudo  
+
+```
+#%PAM-1.0
+auth       include      system-auth
+account    include      system-auth
+password   include      system-auth
+session    optional     pam_keyinit.so revoke
+session    required     pam_limits.so
+session    include      system-auth
+```
+
+/etc/pam.d/kde
+
+```
+auth        substack      password-auth
+auth        include       postlogin
+
+account     required      pam_nologin.so
+account     include       password-auth
+
+password    include       password-auth
+
+session     required      pam_selinux.so close
+session     required      pam_loginuid.so
+session     required      pam_selinux.so open
+session     optional      pam_keyinit.so force revoke
+session     required      pam_namespace.so
+session     include       password-auth
+session     include       postlogin
+```
+
+/etc/pam.d/sddm
+
+```
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+auth        substack      password-auth
+-auth        optional      pam_gnome_keyring.so
+-auth        optional      pam_kwallet5.so
+-auth        optional      pam_kwallet.so
+auth        include       postlogin
+
+account     required      pam_nologin.so
+account     include       password-auth
+
+password    include       password-auth
+
+session     required      pam_selinux.so close
+session     required      pam_loginuid.so
+-session    optional    pam_ck_connector.so
+session     required      pam_selinux.so open
+session     optional      pam_keyinit.so force revoke
+session     required      pam_namespace.so
+session     include       password-auth
+-session     optional      pam_gnome_keyring.so auto_start
+-session     optional      pam_kwallet5.so auto_start
+-session     optional      pam_kwallet.so auto_start
+session     include       postlogin
+```
+
 ### Sleep & Hibernate
 
 https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
