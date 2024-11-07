@@ -683,7 +683,7 @@ The following packages enable preview thumbnails in dolphin
 - raw-thumbnailer: Raw image files from a camera
 
 ```
-dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt-imageformats kimageformats taglib libappimage
+dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt6-imageformats kimageformats taglib libappimage
 ```
 
 not in repos  `raw-thumbnailer`
