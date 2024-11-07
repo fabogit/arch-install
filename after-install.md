@@ -71,6 +71,14 @@ regen
 
 ❯ `sudo mkinitcpio -P`
 
+### Poweroff jobs timeout
+
+`/etc/systemd/system.conf` has a line
+
+`#DefaultTimeoutStopSec=90s`
+
+which can be uncommented and changed
+
 ### fix cursor theme bug
 
 ❯ `sudo nano /usr/share/icons/default/index.theme`
