@@ -167,6 +167,15 @@ cfdisk /dev/nvme0n1
 
 write & quit
 
+check `lsblk`
+
+```
+nvme0n1     259:0    0 931.5G  0 disk 
+├─nvme0n1p1 259:1    0     1G  0 part 
+├─nvme0n1p2 259:2    0    30G  0 part 
+└─nvme0n1p3 259:3    0 900.5G  0 part 
+```
+
 ...
 
 # 6 format partitions
