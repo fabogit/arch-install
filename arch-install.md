@@ -566,8 +566,10 @@ systemctl enable cups.service
 https://wiki.archlinux.org/title/GRUB#UEFI_systems
 
 ```
-pacman -S grub efibootmgr grub-customizer
+pacman -S grub efibootmgr
 ```
+
+extra  `grub-customizer`
 
 ```
 grub-install /dev/nvme0n1p1 --efi-directory=/boot --bootloader-id=arch-grub --recheck
