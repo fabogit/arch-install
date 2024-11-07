@@ -646,7 +646,7 @@ kactivitymanagerd kde-cli-tools kholidays knotifyconfig kpeople kquickcharts ksy
 wayland
 
 ```
-plasma-wayland-protocols kwayland-integration plasma-wayland-session wayland-protocols
+plasma-wayland-protocols kwayland-integration plasma-workspace wayland-protocols
 ```
 
 or `plasma-meta` pckg + wayland
