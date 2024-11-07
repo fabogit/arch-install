@@ -125,7 +125,7 @@ nvme0n1                 953.9G      disk    /dev        GPT     2000409264
 ```
 NAME                    SIZE        TYPE    MOUNTPOINTS FS      SECTORS
 nvme0n1                 953.9G      disk    /dev        GPT     2000409264
-├─nvme0n1p1             370M        part    /boot       f32     757760
+├─nvme0n1p1             370M        part    /boot       f32     77760
 └─nvme0n1p2             953.5G      part                lvm     1999649423
   ├─archVG-root         715.5G      lvm     /           ext4    1500512256
   └─archVG-swap         38G         lvm     [SWAP]      swap    79691776
@@ -594,7 +594,7 @@ https://wiki.archlinux.org/title/Xorg#Installation
 `pacman -S`
 
 ```
-xorg
+xorg xorg-xmessage xorg-xrdb xorg-xsetroot
 ```
 
 @extra `xorg-server xorg-apps`
@@ -615,358 +615,22 @@ xf86-video-amdgpu
 # 19 INSTALL KDE
 https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/title/Wayland
 
-
-=> `updated to use qt ver 5 packages`
-
-```
-Replace baloo5 with extra/baloo? [Y/n] 
-:: Replace breeze with extra/breeze5? [Y/n] 
-:: Replace kuserfeedback5 with extra/kuserfeedback? [Y/n] 
-:: Replace oxygen with extra/oxygen5? [Y/n] 
-:: Replace plasma-integration with extra/plasma5-integration? [Y/n] 
-:: Replace plasma-wayland-session with extra/plasma-workspace? [Y/n] 
-```
-qt6-multimedia-ffmpeg
-
-KDE6 update:
-```
-extra/accounts-qml-module          0.7-4             0.7-6               0.04 MiB       0.07 MiB
-extra/akonadi                      23.08.5-1         24.02.0-1           2.14 MiB       1.19 MiB
-extra/akonadi-calendar             23.08.5-1         24.02.0-1           0.42 MiB       1.07 MiB
-extra/akonadi-contacts             23.08.5-1         24.02.0-1           0.83 MiB       1.22 MiB
-extra/akonadi-contacts5                              23.08.5-2           1.29 MiB       0.36 MiB
-extra/akonadi-import-wizard        23.08.5-1         24.02.0-1           0.06 MiB       0.71 MiB
-extra/akonadi-mime                 23.08.5-1         24.02.0-1           0.07 MiB       0.56 MiB
-extra/akonadi-notes                23.08.5-1         24.02.0-1          -0.01 MiB       0.14 MiB
-extra/akonadi-search               23.08.5-1         24.02.0-1           0.13 MiB       1.00 MiB
-extra/appstream-qt                                   1.0.2-1             0.53 MiB       0.12 MiB
-extra/archlinux-appstream-data     20240112-1        20240306-1          0.42 MiB      18.93 MiB
-extra/ark                          23.08.5-1         24.02.0-1          -0.02 MiB       1.40 MiB
-extra/attica                                         6.0.0-1             1.73 MiB       0.73 MiB
-extra/baloo                                          6.0.0-3             2.44 MiB       0.64 MiB
-extra/baloo-widgets                23.08.5-1         24.02.0-1           0.06 MiB       0.14 MiB
-baloo5                             5.115.0-1                            -2.26 MiB               
-extra/bitwarden                    2024.2.0-1        2024.2.1-1          4.22 MiB       6.65 MiB
-extra/bluedevil                    1:5.27.10-3       1:6.0.1-1           0.09 MiB       0.51 MiB
-extra/bluez                        5.72-2            5.73-3             -0.09 MiB       0.54 MiB
-extra/bluez-libs                   5.72-2            5.73-3             -0.01 MiB       0.09 MiB
-extra/bluez-qt                                       6.0.0-1             2.43 MiB       1.03 MiB
-extra/breeze                       5.27.10-1         6.0.1-5             2.60 MiB      50.52 MiB
-breeze                             5.27.10-1                           -76.65 MiB               
-extra/breeze-gtk                   5.27.10-1         6.0.1.1-1           0.00 MiB       0.20 MiB
-extra/breeze-icons                 5.115.0-1         6.0.0-1             0.43 MiB       6.09 MiB
-extra/breeze5                                        6.0.1-5             0.50 MiB       0.17 MiB
-extra/cairo                        1.18.0-1          1.18.0-2           -0.04 MiB       0.59 MiB
-extra/calendarsupport              23.08.5-1         24.02.0-1           0.07 MiB       0.84 MiB
-extra/chromium                     122.0.6261.94-1   122.0.6261.111-1    0.00 MiB      98.03 MiB
-extra/clinfo                       3.0.21.02.21-1    3.0.23.01.25-1     -0.01 MiB       0.05 MiB
-core/cryptsetup                    2.7.0-3           2.7.1-1             0.01 MiB       0.73 MiB
-extra/digikam                      8.2.0-2           8.2.0-3            -0.66 MiB      25.77 MiB
-extra/discover                     5.27.10.1-1       6.0.1-1             0.97 MiB       1.22 MiB
-extra/docker-compose               2.24.6-1          2.24.7-1            0.03 MiB      12.73 MiB
-extra/dolphin                      23.08.5-1         24.02.0-2           0.51 MiB       4.51 MiB
-extra/dolphin-plugins              23.08.5-1         24.02.0-1           0.27 MiB       0.46 MiB
-extra/dragon                       23.08.5-1         24.02.0-1           0.07 MiB       1.71 MiB
-extra/drkonqi                      5.27.10-1         6.0.1-1             0.10 MiB       0.62 MiB
-extra/electron27                   27.3.4-4          27.3.5-1            0.00 MiB      62.95 MiB
-extra/elisa                        23.08.5-1         24.02.0-1           0.41 MiB       2.00 MiB
-extra/eventviews                   23.08.5-1         24.02.0-1           0.41 MiB       1.25 MiB
-extra/extra-cmake-modules          5.115.0-1         6.0.0-1            -0.21 MiB       0.30 MiB
-core/fakeroot                      1.33-2            1.34-1             -0.01 MiB       0.07 MiB
-extra/ffmpegthumbs                 23.08.5-1         24.02.0-1           0.00 MiB       0.03 MiB
-extra/filelight                    23.08.5-1         24.02.0-1           0.06 MiB       0.76 MiB
-extra/firefox-developer-edition    124.0b7-1         124.0b9-1          -0.50 MiB      68.00 MiB
-extra/frameworkintegration                           6.0.0-1             0.24 MiB       0.07 MiB
-extra/futuresql-qt6                                  0.1.1-2             0.07 MiB       0.02 MiB
-extra/ghostscript                  10.02.1-1         10.03.0-1          -0.51 MiB      19.58 MiB
-extra/go                           2:1.22.0-1        2:1.22.1-1          0.01 MiB      38.69 MiB
-extra/grantleetheme                23.08.5-1         24.02.0-1           0.02 MiB       0.19 MiB
-extra/grantleetheme5                                 23.08.5-2           0.16 MiB       0.05 MiB
-extra/gst-plugins-base             1.22.10-1         1.24.0-1            0.00 MiB       0.31 MiB
-extra/gst-plugins-base-libs        1.22.10-1         1.24.0-1            0.43 MiB       2.24 MiB
-extra/gstreamer                    1.22.10-1         1.24.0-1            1.70 MiB       2.24 MiB
-extra/gwenview                     23.08.5-1         24.02.0-3           0.34 MiB       6.91 MiB
-extra/incidenceeditor              23.08.5-1         24.02.0-1           0.16 MiB       0.77 MiB
-extra/kaccounts-integration        23.08.5-1         24.02.0-1           0.03 MiB       0.14 MiB
-extra/kactivitymanagerd            5.27.10-1         6.0.1-1             0.07 MiB       0.20 MiB
-extra/karchive                                       6.0.0-1             1.06 MiB       0.41 MiB
-extra/kate                         23.08.5-1         24.02.0-3           2.73 MiB      10.09 MiB
-extra/kauth                                          6.0.0-2             0.71 MiB       0.29 MiB
-extra/kbackup                      23.08.5-1         24.02.0-1           0.10 MiB       0.53 MiB
-extra/kbookmarks                                     6.0.0-1             1.07 MiB       0.42 MiB
-extra/kcalc                        23.08.5-1         24.02.0-1           0.08 MiB       0.67 MiB
-extra/kcalendarcore                                  6.0.0-1             3.42 MiB       1.38 MiB
-extra/kcalutils                    23.08.5-1         24.02.0-1           0.06 MiB       0.46 MiB
-extra/kcharselect                  23.08.5-1         24.02.0-1           0.01 MiB       0.41 MiB
-extra/kcmutils                                       6.0.0-2             1.39 MiB       0.48 MiB
-extra/kcodecs                                        6.0.0-1             1.00 MiB       0.34 MiB
-extra/kcolorpicker                                   0.3.1-4             0.08 MiB       0.03 MiB
-extra/kcolorpicker-qt5             0.3.0-3           0.3.1-4             0.00 MiB       0.02 MiB
-extra/kcolorscheme                                   6.0.0-1             0.42 MiB       0.20 MiB
-extra/kcompletion                                    6.0.0-1             1.07 MiB       0.59 MiB
-extra/kconfig                                        6.0.0-1             3.11 MiB       1.22 MiB
-extra/kconfigwidgets                                 6.0.0-1             1.97 MiB       0.76 MiB
-extra/kcontacts                                      1:6.0.0-1           2.08 MiB       0.79 MiB
-extra/kcoreaddons                                    6.0.0-1             3.15 MiB       1.23 MiB
-extra/kcrash                                         6.0.0-1             0.23 MiB       0.12 MiB
-extra/kcron                        23.08.5-1         24.02.0-1           0.03 MiB       0.99 MiB
-extra/kdav                                           1:6.0.0-1           1.02 MiB       0.49 MiB
-extra/kdbusaddons                                    6.0.0-1             0.44 MiB       0.20 MiB
-extra/kde-cli-tools                5.27.10-1         6.0.1-1            -0.65 MiB       0.86 MiB
-extra/kde-gtk-config               5.27.10-1         6.0.1-1             0.01 MiB       0.08 MiB
-extra/kde-inotify-survey           23.08.5-1         24.02.0-1           0.00 MiB       0.05 MiB
-extra/kde-system-meta              23.08-1           24.02-2             0.00 MiB       0.00 MiB
-extra/kdeclarative                                   6.0.0-1             0.82 MiB       0.27 MiB
-extra/kdeconnect                   23.08.5-1         24.02.0-2           1.09 MiB       1.27 MiB
-extra/kdecoration                  5.27.10-1         6.0.1-1             0.03 MiB       0.08 MiB
-extra/kded                                           6.0.0-1             0.11 MiB       0.05 MiB
-extra/kdegraphics-mobipocket       23.08.5-1         24.02.0-1           0.00 MiB       0.02 MiB
-extra/kdegraphics-thumbnailers     23.08.5-1         24.02.0-1           0.01 MiB       0.04 MiB
-extra/kdepim-addons                23.08.5-1         24.02.0-1          14.81 MiB       4.55 MiB
-extra/kdepim-runtime               23.08.5-1         24.02.0-1           0.77 MiB       3.21 MiB
-extra/kdeplasma-addons             5.27.10-2         6.0.1-1             0.29 MiB       1.16 MiB
-extra/kdesu                                          6.0.0-1             0.51 MiB       0.23 MiB
-extra/kdf                          23.08.5-1         24.02.0-1           0.00 MiB       0.62 MiB
-extra/kdiagram                                       3.0.1-3             6.10 MiB       3.02 MiB
-extra/kdialog                      23.08.5-1         24.02.0-1           0.02 MiB       0.15 MiB
-extra/kdnssd                                         6.0.0-1             0.62 MiB       0.31 MiB
-extra/kdoctools                                      6.0.0-1             2.51 MiB       0.56 MiB
-extra/kdsoap-qt6                                     2.2.0-1             1.28 MiB       0.45 MiB
-extra/kdsoap-ws-discovery-client                     0.4.0-1             0.90 MiB       0.29 MiB
-extra/kfilemetadata                                  6.0.0-2             1.52 MiB       0.42 MiB
-extra/kfind                        23.08.5-1         24.02.0-1          -0.12 MiB       0.42 MiB
-extra/kgamma                       5.27.10-2         6.0.1-1            -0.08 MiB       0.15 MiB
-extra/kglobalaccel                                   6.0.0-1             0.48 MiB       0.21 MiB
-extra/kglobalaccel5                5.115.0-1         5.115.0-3          -0.06 MiB       0.25 MiB
-extra/kglobalacceld                                  6.0.1-1             0.29 MiB       0.09 MiB
-extra/kguiaddons                                     6.0.0-2             0.80 MiB       0.37 MiB
-extra/kguiaddons5                  5.115.0-1         5.115.0-2          -0.05 MiB       0.33 MiB
-extra/khelpcenter                  23.08.5-1         24.02.0-1          -9.90 MiB       3.60 MiB
-extra/kholidays                                      1:6.0.0-1           1.15 MiB       0.41 MiB
-extra/ki18n                                          6.0.0-1            17.73 MiB       1.96 MiB
-extra/kiconthemes                                    6.0.0-1             1.21 MiB       0.53 MiB
-extra/kidentitymanagement          23.08.5-1         24.02.0-1           0.54 MiB       0.48 MiB
-extra/kidletime                                      6.0.0-1             0.38 MiB       0.16 MiB
-extra/kimageannotator                                0.7.1-2             1.64 MiB       0.39 MiB
-extra/kimageannotator-qt5          0.7.0-3           0.7.1-2             0.00 MiB       0.36 MiB
-extra/kimap                        23.08.5-1         24.02.0-1           0.13 MiB       0.64 MiB
-extra/kinfocenter                  5.27.10-1         6.0.1-1            -0.77 MiB       0.93 MiB
-extra/kio                                            6.0.0-2            22.02 MiB       6.30 MiB
-extra/kio-admin                    23.08.5-1         24.02.0-1           0.02 MiB       0.07 MiB
-extra/kio-extras                   23.08.5-1         24.02.0-1           2.51 MiB       1.90 MiB
-extra/kio-fuse                     5.1.0-1           5.1.0-3             0.00 MiB       0.07 MiB
-extra/kio5                         5.115.0-1         5.115.0-3          -0.12 MiB       8.08 MiB
-extra/kirigami                                       6.0.0-2             4.20 MiB       1.10 MiB
-extra/kirigami-addons                                1.0.1-1             2.49 MiB       0.48 MiB
-extra/kitemmodels                                    6.0.0-1             1.05 MiB       0.58 MiB
-extra/kitemviews                                     6.0.0-1             0.88 MiB       0.47 MiB
-extra/kitinerary                   23.08.5-1         24.02.0-1           1.41 MiB       2.40 MiB
-extra/kjobwidgets                                    6.0.0-1             0.78 MiB       0.32 MiB
-extra/kjournald                    23.08.5-1         24.02.0-1           0.09 MiB       0.16 MiB
-extra/kldap                        23.08.5-1         24.02.0-1           0.26 MiB       0.63 MiB
-extra/kmag                         23.08.5-1         24.02.0-1           0.02 MiB       0.80 MiB
-extra/kmailtransport               23.08.5-1         24.02.0-1           0.09 MiB       0.49 MiB
-extra/kmbox                        23.08.5-1         24.02.0-1           0.00 MiB       0.14 MiB
-extra/kmenuedit                    5.27.10-1         6.0.1-1            -0.03 MiB       1.05 MiB
-extra/kmime                        23.08.5-1         24.02.0-1          -0.01 MiB       0.27 MiB
-extra/kmime5                                         23.08.5-2           0.62 MiB       0.23 MiB
-core/kmod                          31-1              32-1                0.00 MiB       0.12 MiB
-extra/knewstuff                                      6.0.0-3             3.18 MiB       0.93 MiB
-extra/knotes                       23.08.5-1         24.02.0-1           0.12 MiB       0.69 MiB
-extra/knotifications                                 6.0.0-1             0.65 MiB       0.29 MiB
-extra/knotifyconfig                                  6.0.0-1             0.38 MiB       0.18 MiB
-extra/kompare                      23.08.5-1         24.02.0-1           0.00 MiB       0.89 MiB
-extra/konsole                      23.08.5-1         24.02.0-1           0.64 MiB       1.97 MiB
-extra/kontactinterface             23.08.5-1         24.02.0-1           0.06 MiB       0.27 MiB
-extra/kontrast                     23.08.5-1         24.02.0-1           0.03 MiB       0.18 MiB
-extra/kpackage                                       6.0.0-1             0.91 MiB       0.33 MiB
-extra/kparts                                         6.0.0-1             1.14 MiB       0.57 MiB
-extra/kpeople                                        6.0.0-1             0.99 MiB       0.43 MiB
-extra/kpimtextedit                 23.08.5-1         24.02.0-1          -0.59 MiB       0.45 MiB
-extra/kpipewire                    5.27.10-1         6.0.1.1-1           0.13 MiB       0.12 MiB
-extra/kpkpass                      23.08.5-1         24.02.0-1           0.05 MiB       0.20 MiB
-extra/kpmcore                      23.08.5-1         24.02.0-1           0.10 MiB       0.69 MiB
-extra/kpty                                           6.0.0-1             0.40 MiB       0.21 MiB
-extra/kquickcharts                                   6.0.0-1             0.60 MiB       0.17 MiB
-extra/kruler                       23.08.5-1         24.02.0-1           0.01 MiB       0.29 MiB
-extra/krunner                                        6.0.0-1             0.78 MiB       0.40 MiB
-extra/ksanecore                    23.08.5-1         24.02.0-1           0.03 MiB       0.09 MiB
-extra/ksanecore5                                     24.02.0-1           0.18 MiB       0.06 MiB
-extra/kscreen                      5.27.10-1         6.0.1-1             0.06 MiB       0.29 MiB
-extra/kscreenlocker                5.27.10-1         6.0.1-1             0.11 MiB       0.23 MiB
-extra/kservice                                       6.0.0-1             0.94 MiB       0.41 MiB
-extra/ksmtp                        23.08.5-1         24.02.0-1           0.02 MiB       0.20 MiB
-extra/ksshaskpass                  5.27.10-1         6.0.1-1             0.01 MiB       0.03 MiB
-extra/kstatusnotifieritem                            6.0.0-2             0.56 MiB       0.24 MiB
-extra/ksvg                                           6.0.0-1             0.75 MiB       0.33 MiB
-extra/ksystemlog                   23.08.5-1         24.02.0-1           0.15 MiB       2.14 MiB
-extra/ksystemstats                 5.27.10-1         6.0.1-1             0.16 MiB       0.23 MiB
-extra/ktextaddons                  1.5.3-1           1.5.3-4             0.20 MiB       1.22 MiB
-extra/ktexteditor                                    6.0.0-2            14.26 MiB       3.54 MiB
-extra/ktexttemplate                                  6.0.0-1             2.46 MiB       1.35 MiB
-extra/ktextwidgets                                   6.0.0-1             2.09 MiB       0.80 MiB
-extra/ktimer                       23.08.5-1         24.02.0-1           0.02 MiB       0.45 MiB
-extra/ktnef                        23.08.5-1         24.02.0-1           0.00 MiB       0.33 MiB
-extra/ktorrent                     23.08.5-1         24.02.0-1           0.21 MiB       2.68 MiB
-extra/kunitconversion                                6.0.0-1            10.97 MiB       1.06 MiB
-extra/kuserfeedback                                  6.0.0-2             2.50 MiB       0.51 MiB
-kuserfeedback5                     1.3.0-4                              -2.31 MiB               
-extra/kwallet                                        6.0.0-3             2.47 MiB       0.60 MiB
-extra/kwallet-pam                  5.27.10-1         6.0.1-1             0.00 MiB       0.01 MiB
-extra/kwallet5                     5.115.0-1         5.115.0-2          -0.06 MiB       0.56 MiB
-extra/kwalletmanager               23.08.5-1         24.02.0-1           0.03 MiB       1.00 MiB
-extra/kwayland                                       6.0.1-1             3.37 MiB       1.50 MiB
-extra/kwayland-integration         5.27.10-1         6.0.1-1             0.03 MiB       0.04 MiB
-extra/kwidgetsaddons                                 6.0.0-1             9.24 MiB       4.73 MiB
-extra/kwin                         5.27.10-2         6.0.1-1             2.47 MiB      10.38 MiB
-extra/kwindowsystem                                  6.0.0-1             1.76 MiB       0.79 MiB
-extra/kxmlgui                                        6.0.0-1             4.24 MiB       1.59 MiB
-extra/layer-shell-qt               5.27.10-1         6.0.1-1             0.04 MiB       0.03 MiB
-extra/libaccounts-qt               1.16-3            1.16-5              0.04 MiB       0.06 MiB
-extra/libakonadi                   23.08.5-1         24.02.0-1           1.33 MiB       4.18 MiB
-extra/libakonadi5                                    23.08.5-2           4.64 MiB       1.23 MiB
-extra/libdisplay-info                                0.1.1-3             0.33 MiB       0.10 MiB
-extra/libfabric                    1.20.0-1          1.20.1-1           -0.18 MiB       1.32 MiB
-extra/libgravatar                  23.08.5-1         24.02.0-1           0.00 MiB       0.13 MiB
-extra/libid3tag                    0.15.1b-12        0.16.3-2           -0.03 MiB       0.04 MiB
-extra/libjxl                       0.10.1-1          0.10.2-1            0.00 MiB       1.77 MiB
-extra/libkdcraw                                      24.02.0-1           0.13 MiB       0.04 MiB
-extra/libkdcraw5                   23.08.5-1         24.02.0-1           0.00 MiB       0.04 MiB
-extra/libkdepim                    23.08.5-1         24.02.0-1           0.16 MiB       0.44 MiB
-extra/libkexiv2                    23.08.5-1         24.02.0-1           0.03 MiB       0.14 MiB
-extra/libkgapi                     23.08.5-1         24.02.0-1           0.19 MiB       2.14 MiB
-extra/libkleo                      23.08.5-1         24.02.0-1           0.31 MiB       1.31 MiB
-extra/libkomparediff2              23.08.5-1         24.02.0-1           0.00 MiB       0.11 MiB
-extra/libksane                     23.08.5-1         24.02.0-1          -0.03 MiB       0.16 MiB
-extra/libkscreen                   5.27.10-1         6.0.1-1             0.06 MiB       0.41 MiB
-extra/libksieve                    23.08.5-1         24.02.0-1           0.82 MiB       1.30 MiB
-extra/libksysguard                 5.27.10-1         6.0.1-1            -4.44 MiB       0.55 MiB
-extra/libktorrent                  23.08.5-1         24.02.0-1           0.17 MiB       0.75 MiB
-extra/libmaxminddb                                   1.9.1-1             0.04 MiB       0.02 MiB
-extra/libnewt                      0.52.23-2         0.52.24-1           0.00 MiB       0.09 MiB
-extra/libpackagekit-glib           1.2.8-2           1.2.8-4             0.00 MiB       0.21 MiB
-extra/libplasma                                      6.0.1-1             6.26 MiB       2.93 MiB
-extra/libplist                     2.3.0-2           2.4.0-1             0.07 MiB       0.16 MiB
-extra/libqaccessibilityclient-qt6                    0.6.0-1             0.32 MiB       0.10 MiB
-extra/libreoffice-fresh            24.2.0-2          24.2.1-2          -21.14 MiB     147.36 MiB
-core/linux                         6.7.8.arch1-1     6.7.9.arch1-1      -0.04 MiB     130.85 MiB
-core/linux-headers                 6.7.8.arch1-1     6.7.9.arch1-1       0.00 MiB      25.33 MiB
-extra/llvm-libs                    16.0.6-1          17.0.6-2           -3.04 MiB      31.61 MiB
-extra/lsof                         4.99.0-1          4.99.3-1            0.00 MiB       0.14 MiB
-extra/mailcommon                   23.08.5-1         24.02.0-1           0.53 MiB       1.67 MiB
-extra/mailimporter                 23.08.5-1         24.02.0-1           0.07 MiB       0.55 MiB
-extra/marble-common                23.08.5-1         24.02.0-2           0.39 MiB      45.49 MiB
-extra/markdownpart                 23.08.5-1         24.02.0-1           0.00 MiB       0.04 MiB
-extra/mesa                         1:24.0.2-1        1:24.0.2-2          0.01 MiB      18.44 MiB
-extra/messagelib                   23.08.5-1         24.02.0-1           1.34 MiB       9.29 MiB
-extra/milou                        5.27.10-1         6.0.1-1            -0.01 MiB       0.08 MiB
-extra/modemmanager-qt                                6.0.0-1             1.47 MiB       0.59 MiB
-extra/networkmanager-qt                              6.0.0-1             3.87 MiB       1.74 MiB
-extra/nodejs                       21.6.2-1          21.7.0-1           -1.07 MiB      11.99 MiB
-extra/ocean-sound-theme                              6.0.1-1             1.17 MiB       1.05 MiB
-extra/okular                       23.08.5-1         24.02.0-2           0.69 MiB       7.27 MiB
-extra/openexr                      3.2.2-1           3.2.3-1             0.03 MiB       1.21 MiB
-extra/oxygen                       5.27.10-1         6.0.1-4             0.17 MiB       2.96 MiB
-oxygen                             5.27.10-1                           -17.76 MiB               
-extra/oxygen-sounds                5.27.10-1         6.0.1-1             0.05 MiB       1.85 MiB
-extra/oxygen5                                        6.0.1-4             1.02 MiB       0.29 MiB
-extra/packagekit                   1.2.8-2           1.2.8-4             0.00 MiB       0.52 MiB
-extra/pacman-contrib               1.10.4-1          1.10.4-3            0.00 MiB       0.05 MiB
-extra/pango                        1:1.52.0-1        1:1.52.1-1          0.00 MiB       0.39 MiB
-extra/partitionmanager             23.08.5-1         24.02.0-1           0.94 MiB       2.20 MiB
-extra/phonon-qt5                   4.12.0-3          4.12.0-4           -0.50 MiB       0.23 MiB
-extra/phonon-qt6                                     4.12.0-4            1.65 MiB       0.41 MiB
-extra/phonon-qt6-vlc                                 0.12.0-2            0.32 MiB       0.11 MiB
-extra/pimcommon                    23.08.5-1         24.02.0-1           0.62 MiB       1.32 MiB
-extra/plasma-activities                              6.0.1-1             0.73 MiB       0.30 MiB
-extra/plasma-activities-stats                        6.0.1-1             0.61 MiB       0.29 MiB
-extra/plasma-browser-integration   5.27.10-1         6.0.1-1             0.06 MiB       0.15 MiB
-extra/plasma-desktop               5.27.10-1         6.0.1-1            -0.75 MiB      15.85 MiB
-extra/plasma-disks                 5.27.10-1         6.0.1-1             0.11 MiB       0.14 MiB
-extra/plasma-firewall              5.27.10-1         6.0.1-1             0.07 MiB       0.47 MiB
-extra/plasma-framework5            5.115.0-1         5.115.0-3          -3.65 MiB       1.80 MiB
-extra/plasma-integration           5.27.10-1         6.0.1-4            -0.07 MiB       0.14 MiB
-plasma-integration                 5.27.10-1                            -0.54 MiB               
-extra/plasma-nm                    5.27.10-1         6.0.1-1             0.73 MiB       1.50 MiB
-extra/plasma-pa                    5.27.10-1         6.0.1-1             0.08 MiB       0.28 MiB
-extra/plasma-systemmonitor         5.27.10-1         6.0.1-1             0.74 MiB       0.39 MiB
-extra/plasma-vault                 5.27.10-1         6.0.1-1             0.08 MiB       0.33 MiB
-plasma-wayland-session             5.27.10-2                             0.00 MiB               
-extra/plasma-workspace             5.27.10-2         6.0.1-1             2.60 MiB      20.43 MiB
-extra/plasma-workspace-wallpapers  5.27.10-1         6.0.1-1            15.32 MiB     104.96 MiB
-extra/plasma5-integration                            6.0.1-4             0.38 MiB       0.12 MiB
-extra/plasma5support                                 6.0.1-1             0.75 MiB       0.31 MiB
-extra/polkit-kde-agent             5.27.10-1         6.0.1-1            -0.04 MiB       0.07 MiB
-extra/polkit-qt6                                     0.200.0-1           0.35 MiB       0.09 MiB
-extra/poppler-qt6                                    24.01.0-1           0.70 MiB       0.21 MiB
-extra/powerdevil                   5.27.10-2         6.0.1-1            -0.35 MiB       0.88 MiB
-extra/print-manager                23.08.5-1         1:6.0.1-1           0.15 MiB       0.52 MiB
-extra/prison                                         6.0.0-1             0.65 MiB       0.23 MiB
-core/psmisc                        23.6-1            23.7-1              0.05 MiB       0.25 MiB
-extra/pulseaudio-qt                1.4.0-1           1.4.0-3             0.10 MiB       0.29 MiB
-extra/purpose                                        6.0.0-1             1.56 MiB       0.35 MiB
-extra/purpose5                     5.115.0-1         5.115.0-3          -0.10 MiB       0.32 MiB
-extra/python-pygdbmi                                 0.11.0.0-3          0.15 MiB       0.04 MiB
-extra/python-sentry_sdk                              1.40.6-1            2.93 MiB       0.46 MiB
-extra/qca-qt6                                        2.3.8-2             3.31 MiB       0.84 MiB
-extra/qcoro-qt6                                      0.10.0-1            0.65 MiB       0.13 MiB
-core/qgpgme-qt6                                      1.23.2-1            1.15 MiB       0.27 MiB
-extra/qqc2-breeze-style                              6.0.1-1             2.13 MiB       0.36 MiB
-extra/qqc2-desktop-style                             6.0.0-1             1.89 MiB       0.35 MiB
-extra/qt5-tools                    5.15.12+kde+r4-1  5.15.12+kde+r4-2   -0.35 MiB       5.29 MiB
-extra/qt6-5compat                                    6.6.2-1             1.61 MiB       0.44 MiB
-extra/qt6-declarative                                6.6.2-1            81.56 MiB      12.10 MiB
-extra/qt6-multimedia                                 6.6.2-1             4.77 MiB       0.92 MiB
-extra/qt6-multimedia-ffmpeg                          6.6.2-1             0.47 MiB       0.17 MiB
-extra/qt6-networkauth                                6.6.2-1             0.30 MiB       0.08 MiB
-extra/qt6-positioning                                6.6.2-1             1.59 MiB       0.36 MiB
-extra/qt6-sensors                                    6.6.2-1             1.05 MiB       0.18 MiB
-extra/qt6-shadertools                                6.6.2-1             3.88 MiB       1.33 MiB
-extra/qt6-speech                                     6.6.2-1             0.50 MiB       0.12 MiB
-extra/qt6-tools                                      6.6.2-2            18.27 MiB       5.96 MiB
-extra/qt6-virtualkeyboard                            6.6.2-2             5.43 MiB       2.38 MiB
-extra/qt6-wayland                                    6.6.2-1             6.90 MiB       1.09 MiB
-extra/qt6-webchannel                                 6.6.2-1             0.41 MiB       0.12 MiB
-extra/qt6-webengine                                  6.6.2-1           196.43 MiB      64.89 MiB
-extra/qt6-websockets                                 6.6.2-1             0.35 MiB       0.10 MiB
-extra/qt6-webview                                    6.6.2-1             0.39 MiB       0.08 MiB
-extra/qtkeychain-qt6                                 0.14.2-1            0.24 MiB       0.07 MiB
-extra/sddm                         0.20.0-4          0.21.0-4            0.75 MiB       3.54 MiB
-extra/sddm-kcm                     5.27.10-1         6.0.1-1             0.03 MiB       0.13 MiB
-extra/sdl2                         2.30.0-1          2.30.1-1           -0.09 MiB       0.97 MiB
-extra/signon-kwallet-extension     23.08.5-1         24.02.0-1           0.00 MiB       0.01 MiB
-extra/signon-plugin-oauth2         0.25-1            0.25-3              0.01 MiB       0.08 MiB
-extra/signon-ui                    0.17+20171022-3   0.17+20231016-2     0.04 MiB       0.09 MiB
-extra/signond                      8.61-1            8.61-3              0.16 MiB       0.36 MiB
-extra/skanlite                     23.08.5-1         24.02.0-1           0.00 MiB       2.43 MiB
-extra/socat                        1.7.4.4-1         1.8.0.0-1           0.01 MiB       0.20 MiB
-extra/solid                                          6.0.0-1             2.61 MiB       0.87 MiB
-extra/sonnet                                         6.0.0-1             2.15 MiB       0.67 MiB
-extra/spectacle                    23.08.5-1         24.02.0-2           1.25 MiB       1.73 MiB
-extra/sweeper                      23.08.5-1         24.02.0-1           0.00 MiB       0.41 MiB
-extra/syndication                                    6.0.0-1             1.45 MiB       0.65 MiB
-extra/syntax-highlighting                            6.0.0-2            10.27 MiB       1.51 MiB
-extra/syntax-highlighting5         5.115.0-1         5.115.0-2          -8.51 MiB       0.51 MiB
-extra/systemsettings               5.27.10-1         6.0.1-1            -0.06 MiB       0.36 MiB
-extra/threadweaver                                   6.0.0-1             0.86 MiB       0.45 MiB
-extra/xdg-desktop-portal-kde       5.27.10-1         6.0.1-1             0.31 MiB       0.37 MiB
-extra/xsettingsd                                     1.0.2-1             0.08 MiB       0.03 MiB
-```
-
-
 `pacman -S`
 
 from plasma-meta
 
 ```
-bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma khotkeys kinfocenter kscreen ksshaskpass kwallet-pam kwallet5 kwalletmanager knotifications5 oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi sddm-kcm kio5 kio-extras systemsettings
+bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi sddm-kcm kio kio-extras systemsettings
 ```
+(khotkeys is unmantained)
 
 from plasma workspace
 
 ```
-kactivities-stats5 kactivitymanagerd kde-cli-tools kholidays5 knotifyconfig5 kpeople5 kquickcharts5 ksystemstats ktexteditor5 kuserfeedback5 kwin libkscreen libqalculate milou plasma-integration prison5 xorg-xmessage xorg-xrdb xorg-xsetroot appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo5 extra-cmake-modules kdoctools5 kinit kunitconversion5 networkmanager-qt5
+kactivitymanagerd kde-cli-tools kholidays knotifyconfig kpeople kquickcharts ksystemstats ktexteditor kuserfeedback kwin libkscreen libqalculate milou plasma-integration prison appmenu-gtk-module plasma-workspace-wallpapers kdepim-addons baloo extra-cmake-modules kdoctools kinit kunitconversion networkmanager-qt
 ```
+
+`kactivities-stats5`
 
 wayland
 
@@ -983,15 +647,15 @@ or `plasma-meta` pckg + wayland
 `pacman -S`
 
 ```
-linux-headers git curl wget bash-completion konsole usbutils neofetch tmux firefox-developer-edition chromium nm-connection-editor dosfstools exfatprogs  firewalld kdf
+linux-headers git curl wget bash-completion konsole usbutils fastfetch tmux firefox-developer-edition chromium nm-connection-editor dosfstools exfatprogs  firewalld kdf power-profiles-daemon wireless-regdb
 ```
 
 and
 
 ```
-kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kbackup kcalc kfind kmag knotes ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kalendar kompare vlc
+kde-system-meta dnsmasq ark zip unzip p7zip dolphin kate kbackup kcalc kfind kmag ktimer ktorrent dragon elisa gwenview spectacle okular digikam filelight kruler skanlite kontrast sweeper kcharselect markdownpart kdialog xdg-utils xdg-user-dirs kdeconnect sshfs print-manager kompare vlc colord-kde
 ``` 
-in AUR repos `krecorder` option `audio-recorder` `kipi-plugins`
+in AUR repos `krecorder knotes` option `audio-recorder` `kipi-plugins`
 
 image editing `kcolorchooser kolourpaint krita inkscape gimp` video `kdenlive obs-studio` camera `kamera plasma-camera kamoso`
 
@@ -1001,14 +665,14 @@ The following packages enable preview thumbnails in dolphin
 
 - ffmpegthumbs: video thumbnails
 - kdegraphics-thumbnailers: PDF and PS thumbnails
-- qt5-imageformats: thumbnails for additional image formats
+- qt-imageformats: thumbnails for additional image formats
 - kimageformats: thumbnails for additional image formats
 - taglib: audio file thumbnails
 - libappimage: AppImage thumbnails
 - raw-thumbnailer: Raw image files from a camera
 
 ```
-dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt5-imageformats kimageformats taglib libappimage
+dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers qt-imageformats kimageformats taglib libappimage
 ```
 
 not in repos  `raw-thumbnailer`
