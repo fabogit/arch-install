@@ -10,7 +10,7 @@ loadkeys us
 
 # 2 CHECK NETWORK
 
-`ip link` or `ip a`
+`ip link` or `ip -c a`
 
 ```
 ping -c 3 archlinux.org
