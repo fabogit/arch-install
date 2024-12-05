@@ -338,6 +338,13 @@ See `paccache -h` for more options.
 
 ❯ `yay -Scc`
 
+### Fan control
+
+https://aur.archlinux.org/packages/fw-fanctrl-git
+https://github.com/TamtamHero/fw-fanctrl/blob/main/doc/configuration.md
+
+❯ `yay fw-fanctrl`
+
 ### TUXEDO REPO https://github.com/tuxedocomputers
 
 ❯ `yay tuxedo` or `tuxedo-touchpad-switch`, `tuxedo-drivers-dkms`, `tuxedo-control-center-bin`
