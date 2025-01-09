@@ -842,6 +842,21 @@ Wants=containerd.service
 
 This will create `/etc/systemd/system/docker.service.d/override.conf`, which you’ll also see listed in `systemctl status docker`.
 
+
+### k8s
+
+❯ `sudo pacman -S kubectl minikube helm`
+
+
+`minikube version` 
+
+start using docker
+
+`minikube start --driver=docker`
+
+`minikube status`
+
+
 ### libreoffice
 
 ❯ `sudo pacman -S libreoffice-fresh` (`libreoffice-fresh-LANGUAGE`)
