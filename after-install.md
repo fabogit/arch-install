@@ -399,6 +399,14 @@ And ensure the completions get loaded in your `~/.zshrc`:
 
 If after reloading your shell and completions are still not loading, you may need to remove `~/.zcompdump/` to remove previously generated completions and then `compinit` to generate them again.
 
+### Fish
+
+❯ `fish_config`
+
+❯ `fish_update_completions`
+
+`fish_comfig
+
 ### pacman sound hook
 
 https://aur.archlinux.org/packages/pacman-beep-hook
@@ -856,6 +864,7 @@ start using docker
 
 `minikube status`
 
+https://minikube.sigs.k8s.io/docs/handbook/controls/
 
 ### libreoffice
 
