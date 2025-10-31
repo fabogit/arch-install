@@ -658,7 +658,7 @@ or `plasma-meta` pckg + wayland
 `pacman -S`
 
 ```
-linux-headers git curl wget bash-completion konsole usbutils fastfetch tmux firefox-developer-edition chromium nm-connection-editor dosfstools exfatprogs  firewalld kdf power-profiles-daemon wireless-regdb
+linux-headers git curl wget bash-completion konsole usbutils fastfetch tmux firefox-developer-edition chromium nm-connection-editor dosfstools exfatprogs  firewalld python-pyqt6 kdf power-profiles-daemon wireless-regdb
 ```
 
 and
