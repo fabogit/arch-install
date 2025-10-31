@@ -470,7 +470,7 @@ https://wiki.archlinux.org/title/snapper
 
 ### bitwarden
 
-❯ `yay bitwarden libappindicator-gtk3`
+❯ `yay bitwarden libappindicator`
 
 ### browsers and mail
 
