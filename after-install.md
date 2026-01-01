@@ -761,7 +761,7 @@ https://docs.docker.com/storage/storagedriver/btrfs-driver/
 
 https://gdevillele.github.io/engine/userguide/storagedriver/btrfs-driver/
 
-❯ `sudo pacman -S docker`
+❯ `sudo pacman -S docker docker-compose docker-buildx`
 
 ❯ `sudo systemctl enable docker.service`
 
