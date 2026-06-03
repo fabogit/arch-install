@@ -412,6 +412,77 @@ Run a model, eg gemma 4
 
 ❯ `ollama run gemma4:e4b`
 
+---
+ 
+Ollama CPU Fallback Configuration on AMD Ryzen APU (Radeon 780M)
+
+This guide outlines the system configuration and requirements for running Ollama with a CPU fallback on Arch Linux, disabling Vulkan hardware acceleration to ensure operational stability and prevent hangs/crashes on the AMD Radeon 780M iGPU.
+
+---
+
+1. System Requirements and Packages
+
+For running Ollama, the following package is installed on the system:
+
+*   **`ollama-bin`** (AUR): The official pre-compiled release of Ollama. Recommended over building from source (`ollama` package in official repos) as it includes all necessary C++ runtimes for CPU fallback (`llama-server`).
+
+---
+
+2. Systemd Configuration and Environment File
+
+Environment variables are managed via a systemd override file pointing to a dedicated configuration file in `/etc`.
+
+2.1 Systemd Drop-in File
+
+The file `/usr/lib/systemd/system/ollama.service.d/01-vulkan.conf` instructs the service to load environment variables from `/etc/ollama-vulkan.conf`:
+
+```ini
+[Service]
+EnvironmentFile=-/etc/ollama-vulkan.conf
+```
+
+2.2 Variables in `/etc/ollama-vulkan.conf`
+
+To force CPU execution and prevent the runner from attempting to initialize the Vulkan stack (which may cause hangs or core dumps on the RDNA3 `gfx1103` UMA architecture), `/etc/ollama-vulkan.conf` defines the following variables:
+
+```ini
+# Disable Vulkan backend
+OLLAMA_VULKAN=0
+
+# Hide Vulkan devices from the runner
+GGML_VK_VISIBLE_DEVICES=-1
+
+# Force the standard CPU runner library
+OLLAMA_LLM_LIBRARY=cpu
+```
+
+---
+
+3. Systemd Service Management
+
+If changes are made to `/etc/ollama-vulkan.conf`, apply the modifications and restart the service:
+
+```bash
+# Reload systemd manager configurations
+sudo systemctl daemon-reload
+
+# Restart the Ollama service to apply the modified environment file
+sudo systemctl restart ollama.service
+```
+
+---
+
+4. Verification and Diagnostics
+
+4.1 Verification Logs
+
+Read system logs to confirm the CPU runner is starting correctly:
+
+```bash
+# Print system logs for the Ollama service
+sudo journalctl -u ollama.service -n 50 --no-pager
+```
+
 ### zsh
 
 ❯ `sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions`
