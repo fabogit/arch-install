@@ -317,6 +317,8 @@ also `KernelExperimental = true` if needed
 
 ❯ `sudo fwupdmgr update`
 
+❯ `sudo fwupdmgr refresh`
+
 # PAKAGES
 
 ## PACMAN CHACE
@@ -356,6 +358,59 @@ https://aur.archlinux.org/packages/tuxedo-touchpad-switch/
 https://aur.archlinux.org/packages/tuxedo-keyboard/
 
 https://aur.archlinux.org/packages/tuxedo-control-center-bin/
+
+### Ollama (LLM)
+
+System Libraries and Packages (for amd apu, for discrete gpu need ROCm)
+
+`vulkan-icd-loader` System Vulkan ICD loader.
+
+`vulkan-radeon` The RADV (Mesa) Vulkan driver specific to AMD GPUs. Without this driver, the APU is not detected by Vulkan.
+
+`vulkan-tools` Provides vulkaninfo for debugging the graphics stack.
+
+`amdgpu_top` Real-time monitoring utility for graphics and memory load.
+
+`ollama-vulkan-bin` The Ollama binary compiled with explicit support for the Vulkan API.
+
+❯ `yay -S ollama-vulkan-bin vulkan-radeon vulkan-tools vulkan-icd-loader amdgpu_top`
+
+2. Service Configuration (systemd)
+
+The `/etc/systemd/system/ollama.service.d/override.conf` file must have the following structure to enable acceleration and (optionally) expose the APIs externally:
+
+Amd APU config:
+
+```txt
+# Force Ollama to use the Vulkan acceleration backend
+OLLAMA_VULKAN=1
+# CRITICAL: Set visible devices to 0. Listing non-existent devices (e.g. 0,1,2,3) 
+# on single-GPU setups causes llama-server to dump core on startup.
+GGML_VK_VISIBLE_DEVICES=0
+# CRITICAL: Force Ollama to use the integrated GPU instead of dropping it.
+OLLAMA_IGPU_ENABLE=1
+# Optional: Bind Ollama API to all interfaces to allow external clients
+OLLAMA_HOST=0.0.0.0:11434
+# Optional: Enable Cross-Origin Resource Sharing (CORS) from any origin
+OLLAMA_ORIGINS=*
+```
+
+Edit systemd service configuration for Ollama
+
+❯ `sudo systemctl edit ollama.service`
+
+Reload and restart Ollama to bind to the new host address
+
+❯ `sudo systemctl daemon-reload`
+❯ `sudo systemctl restart ollama.service`
+
+Print system logs for the Ollama service
+
+❯ `sudo journalctl -u ollama.service -n 50 --no-pager`
+
+Run a model, eg gemma 4
+
+❯ `ollama run gemma4:e4b`
 
 ### zsh
 
@@ -741,6 +796,38 @@ https://wiki.archlinux.org/title/Python/Virtual_environment
 
 ❯ `sudo pacman -S python-pipenv`
 
+### python direnv
+
+Install `direnv` from official repositories
+
+❯ `sudo pacman -S direnv`
+
+Append `direnv` hook to `fish` config
+
+❯ `echo -e "\n# direnv configuration\ndirenv hook fish | source" >> ~/.config/fish/config.fish`
+
+Reload fish configuration
+
+❯ `source ~/.config/fish/config.fish`
+
+```bash
+# Create a test directory and enter it
+mkdir -p /tmp/direnv-test
+cd /tmp/direnv-test
+
+# Create a test .envrc file with an environment variable
+echo "export TEST_VAR='direnv_is_working'" > .envrc
+
+# Allow direnv to load the environment variables in this directory
+direnv allow
+
+# Print the test variable
+echo $TEST_VAR
+
+# Print the test variable
+echo $TEST_VAR
+```
+
 ### nvm, node & npm
 
 https://wiki.archlinux.org/title/Node.js
@@ -753,18 +840,17 @@ https://wiki.archlinux.org/title/Node.js
 
 ### fnm (a better nvm imo)
 
-# Install fnm-bin from AUR
-❯ `yay -S fnm-bin`
+Install fnm-bin from AUR
 
+❯ `yay -S fnm-bin`
 
 Append fnm initialization to fish config
 
-❯ `echo -e "\n# fnm configuration\nfnm env --use-on-cd | source" >> ~/.config/fish/config.fish`
+❯ `echo -e "\n# fnm configuration\nfnm env --use-on-cd --corepack-enabled | source" >> ~/.config/fish/config.fish`
 
 Reload fish configuration
 
 ❯ `source ~/.config/fish/config.fish`
-
 
 Install the latest LTS version of Node.js, enable corepack
 
@@ -842,8 +928,6 @@ enterprise edition
 docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest
 ```
 
-
-    
 ❯ `docker ps`
 
 - to update:
