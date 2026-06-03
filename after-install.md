@@ -412,7 +412,123 @@ Run a model, eg gemma 4
 
 ❯ `ollama run gemma4:e4b`
 
+#### => iGPU
+
+This guide outlines the system configuration, environment variables, and verification procedures for running Ollama accelerated by Vulkan on Arch Linux using the integrated AMD Radeon 780M GPU (RDNA3 gfx1103 architecture).
+
 ---
+
+1. System Requirements and Driver Stack
+
+To enable hardware acceleration on AMD's UMA (shared memory) architecture via Vulkan, the following packages are required:
+
+*   **`vulkan-radeon`** (Mesa RADV): The reference open-source Vulkan driver for AMD GPUs. Without this, the Vulkan loader will not detect the integrated GPU.
+
+*   **`vulkan-icd-loader`**: System Vulkan ICD loader.
+
+*   **`ollama-bin`** (AUR): The pre-compiled binary release of Ollama (distributed via GitHub releases). This is recommended over compiling the package from source as it reliably bundles the compiled `llama-server` runtime.
+
+*   **`amdgpu_top`** (optional): Tool for monitoring shader engine activity and shared system memory (GTT) utilization in real-time.
+
+---
+
+2. Systemd Service and Environment Configuration
+
+The configuration variables are defined in an external environment file which is loaded by systemd.
+
+2.1 Systemd Drop-in Override
+
+The drop-in file `/usr/lib/systemd/system/ollama.service.d/01-vulkan.conf` configures systemd to import environment variables from `/etc/ollama-vulkan.conf`:
+
+```ini
+[Service]
+EnvironmentFile=-/etc/ollama-vulkan.conf
+```
+
+2.2 Variables in `/etc/ollama-vulkan.conf`
+
+The following parameters are required to force Ollama to leverage the Vulkan backend and ensure execution stability on the integrated GPU:
+
+```ini
+# Force Ollama to use the Vulkan acceleration backend
+OLLAMA_VULKAN=1
+
+# Map exclusively the first Vulkan device (Radeon 780M)
+GGML_VK_VISIBLE_DEVICES=0
+
+# Enable integrated GPU support (forces mapping on UMA shared memory)
+OLLAMA_IGPU_ENABLE=1
+
+# Disable experimental Vulkan Flash Attention to prevent shader freezes
+OLLAMA_FLASH_ATTENTION=0
+```
+
+---
+
+3. Systemd Service Management
+
+Whenever `/etc/ollama-vulkan.conf` is modified, reload the systemd configuration and restart the service:
+
+```bash
+# Reload systemd manager configurations
+sudo systemctl daemon-reload
+
+# Restart the Ollama service to apply the modified environment file
+sudo systemctl restart ollama.service
+```
+
+---
+
+4. Initialization and Cold Compilation
+
+4.1 First Run Cold Compilation
+
+When a model (e.g. `gemma4:e4b`) is loaded for the first time under Vulkan, the Mesa driver triggers a cold shader compilation of all computation kernels.
+
+*   **Duration**: The LLVM/ACO shader compiler takes **between 4 and 5 minutes** to compile the GPGPU shader pipelines.
+
+*   **CPU Impact**: During this phase, the process `/usr/lib/ollama/llama-server` will utilize CPU close to **100%** (multi-threaded compilation).
+
+*   **Disk Cache**: Once compiled, Mesa caches the binary shaders inside `/var/lib/ollama/.cache/mesa_shader_cache/`. Subsequent loads bypass compilation and initialize **instantly** (under 2 seconds) with minimal CPU usage.
+
+---
+
+5. Verification and Performance Benchmarks
+
+5.1 Diagnostics Logs
+
+Check the system journal to verify that the model's layers are successfully offloaded to the GPU:
+
+```bash
+sudo journalctl -u ollama.service -n 50 --no-pager
+```
+
+Upon successful startup, the logs must report the `Vulkan0` iGPU mapping:
+
+```text
+level=INFO source=types.go:32 msg="inference compute" id=0 filter_id=0 library=Vulkan compute=0.0 name=Vulkan0 description="AMD Radeon 780M Graphics (RADV PHOENIX)" libdirs=ollama driver=0.0 pci_id=0000:c1:00.0 type=iGPU total="15.8 GiB" available="13.8 GiB"
+...
+level=INFO source=ollama[8701]: load_tensors: offloaded 43/43 layers to GPU
+```
+
+5.2 Real-time Monitoring
+
+Run `amdgpu_top` in a separate terminal. During inference:
+
+*   Memory usage inside the **`GTT`** (Graphics Translation Table) region will rise to accommodate the model (approximately ~11.5 GB for Gemma 4 E4B).
+
+*   The **`GFX`** shader engine usage will spike above 80%, indicating execution is offloaded to the iGPU cores.
+
+
+5.3 Performance Metrics
+
+Our benchmark for `gemma4:e4b` (9.6 GB model) yielded:
+
+*   **Cold Startup / Compilation time**: `271.3 seconds` (~4.5 minutes)
+
+*   **Token Generation Rate**: `~20.3 tokens per second` (eval_count: 315, eval_duration: 15.53 seconds)
+
+#### => CPU
  
 Ollama CPU Fallback Configuration on AMD Ryzen APU (Radeon 780M)
 
