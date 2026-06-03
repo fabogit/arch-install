@@ -751,6 +751,42 @@ https://wiki.archlinux.org/title/Node.js
 
 ❯ `source ~/.zshrc`
 
+### fnm (a better nvm imo)
+
+# Install fnm-bin from AUR
+❯ `yay -S fnm-bin`
+
+
+Append fnm initialization to fish config
+
+❯ `echo -e "\n# fnm configuration\nfnm env --use-on-cd | source" >> ~/.config/fish/config.fish`
+
+Reload fish configuration
+
+❯ `source ~/.config/fish/config.fish`
+
+
+Install the latest LTS version of Node.js, enable corepack
+
+❯ `fnm install --lts --corepack-enabled`
+
+Set the LTS version as the default node version for new shells
+
+❯ `fnm default lts-latest`
+
+```bash
+# Check node and npm versions and paths
+node -v
+npm -v
+which node
+# Check pnpm version and execution path
+pnpm -v
+which pnpm
+
+# Disable corepack shims and remove pnpm/yarn from current Node.js version
+corepack disable
+```
+
 ### Docker
 
 https://wiki.archlinux.org/title/Docker#Installation
