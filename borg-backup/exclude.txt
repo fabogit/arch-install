@@ -1,0 +1,39 @@
+# Exclude browser caches from remote home
+sh:home/fabo/mnt_arch/.mozilla/firefox/*/cache2
+sh:home/fabo/mnt_arch/.mozilla/firefox/*/minidumps
+sh:home/fabo/mnt_arch/.config/google-chrome/Default/Cache*
+sh:home/fabo/mnt_arch/.config/chromium/Default/Cache*
+
+# Exclude system and user caches
+sh:home/fabo/mnt_arch/.cache
+sh:home/fabo/mnt_arch/.local/share/Trash
+sh:home/fabo/mnt_arch/.var/app/*/cache
+
+# Exclude package manager caches
+sh:home/fabo/mnt_arch/.npm
+sh:home/fabo/mnt_arch/.cargo/registry
+sh:home/fabo/mnt_arch/.cargo/git
+sh:home/fabo/mnt_arch/.rustup
+
+# Exclude flatpak system-wide runtime
+sh:home/fabo/mnt_arch/.local/share/flatpak
+
+# Exclude specific development folders globally
+sh:**/node_modules
+sh:**/.venv
+sh:**/venv
+sh:**/env
+sh:**/.env
+sh:**/target
+sh:**/.next
+sh:**/.nuxt
+
+# Exclude LLM models and local model storage
+sh:**/*.gguf
+sh:**/huggingface/hub
+sh:**/huggingface/assets
+sh:home/fabo/mnt_arch/.ollama
+
+# Selective exclusions: only inside Documents on remote Arch
+sh:home/fabo/mnt_arch/Documents/**/build
+sh:home/fabo/mnt_arch/Documents/**/dist
