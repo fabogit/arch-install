@@ -631,7 +631,7 @@ https://wiki.archlinux.org/title/KDE#Installation , https://wiki.archlinux.org/t
 from plasma-meta
 
 ```
-bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi sddm-kcm kio kio-extras systemsettings
+bluedevil breeze-gtk drkonqi kde-gtk-config kdeplasma-addons kgamma kinfocenter kscreen ksshaskpass kwallet-pam kwallet kwalletmanager knotifications oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-nm plasma-pa plasma-systemmonitor plasma-vault plasma-workspace-wallpapers powerdevil acpi plasma-login-manager kio kio-extras systemsettings
 ```
 (khotkeys is unmantained)
 
@@ -1076,7 +1076,7 @@ DONE
 # ENABLE DISPLAY MANAGER TO ENABLE SYSTEM GUI
  
 ```
-sudo systemctl enable sddm
+sudo systemctl enable plasmalogin.service
 ```
 ## REBOOT
 
