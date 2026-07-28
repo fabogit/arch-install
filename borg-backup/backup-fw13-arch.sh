@@ -1,112 +1,61 @@
 #!/usr/bin/env bash
 
-# Shell safety settings:
-# -e: Exit immediately if any command fails (returns non-zero status).
-# -u: Treat unset variables as an error and exit immediately.
-# -o pipefail: Ensure that pipeline commands return the exit status of the last command to fail.
+# Shell safety settings
 set -euo pipefail
 
-# ==============================================================================
-# Configuration Section
-# ==============================================================================
-
-# Path to the local Borg repository on the external Storage disk.
-export BORG_REPO="/run/media/fabo/Storage/backup_arch_borg"
-
-# Local directory where the remote Arch home filesystem will be mounted.
-MOUNT_POINT="/home/fabo/mnt_arch"
-
-# Remote source specification using the SSH alias 'arch' defined in ~/.ssh/config.
-REMOTE_SOURCE="arch:/home/fabo"
-
-# Unique archive name combining host description and the current date/time.
+# Configuration
+GARUDA_IP="192.168.1.50"
+REMOTE_HOST="arch"
+STORAGE_DIR="/run/media/fabo/Storage/arch_backup"
+STORAGE_REPO="${STORAGE_DIR}/backup_arch_borg"
+BORG_TARGET_REPO="ssh://fabo@${GARUDA_IP}${STORAGE_REPO}"
 ARCHIVE_NAME="fw13-arch-$(date +'%Y-%m-%d-%H%M%S')"
 
-# ==============================================================================
-# Mounting Remote Filesystem via SSHFS
-# ==============================================================================
+echo "Exporting installed package lists from remote Arch..."
+ssh "$REMOTE_HOST" "pacman -Qqen" > "$(dirname "$0")/pkglist_native.txt" || true
+ssh "$REMOTE_HOST" "pacman -Qqem" > "$(dirname "$0")/pkglist_aur.txt" || true
 
-# Create the local mount directory if it doesn't already exist.
-mkdir -p "$MOUNT_POINT"
+# Copy package lists into project folder and into Storage/arch_backup directory
+mkdir -p "$STORAGE_DIR"
+cp "$(dirname "$0")/pkglist_"*.txt "$STORAGE_DIR/" || true
 
-# Check if the directory is already mounted. If so, attempt to unmount it first
-# to avoid overlay mount errors or locked states.
-if mountpoint -q "$MOUNT_POINT"; then
-    echo "Warning: $MOUNT_POINT is already mounted. Attempting to unmount..."
-    fusermount -u "$MOUNT_POINT" || true
-fi
+echo "Syncing exclude.txt pattern file to Arch via SCP..."
+scp "$(dirname "$0")/exclude.txt" "$REMOTE_HOST":/home/fabo/exclude.txt
 
-echo "Mounting remote Arch home via SSHFS..."
-# Mount remote path with options for resiliency:
-# - follow_symlinks: Resolves symlinks on the remote host side.
-# - reconnect: Automatically tries to reconnect if the connection drops.
-# - ServerAliveInterval / ServerAliveCountMax: Sends keepalive packets every 15s,
-#   dropping the connection cleanly after 3 missed responses (45s total).
-sshfs "$REMOTE_SOURCE" "$MOUNT_POINT" -o follow_symlinks,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
+# Ensure any leftover lock on local repository or remote cache is cleared
+borg break-lock "$STORAGE_REPO" || true
+ssh "$REMOTE_HOST" "env BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS=yes borg break-lock '${BORG_TARGET_REPO}'" || true
 
-# Trap function to ensure cleanup on exit.
-# Regardless of success, warning, or failure, the mountpoint will be cleanly
-# unmounted when the shell script exits.
-cleanup() {
-    echo "Cleaning up: unmounting SSHFS..."
-    if mountpoint -q "$MOUNT_POINT"; then
-        fusermount -u "$MOUNT_POINT" || true
-    fi
-}
-# Register the cleanup function to be called on script termination (EXIT signal).
-trap cleanup EXIT
-
-# ==============================================================================
-# Executing BorgBackup
-# ==============================================================================
-
-echo "Starting BorgBackup to $BORG_REPO..."
-
-# Temporarily disable 'exit-on-error' (set +e) because Borg create returns:
-# - 0: Success.
-# - 1: Warning (e.g. files changed during backup run).
-# - 2: Error.
-# We want to catch exit code 1 and treat it as non-fatal so we can still prune.
+echo "Starting native high-speed BorgBackup on Arch pushing to Garuda..."
 set +e
-borg create \
+ssh "$REMOTE_HOST" "env BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS=yes borg create \
     --verbose \
     --filter AME \
     --list \
     --stats \
     --show-rc \
-    --exclude-from "$(dirname "$0")/exclude.txt" \
-    "::$ARCHIVE_NAME" \
-    "$MOUNT_POINT"
+    --compression zstd \
+    --exclude-from /home/fabo/exclude.txt \
+    '${BORG_TARGET_REPO}::${ARCHIVE_NAME}' \
+    /home/fabo"
 BORG_EXIT=$?
-# Re-enable 'exit-on-error' safety setting.
 set -e
 
-# Evaluate Borg's exit status.
 if [ $BORG_EXIT -eq 0 ]; then
     echo "BorgBackup completed successfully."
 elif [ $BORG_EXIT -eq 1 ]; then
-    # Exit code 1 is a warning, common for active home folders (e.g., active log files).
     echo "BorgBackup completed with warnings (some files changed during run)."
 else
-    # Exit code 2 is a critical error (e.g. network failure, repository corruption).
     echo "BorgBackup failed with critical error: $BORG_EXIT"
     exit $BORG_EXIT
 fi
 
-# ==============================================================================
-# Pruning Old Archives (Rotation Policy)
-# ==============================================================================
-
-echo "Pruning old archives..."
-# Keep a defined window of backups to optimize storage space:
-# --keep-daily 7:   Keep one backup per day for the last 7 days.
-# --keep-weekly 4:  Keep one backup per week for the last 4 weeks.
-# --keep-monthly 12: Keep one backup per month for the last 12 months.
+echo "Pruning old archives on local Storage repository..."
 borg prune \
     --list \
-    --prefix "fw13-arch-" \
+    --glob-archives "fw13-arch-*" \
     --show-rc \
     --keep-daily 7 \
     --keep-weekly 4 \
     --keep-monthly 12 \
-    "::"
+    "$STORAGE_REPO"

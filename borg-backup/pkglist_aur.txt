@@ -1,0 +1,12 @@
+android-studio
+antigravity-cli
+antigravity-ide
+fnm-bin
+gitkraken
+icu69-bin
+mongodb-compass-bin
+ollama-vulkan-bin
+postman-bin
+snap-pac-grub
+visual-studio-code-bin
+yay

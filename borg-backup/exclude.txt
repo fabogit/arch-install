@@ -1,22 +1,72 @@
-# Exclude browser caches from remote home
-sh:home/fabo/mnt_arch/.mozilla/firefox/*/cache2
-sh:home/fabo/mnt_arch/.mozilla/firefox/*/minidumps
-sh:home/fabo/mnt_arch/.config/google-chrome/Default/Cache*
-sh:home/fabo/mnt_arch/.config/chromium/Default/Cache*
+# Exclude browser & Electron caches
+sh:**/firefox/*/cache2
+sh:**/firefox/*/minidumps
+sh:**/firefox/*/storage/default
+sh:**/google-chrome/*/Cache*
+sh:**/chromium/*/Cache*
+sh:**/Cache_Data
+sh:**/ShaderCache
+sh:**/blob_storage
+
+# Exclude IDE caches, WebStorage & logs (VS Code, Antigravity IDE, DBeaver, Electron/Chromium-based tools)
+sh:**/CacheStorage
+sh:**/GPUCache
+sh:**/ScriptCache
+sh:**/WebStorage
+sh:**/Code/CachedData
+sh:**/Code/CachedExtensionVSIXs
+sh:**/Code/logs
+sh:**/Antigravity IDE/Cache
+sh:**/Antigravity IDE/GPUCache
+sh:**/Antigravity IDE/ScriptCache
+sh:**/Antigravity IDE/logs
+sh:**/DBeaverData/**/.metadata
+sh:**/logs/20*
 
 # Exclude system and user caches
-sh:home/fabo/mnt_arch/.cache
-sh:home/fabo/mnt_arch/.local/share/Trash
-sh:home/fabo/mnt_arch/.var/app/*/cache
+sh:home/fabo/.cache
+sh:**/.cache
+sh:**/Trash
+sh:**/var/app/*/cache
 
-# Exclude package manager caches
-sh:home/fabo/mnt_arch/.npm
-sh:home/fabo/mnt_arch/.cargo/registry
-sh:home/fabo/mnt_arch/.cargo/git
-sh:home/fabo/mnt_arch/.rustup
+# Exclude Python bytecode and caches
+sh:**/__pycache__
+sh:**/*.pyc
+sh:**/*.pyo
+sh:**/*.pyd
+sh:**/.pytest_cache
+sh:**/.mypy_cache
+
+# Exclude package manager caches and store directories
+sh:home/fabo/.npm
+sh:**/.npm
+sh:home/fabo/.cargo
+sh:**/.cargo
+sh:home/fabo/.rustup
+sh:**/.rustup
+sh:home/fabo/go/pkg/mod
+sh:**/go/pkg/mod
+sh:**/go/pkg/sumdb
+sh:**/pnpm/store
+sh:**/yarn/cache
+sh:**/bun/install/cache
+sh:**/.gradle/caches
+sh:**/.gradle/wrapper
+
+# Exclude Kubernetes / Minikube caches
+sh:home/fabo/.minikube/cache
+sh:**/.minikube/cache
+sh:home/fabo/.minikube/machines
+sh:**/.minikube/machines
+
+# Exclude Android SDK platform sources, system images & AVDs
+sh:home/fabo/Android/Sdk
+sh:**/Android/Sdk
+sh:**/.android/avd
 
 # Exclude flatpak system-wide runtime
-sh:home/fabo/mnt_arch/.local/share/flatpak
+sh:home/fabo/.local/share/flatpak
+sh:**/flatpak
 
 # Exclude specific development folders globally
 sh:**/node_modules
@@ -24,16 +74,19 @@ sh:**/.venv
 sh:**/venv
 sh:**/env
 sh:**/.env
+sh:**/site-packages
+sh:**/.direnv
 sh:**/target
 sh:**/.next
 sh:**/.nuxt
 
-# Exclude LLM models and local model storage
+# Exclude LLM models
 sh:**/*.gguf
 sh:**/huggingface/hub
 sh:**/huggingface/assets
-sh:home/fabo/mnt_arch/.ollama
+sh:home/fabo/.ollama
+sh:**/.ollama
 
-# Selective exclusions: only inside Documents on remote Arch
-sh:home/fabo/mnt_arch/Documents/**/build
-sh:home/fabo/mnt_arch/Documents/**/dist
+# Selective exclusions: only inside Documents
+sh:home/fabo/Documents/**/build
+sh:home/fabo/Documents/**/dist
