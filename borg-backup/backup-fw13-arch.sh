@@ -3,30 +3,32 @@
 # Shell safety settings
 set -euo pipefail
 
-# Configuration
-GARUDA_IP="192.168.1.50"
-REMOTE_HOST="arch"
-STORAGE_DIR="/run/media/fabo/Storage/arch_backup"
+# Configuration (overridable via environment variables)
+STORAGE_IP="${STORAGE_IP:-192.168.1.50}"
+STORAGE_USER="${STORAGE_USER:-${USER}}"
+REMOTE_HOST="${REMOTE_HOST:-arch}"
+REMOTE_USER="${REMOTE_USER:-${USER}}"
+STORAGE_DIR="${STORAGE_DIR:-/run/media/${STORAGE_USER}/Storage/arch_backup}"
 STORAGE_REPO="${STORAGE_DIR}/backup_arch_borg"
-BORG_TARGET_REPO="ssh://fabo@${GARUDA_IP}${STORAGE_REPO}"
+BORG_TARGET_REPO="ssh://${STORAGE_USER}@${STORAGE_IP}${STORAGE_REPO}"
 ARCHIVE_NAME="fw13-arch-$(date +'%Y-%m-%d-%H%M%S')"
 
 echo "Exporting installed package lists from remote Arch..."
 ssh "$REMOTE_HOST" "pacman -Qqen" > "$(dirname "$0")/pkglist_native.txt" || true
 ssh "$REMOTE_HOST" "pacman -Qqem" > "$(dirname "$0")/pkglist_aur.txt" || true
 
-# Copy package lists into project folder and into Storage/arch_backup directory
+# Copy package lists into project folder and into Storage directory
 mkdir -p "$STORAGE_DIR"
 cp "$(dirname "$0")/pkglist_"*.txt "$STORAGE_DIR/" || true
 
-echo "Syncing exclude.txt pattern file to Arch via SCP..."
-scp "$(dirname "$0")/exclude.txt" "$REMOTE_HOST":/home/fabo/exclude.txt
+echo "Syncing exclude.txt pattern file to remote host via SCP..."
+scp "$(dirname "$0")/exclude.txt" "$REMOTE_HOST":/home/${REMOTE_USER}/exclude.txt
 
 # Ensure any leftover lock on local repository or remote cache is cleared
 borg break-lock "$STORAGE_REPO" || true
 ssh "$REMOTE_HOST" "env BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS=yes borg break-lock '${BORG_TARGET_REPO}'" || true
 
-echo "Starting native high-speed BorgBackup on Arch pushing to Garuda..."
+echo "Starting native high-speed BorgBackup on remote host pushing to Storage..."
 set +e
 ssh "$REMOTE_HOST" "env BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS=yes borg create \
     --verbose \
@@ -35,9 +37,9 @@ ssh "$REMOTE_HOST" "env BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS=yes borg create \
     --stats \
     --show-rc \
     --compression zstd \
-    --exclude-from /home/fabo/exclude.txt \
+    --exclude-from /home/${REMOTE_USER}/exclude.txt \
     '${BORG_TARGET_REPO}::${ARCHIVE_NAME}' \
-    /home/fabo"
+    /home/${REMOTE_USER}"
 BORG_EXIT=$?
 set -e
 

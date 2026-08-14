@@ -24,7 +24,6 @@ sh:**/DBeaverData/**/.metadata
 sh:**/logs/20*
 
 # Exclude system and user caches
-sh:home/fabo/.cache
 sh:**/.cache
 sh:**/Trash
 sh:**/var/app/*/cache
@@ -38,13 +37,9 @@ sh:**/.pytest_cache
 sh:**/.mypy_cache
 
 # Exclude package manager caches and store directories
-sh:home/fabo/.npm
 sh:**/.npm
-sh:home/fabo/.cargo
 sh:**/.cargo
-sh:home/fabo/.rustup
 sh:**/.rustup
-sh:home/fabo/go/pkg/mod
 sh:**/go/pkg/mod
 sh:**/go/pkg/sumdb
 sh:**/pnpm/store
@@ -54,18 +49,14 @@ sh:**/.gradle/caches
 sh:**/.gradle/wrapper
 
 # Exclude Kubernetes / Minikube caches
-sh:home/fabo/.minikube/cache
 sh:**/.minikube/cache
-sh:home/fabo/.minikube/machines
 sh:**/.minikube/machines
 
 # Exclude Android SDK platform sources, system images & AVDs
-sh:home/fabo/Android/Sdk
 sh:**/Android/Sdk
 sh:**/.android/avd
 
 # Exclude flatpak system-wide runtime
-sh:home/fabo/.local/share/flatpak
 sh:**/flatpak
 
 # Exclude specific development folders globally
@@ -84,9 +75,8 @@ sh:**/.nuxt
 sh:**/*.gguf
 sh:**/huggingface/hub
 sh:**/huggingface/assets
-sh:home/fabo/.ollama
 sh:**/.ollama
 
-# Selective exclusions: only inside Documents
-sh:home/fabo/Documents/**/build
-sh:home/fabo/Documents/**/dist
+# Selective exclusions: build and dist folders
+sh:**/Documents/**/build
+sh:**/Documents/**/dist

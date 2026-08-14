@@ -1,0 +1,16 @@
+[init]
+	defaultBranch = main
+[user]
+	email = 
+	name = fabogit
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[core]
+	editor = code --wait
+[merge]
+  	tool = code
+[mergetool "code"]
+ 	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
