@@ -13,7 +13,7 @@ Comprehensive installation guides, post-install configurations, system tuning to
 ### 2. Post-Installation Guides (`docs/post-install/`)
 * [01 - System Performance & Tuning](docs/post-install/01-system-tuning.md): Systemd timeout tuning, mkinitcpio ZSTD compression, automatic pacman cache cleaning, `/boot` backup hooks, and sleep/hibernate configuration.
 * [02 - Security, PAM & SSH](docs/post-install/02-security-pam.md): Fingerprint reader (`fprintd`) PAM integration, systemd user SSH-agent socket management, and SSH daemon hardening.
-* [03 - AI & Ollama Acceleration](docs/post-install/03-ai-ollama.md): Hardware-accelerated local LLMs with Ollama on AMD Radeon 780M (Vulkan iGPU) and CPU fallback modes.
+* [03 - LLM Infrastructure & Frameworks](docs/post-install/03-llm-infrastructure.md): Hardware-accelerated local LLMs with Ollama on AMD Radeon dGPU (Desktop RX 9070 XT) and APU (Laptop Framework 13 780M), and ecosystem overview (Unsloth, llama.cpp, vLLM).
 * [04 - PipeWire Audio Infrastructure](docs/post-install/04-audio-pipewire.md): Low-latency PipeWire and WirePlumber setup with high-resolution Bluetooth codecs.
 * [05 - KDE Plasma Desktop](docs/post-install/05-desktop-kde.md): Plasma 6 configuration, Discover PackageKit/Flatpak backends, Bluetooth battery percentage reporting, and root theme sync.
 * [06 - Shells & Terminal Environment](docs/post-install/06-shells.md): Zsh, Fish shell (Starship cross-shell prompt), Node/PNPM development toolchains, and typography.
@@ -26,6 +26,7 @@ Comprehensive installation guides, post-install configurations, system tuning to
 
 ### 4. Configuration Templates & Dotfiles (`configs/`)
 * `configs/dotfiles/`: Home dotfiles (`.zshrc`, `.bashrc`, `.gitconfig`), `~/.config` templates (`kdeglobals`, `neofetch`), and shell configurations (`starship.toml`, `config.fish`).
+* `configs/llm/`: Ollama environment configuration files and systemd service overrides (Desktop dGPU, Laptop APU iGPU, and CPU fallback).
 * `configs/boot/`: Bootloader assets and GRUB visual themes.
 * `configs/kde/`: KDE Plasma system monitor pages and system settings backups.
 * `configs/icons/`: System icons and graphic assets.
