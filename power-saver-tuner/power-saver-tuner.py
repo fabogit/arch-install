@@ -16,19 +16,19 @@ def log(msg):
     print(f"[power-saver-tuner] {msg}", flush=True)
 
 def load_config(config_path):
-    # Set default values for all profiles
+    # Default autotuning values for all profiles (zero-config out of the box)
     config = {
-        "disable_boost_power_saver": "no",
-        "disable_boost_balanced": "no",
+        "disable_boost_power_saver": "yes",
+        "disable_boost_balanced": "yes",
         "disable_boost_performance": "no",
         
         "limit_freq_power_saver": "auto",
-        "limit_freq_balanced": "none",
+        "limit_freq_balanced": "auto",
         "limit_freq_performance": "none",
         
-        "gpu_perf_level_power_saver": "none",
-        "gpu_perf_level_balanced": "none",
-        "gpu_perf_level_performance": "none",
+        "gpu_perf_level_power_saver": "low",
+        "gpu_perf_level_balanced": "auto",
+        "gpu_perf_level_performance": "auto",
         
         "gpu_sclk_limit_power_saver": "none",
         "gpu_sclk_limit_balanced": "none",
@@ -58,6 +58,8 @@ def load_config(config_path):
                             config[k] = v
         except Exception as e:
             log(f"Error reading config {config_path}: {e}")
+    else:
+        log(f"No config file found at {config_path}. Using dynamic autotuning defaults.")
     return config
 
 def write_file(path, value):
@@ -99,6 +101,57 @@ def get_max_freq(cpu_dir):
         pass
     return None
 
+def get_nominal_freq(cpu_dir):
+    # 1. Query ACPI CPPC nominal_freq (reported in MHz by AMD CPPC, convert to kHz)
+    cpu_name = os.path.basename(os.path.dirname(cpu_dir))
+    cppc_path = f"/sys/devices/system/cpu/{cpu_name}/acpi_cppc/nominal_freq"
+    try:
+        with open(cppc_path, "r") as f:
+            mhz = int(f.read().strip())
+            if mhz > 0:
+                return mhz * 1000
+    except Exception:
+        pass
+
+    # 2. Query cpufreq base_frequency (in kHz)
+    base_path = os.path.join(cpu_dir, "base_frequency")
+    try:
+        with open(base_path, "r") as f:
+            val = int(f.read().strip())
+            if val > 0:
+                return val
+    except Exception:
+        pass
+
+    # 3. Fallback: 70% of max hardware frequency or conservative baseline
+    max_f = get_max_freq(cpu_dir)
+    if max_f:
+        return int(max_f * 0.70)
+    return 2500000
+
+def ensure_epp_governors(profile):
+    cpu_dirs = get_cpu_dirs()
+    target_gov = "powersave" if profile in ("power-saver", "balanced") else "performance"
+    for cpu_dir in cpu_dirs:
+        driver_path = os.path.join(cpu_dir, "scaling_driver")
+        try:
+            with open(driver_path, "r") as f:
+                driver = f.read().strip()
+        except Exception:
+            driver = ""
+
+        # amd-pstate-epp requires governor 'powersave' to allow dynamic EPP hint processing
+        if driver == "amd-pstate-epp":
+            gov_path = os.path.join(cpu_dir, "scaling_governor")
+            avail_path = os.path.join(cpu_dir, "scaling_available_governors")
+            try:
+                with open(avail_path, "r") as f:
+                    avail = f.read().strip().split()
+                if target_gov in avail:
+                    write_file(gov_path, target_gov)
+            except Exception:
+                pass
+
 def set_cpu_boost(enabled):
     # Keep global boost path enabled at 1 to prevent systemd/power-profiles-daemon 
     # from failing with write errors (EINVAL) when changing profiles.
@@ -120,12 +173,15 @@ def apply_profile_settings(profile, config_path):
     log(f"Applying settings for profile: {profile}...")
     conf_profile_name = profile.replace("-", "_")
 
-    # 1. Handle CPU Boost per profile
+    # 1. Align CPU governor for amd-pstate-epp
+    ensure_epp_governors(profile)
+
+    # 2. Handle CPU Boost per profile
     boost_key = f"disable_boost_{conf_profile_name}"
     disable_boost_val = config.get(boost_key, "no").lower() in ("yes", "true", "1")
     set_cpu_boost(not disable_boost_val)
 
-    # 2. CPU Frequency Limit (Applied dynamically per core)
+    # 3. CPU Frequency Limit (Applied dynamically per core)
     limit_key = f"limit_freq_{conf_profile_name}"
     limit_val = config.get(limit_key, "none")
     
@@ -135,14 +191,28 @@ def apply_profile_settings(profile, config_path):
         max_freq_path = os.path.join(cpu_dir, "scaling_max_freq")
         target_freq = None
         
-        if limit_val == "auto":
-            target_freq = get_lowest_nonlinear_freq(cpu_dir)
-            if target_freq is None:
+        if limit_val in ("auto", "base"):
+            if conf_profile_name == "power_saver":
+                target_freq = get_lowest_nonlinear_freq(cpu_dir)
+                if target_freq is None:
+                    max_f = get_max_freq(cpu_dir)
+                    if max_f:
+                        target_freq = max_f // 2
+                if target_freq is None:
+                    target_freq = 1500000
+            elif conf_profile_name == "balanced":
+                target_freq = get_nominal_freq(cpu_dir)
+            else:
+                target_freq = get_max_freq(cpu_dir)
+        elif limit_val.startswith("ratio:"):
+            try:
+                ratio = float(limit_val.split(":", 1)[1])
                 max_f = get_max_freq(cpu_dir)
                 if max_f:
-                    target_freq = max_f // 2
-            if target_freq is None:
-                target_freq = 1500000
+                    target_freq = int(max_f * ratio)
+            except ValueError:
+                log(f"Invalid ratio specification: {limit_val}. Using hardware max.")
+                target_freq = get_max_freq(cpu_dir)
         elif limit_val == "min":
             target_freq = get_min_freq(cpu_dir)
         elif limit_val == "none":
@@ -160,7 +230,7 @@ def apply_profile_settings(profile, config_path):
                     
     log(f"Configured CPU scaling_max_freq on {count} CPUs (Limit mode: {limit_val}).")
 
-    # 3. GPU Performance Level & State Settings
+    # 4. GPU Performance Level & State Settings
     gpu_perf_key = f"gpu_perf_level_{conf_profile_name}"
     gpu_perf_val = config.get(gpu_perf_key, "none")
     
@@ -183,12 +253,12 @@ def apply_profile_settings(profile, config_path):
         sclk_path = os.path.join(card_dir, "pp_dpm_sclk")
         mclk_path = os.path.join(card_dir, "pp_dpm_mclk")
 
-        # 3a. Set general DPM performance level if specified
+        # 4a. Set general DPM performance level if specified
         if gpu_perf_val != "none":
             write_file(perf_level_path, gpu_perf_val)
             log(f"Set GPU performance level to '{gpu_perf_val}' for {card_name}")
 
-        # 3b. Apply clock state overrides if we are in manual mode (requires overdrive enabled)
+        # 4b. Apply clock state overrides if we are in manual mode (requires overdrive enabled)
         if sclk_limit != "none" or mclk_limit != "none":
             write_file(perf_level_path, "manual")
             if sclk_limit != "none":
@@ -211,11 +281,21 @@ def restore_all_defaults(config_path):
     for cpu_dir in cpu_dirs:
         max_freq_path = os.path.join(cpu_dir, "scaling_max_freq")
         policy_boost_path = os.path.join(cpu_dir, "boost")
+        gov_path = os.path.join(cpu_dir, "scaling_governor")
+        driver_path = os.path.join(cpu_dir, "scaling_driver")
         
         write_file(policy_boost_path, 1)
         max_val = get_max_freq(cpu_dir)
         if max_val is not None:
             write_file(max_freq_path, max_val)
+
+        try:
+            with open(driver_path, "r") as f:
+                driver = f.read().strip()
+            if driver == "amd-pstate-epp":
+                write_file(gov_path, "powersave")
+        except Exception:
+            pass
 
     # Restore GPU settings
     card_dirs = [d for d in glob.glob("/sys/class/drm/card*/device") if "-" not in os.path.basename(os.path.dirname(d))]
